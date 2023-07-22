@@ -1,0 +1,131 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\begin{document}
+
+% \tisk
+
+\section*{Číselné soustavy}
+
+\begin{uloha}
+V ASCII\footnote{American Standard Code for Information Interchange} jsou velkým písmenům anglické abecedy přiřazena čísla 65--90 a malým písmenům čísla 97--122. Proč? \hint{Dvojková soustava.}
+\vysl{pro převod mezi velkými a malými písmeny stačí přepínat jediný bit (šestý zprava, tj. odpovídající $2^5$)}
+\end{uloha}
+
+\begin{ulohav}
+Převeďte následující čísla do desítkové soustavy:
+\begin{enumerate}
+    \item $1100101_2$\lv{101}
+    \item $1021_3$\lv{34}
+    \item $1\mathrm A2\mathrm A3_{11}$\lv{28306}
+    \item $\mathrm{DEAD}_{16}$\lv{57005}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Nalezněte přirozené číslo $n$ takové, že bude platit
+\begin{enumerate}
+    \item $12423_n = 3300$\lv{7}
+    \item $12423_n = 17812$\lv{11}
+    \item $\mathrm{MAMBA}_n = 8764035$\lv{25}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Převeďte do soustavy o základu $n$ následující čísla $x$ (zadaná v desítkové soustavě):
+\begin{enumerate}
+    \item $x = 100$, $n = 3$\lv{10201}
+    \item $x = 100$, $n = 5$\lv{400}
+    \item $x = 1234$, $n = 16$\lv{4D2}
+    \item $x = 209890$, $n = 27$\lv{AHOJ}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Napište si čísla 0--15
+\begin{enumerate}
+    \item ve dvojkové soustavě,\lv{0, 1, 10, 11, 100, 101, 110, 111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111}
+    \item ve čtyřkové soustavě.\lv{0, 1, 2, 3, 10, 11, 12, 13, 20, 21, 22, 23, 30, 31, 32, 33}
+\end{enumerate}
+Co pozorujete?
+\end{ulohav}
+
+\begin{uloha}
+Vymyslete rychlý způsob, jak mezi sebou převádět zápisy čísel ve dvojkové a čtyřkové soustavě (a posléze také šestnáctkové).
+\end{uloha}
+
+\begin{suloha}
+Aniž byť jen pomyslíte na desítkovou soustavu, převeďte $101011_2$ do trojkové soustavy.\vyslplain{1121}
+\end{suloha}
+
+%\end{document}
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+\end{document}
+

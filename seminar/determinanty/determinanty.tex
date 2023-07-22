@@ -1,0 +1,125 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\DeclareMathOperator{\arctg}{arctg}
+
+\let\=\doteq
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\def\vyslalph#1{\edef\tmpuloha{{\the\c@uloha}{\alph{enumi}}}\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printalphvysl\tmpuloha{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\begin{document}
+
+% \tisk
+
+\section*{Determinanty všeho druhu}
+
+
+\begin{ulohav}\label{nuda}
+Spočtete následující velmi zajímavé determinanty:
+\begin{flushleft}
+\begin{enumerate*}[itemjoin=\quad]
+    \item $\begin{vmatrix}3 & 4 \\ 2 & -5\end{vmatrix}$\lv{$-23$}
+    \item $\begin{vmatrix}2 &3 & 1 \\ -1 & 2 & 3 \\ 3 & 2 & -1\end{vmatrix}$\lv{$0$}
+    \item $\begin{vmatrix}1 &1 & 2 \\ 2 & 3 & 1 \\ 3 & 4 & -5\end{vmatrix}$\lv{$-8$}
+    \item $\begin{vmatrix}\sqrt2&\sqrt3&\sqrt6 \\ \sqrt6&\sqrt2&\sqrt3 \\ \sqrt3&\sqrt6&\sqrt3\end{vmatrix}$\lv{$5 \sqrt{3}+3 \sqrt{6}-12$}
+    \item $\begin{vmatrix}0&0&3&3 \\ 3&0&1&2 \\ 1&0&2&4 \\ 2&1&3&4\end{vmatrix}$\lv{$-15$}
+    \item $\begin{vmatrix}1&2&3&4 \\ -2&1&-4&3 \\ 3&-4&-1&2 \\ 4&3&-2&-1\end{vmatrix}$\lv{$900$}
+    \item $\begin{vmatrix}1&3&2&5&0 \\ 0&-2&5&2&-1 \\ 0&0&1&2&-4 \\ 0&0&0&4&-1 \\ 0&0&0&0&5\end{vmatrix}$\lv{$-40$}\label{trojuh}
+    \item $\begin{vmatrix} 1 & 2 & 3 &  4 & 1\\ 0 & -1 & 2 & 4 & 2\\ 0 & 0 & 4 & 0 & 0\\ -3 & -6 & -9 & -12 & 4\\ 0 & 0 & 1 & 1 & 1\end{vmatrix}$\lv{$28$}
+    \item $\begin{vmatrix}0&0&1&0&0&0\\1&0&0&0&0&0\\0&0&0&0&1&0\\0&0&0&0&0&1\\0&0&0&1&0&0\\0&1&0&0&0&0\end{vmatrix}$\lv{$-1$}
+\end{enumerate*}
+\end{flushleft}
+\end{ulohav}
+
+\begin{uloha}
+Jak se spočte determinant matice, která vypadá jako v Úloze \ref{nuda}, části \ref{trojuh}?
+\vyslplain{Prostě se vynásobí čísla na diagonále.}
+\end{uloha}
+
+\begin{ulohav}
+Nalezněte všechna reálná $x$, aby platilo
+\begin{flushleft}
+\begin{enumerate*}[itemjoin=\quad]
+    \item $\begin{vmatrix}6 & 2 \\ 3 & x\end{vmatrix} = 0$\lv{$x=1$}
+    \item $\begin{vmatrix}x-1 & x & x+2 \\ 1 & 2 & 1 \\ 1 & x & 2\end{vmatrix} = 0$\lv{$x=2$}
+    \item $\begin{vmatrix}8 & 6 & 4 \\ x & 5 & 5 \\ 7 & x & x-2\end{vmatrix} = 0$\lv{$x \in \{1;5\}$}
+\end{enumerate*}
+\end{flushleft}
+\end{ulohav}
+
+
+\begin{uloha}
+Spočtěte obsah trojúhelníka, který má vrcholy v bodech o souřadnicích $[1; 2]$, $[2; 5]$ a $[5; 6]$.\vyslplain{4}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+
+\end{document}
+
