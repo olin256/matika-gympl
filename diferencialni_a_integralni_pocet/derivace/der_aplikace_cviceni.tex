@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\DeclareMathOperator{\tg}{tg}
+\def\ee{\mathrm{e}}
+
+\setlist[enumerate]{label={(\alph*)}}
+
+\begin{document}
+
+\section*{Aplikace derivací}
+%\bigskip
+
+Výsledky jsou na druhé straně.
+
+%Zderivujte uvedené funkce. V mnoha případech je možné nejprve výraz trochu upravit, čímž si člověk zjednoduší derivování, případně využít toho, co už má spočtené.
+\begin{uloha}
+Nalezněte rovnici tečny k funkci
+\begin{enumerate}
+	\item k funkci $2^x$ v bodě $0$,
+	\item k funkci $\sin x$ v bodě $\pi$.
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+U následujících funkcí určete maximální (tj. co největší) intervaly, na kterých je funkce rostoucí či klesající, a nalezněte všechna lokální maxima a minima.
+\begin{enumerate}
+	\item $2x^2 + 6x + 1$
+	\item $x^3-9 x^2+24 x+2$
+	\item $\ee^{x^3-9 x^2+24 x+2}$
+	\item $x + \frac1x$
+\end{enumerate}
+\end{uloha}
+
+\newpage
+
+\subsection*{Výsledky}
+
+\setcounter{uloha}{0}
+
+\begin{uloha}
+(a) $y = (\ln 2) x + 1$; (b) $y = -x + \pi$
+\end{uloha}
+
+
+\begin{uloha}
+\begin{enumerate}
+	\item Klesající na $(-\infty; -\frac32\rangle$, rostoucí $\langle-\frac32; \infty)$, v $-\frac32$ je lokální minimum.
+	\item Klesající na $\langle2; 4\rangle$, rostoucí na $(-\infty; 2\rangle$ a $\langle4; \infty)$, ve $2$ je lokální maximum a v $4$ lokální minimum.
+	\item Klesající na $\langle2; 4\rangle$, rostoucí na $(-\infty; 2\rangle$ a $\langle4; \infty)$, ve $2$ je lokální maximum a v $4$ lokální minimum.
+	\item Klesající na $\langle-1; 0)$ a $(0; 1\rangle$, rostoucí na $(-\infty; -1\rangle$ a $\langle1; \infty$, v $-1$ je lokální maximum a v $1$ je lokální minimum.
+\end{enumerate}
+\end{uloha}
+
+\end{document}

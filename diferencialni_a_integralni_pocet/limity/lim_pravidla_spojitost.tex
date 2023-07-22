@@ -1,0 +1,168 @@
+\documentclass[handout]%
+{beamer}
+%\usetheme{Execushares}
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+%\setbeamercolor{title}{parent=structure,bg=green!50!black,fg=white}
+%\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage[IL2]{fontenc}
+\usepackage{mathtools}
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+
+%\usepackage{beamerarticle}
+
+%\usepackage{bbm}
+
+\def\rllap#1{\hbox to0pt{\hss#1\hss}}
+
+%\newcommand{\bubblethis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(#1) {\underline{#1}};\node[overlay,cloud callout,callout relative pointer={(-0.2cm,+0.7cm)},%
+        %aspect=2.5,fill=yellow!90] at ($(#1.north)+(-0.5cm,1.6cm)$) {#2};}%
+    %}%
+		%
+%\newcommand{\speechthis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(pom) {#1};\node[overlay,ellipse callout,fill=blue!50] 
+        %at ($(pom.north)+(1cm,+0.8cm)$) {#2};}%
+    %}%
+		
+\newcommand{\R}{\mathbb R}
+
+\title{Limity funkcí}
+\author{Alexander Slávik} %  and J. Trlifaj
+\subtitle{Pravidla pro počítání}
+\institute{Gymnázium Voděradská}
+\date{7. 10. 2020}
+
+\begin{document}
+
+%
+%\frame{\titlepage}
+
+
+
+\section{Základní pravidla}
+
+
+\begin{frame}
+\frametitle{Terminologie}
+
+\begin{itemize}
+	\item Funkce $f$ má v bodě $c$ limitu $A$.\pause
+	\item $\lim\limits_{x \to c} f(x) = A$.\pause
+	\item Limita (z) $f(x)$ pro $x$ jdoucí k $c$ je $A$.
+\end{itemize}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Počítání s limitami}
+	Mějme dvě funkce $f$, $g$, které mají v bodě $c \in \R$ limity:
+	\[ \lim_{x\to c}f(x) = A, \qquad \lim_{x\to c}g(x) = B. \]
+	Potom:\pause
+	\begin{itemize}
+		\item Limita funkce $f + g$ v bodě $c$ existuje a je rovna $A + B$.\pause
+		\item Limita funkce $f \cdot g$ v bodě $c$ existuje a je rovna $A \cdot B$.\pause
+		\item Je-li \alert<6->{$B \neq 0$}, pak limita funkce $\frac fg$ v bodě $c$ existuje a je rovna $\frac AB$.
+	\end{itemize}
+	\pause
+	Symbolicky:
+	\begin{align*}
+	\lim_{x \to c}(f(x) + g(x)) &= \lim_{x \to c}f(x) + \lim_{x \to c}g(x),\\
+	\lim_{x \to c}(f(x) \cdot g(x)) &= \bigl(\lim_{x \to c}f(x)\bigr) \cdot \bigl(\lim_{x \to c}g(x)\bigr),\\
+	\lim_{x \to c}\frac{f(x)}{g(x)} &= \frac{\lim\limits_{x \to c}f(x)}{\alert<6->{\lim\limits_{x \to c}g(x)}}
+	\end{align*}\pause
+	%\[ \lim_{x \to c}(f(x) + g(x)) =  \]
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Důsledky}
+	
+
+	\begin{block}{Pozorování}
+	Je-li $f$ funkce, $k$ reálné číslo a platí $\lim\limits_{x \to c} f(x) = A$, pak $\lim\limits_{x \to c} kf(x) = kA$.
+	\end{block}
+	
+	\bigskip
+	\pause
+	Např. $\lim\limits_{x \to 0} \frac{10 \sin x}{x} = 10 \cdot \lim\limits_{x \to 0} \frac{\sin x}{x} = 10 \cdot 1 = 10$.
+	
+\end{frame}
+
+
+\section{Spojitost}
+
+
+\begin{frame}
+	\frametitle{Spojité funkce}
+	\begin{block}{Definice}
+	Řekneme, že funkce $f$ je \emph{spojitá} v bodě $c \in D_f$, pokud $f(c) = \lim\limits_{x \to c} f(x)$.
+	\end{block}
+	\pause \medskip
+	Z pravidel pro limity pak pro dvě funkce $f$ a $g$, které jsou spojité v bodě $c \in D_f \cap D_g$, plyne:\pause
+	\begin{itemize}
+		\item funkce $f + g$ je spojitá v $c$,\pause
+		\item funkce $f \cdot g$ je spojitá v $c$,\pause
+		\item pokud $g(c)\neq 0$, tak funkce $\frac fg$ je spojitá v $c$.
+	\end{itemize}
+	
+	\pause
+	\begin{exampleblock}{Příklady}
+	Následující funkce jsou spojité ve všech bodech svých definičních oborů:
+	\pause
+	\begin{itemize}
+		\item polynomiální funkce \pause% jsou spojité (ve všech bodech $\R$).\pause
+		\item exponenciální a logaritmické funkce \pause
+		\item goniometrické funkce
+	\end{itemize}
+	\end{exampleblock}
+	
+\end{frame}
+
+\section{Početní techniky}
+
+\begin{frame}
+	\frametitle{Jak počítat \uv{$\frac00$}}
+	Pokud $\lim\limits_{x \to c}f(x) = 0$ a stejně tak $\lim\limits_{x \to c}g(x) = 0$, jak může dopadnout
+	\[ \lim\limits_{x \to c}\frac{f(x)}{g(x)}? \]
+	\pause
+	Vcelku \emph{libovolně}. \pause Při praktických výpočtech nám pomůže zejména následující
+	
+	\begin{block}{Pozorování}\pause
+	Shodují-li se funkce $f$ a $g$ na nějakém prstencovém okolí bodu $c \in \R$, pak mají v $c$ tutéž limitu (pokud existuje).
+	\end{block}
+
+\end{frame}
+
+%
+%\begin{frame}
+	%\frametitle{Standardní limity}
+	%
+	%\begin{itemize}
+		%\parskip\medskipamount
+		%\item $\displaystyle\lim_{x \to 0} \frac{\sin x}{x} = 1$
+		%\item $\displaystyle\lim_{x \to 0} \frac{\mathrm{e}^x - 1}{x} = 1$
+		%\item $\displaystyle\lim_{x \to 0} \frac{\operatorname{ln}(x+1)}{x} = 1$
+		%\item $\displaystyle\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12$
+	%\end{itemize}
+%\end{frame}
+
+
+
+\end{document}

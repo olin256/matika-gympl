@@ -1,0 +1,51 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\pagestyle{empty}
+\usepackage[margin=.75in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{graphicx}
+
+\def\vysl#1{}
+
+\parindent 0pt
+\def\graf#1{\[\includegraphics[width=.65\hsize]{grafy/#1.pdf}\]\par\vfil}
+
+\begin{document}
+
+\section*{Příklady a ne-příklady limit v $\infty$}
+
+\everymath{\displaystyle}
+
+\begin{enumerate}
+	\item $\lim_{x \to \infty} \sin x$ neexistuje (hodnoty \uv{oscilují} a k ničemu se neblíží) \graf{sin}
+	\item $\lim_{x \to \infty} x^2 = \infty$ (definice: pro každé okolí nekonečna $B(\varepsilon, \infty)$ najdeme (prstencové) okolí nekonečna $P(\delta, \infty)$, že pro $x \in P(\delta, \infty)$ je $x^2 \in B(\varepsilon, \infty)$; hodnoty se \uv{blíží nekonečnu} a funkce \uv{přeroste všechny meze}) \graf{kvadr}
+	\item $\lim_{x \to \infty} \operatorname{ln}x = \infty$ (pro logaritmus je situace stejná, jen se logaritmus blíží k~nekonečnu \uv{mnohem méně ochotně}) \graf{ln}
+	\item $\lim_{x \to \infty}\tfrac1x = 0$ (definice: pro každé okolí nuly $B(\varepsilon, 0)$ najdeme (prstencové) okolí nekonečna $P(\delta, \infty)$, že pro $x \in P(\delta, \infty)$ je $\tfrac1x \in B(\varepsilon, 0)$; hodnoty se \uv{blíží nule}) \graf{inv}
+	\item $\lim_{x \to \infty}x(1+\sin x)$ neexistuje (sice pro vyšší hodnoty $x$ umíme dostat čím dál vyšší hodnoty funkce, ale limita neexistuje, protože se funkce vždycky \uv{vrátí} zpátky do nuly; z definice, např. nelze najít žádné $\delta$ takové, aby pro hodnoty $x \in P(\delta, \infty)$ platilo $x(1+\sin x) \in B(1,\infty)$) \graf{xsin}
+	\item $\lim_{x \to \infty}(x + 10\sin x) = \infty$ (graf sice trochu skáče nahoru a dolů, ale postupně \uv{přeroste všechny meze}) \graf{sinplus}
+	\item $\lim_{x \to \infty} \tfrac{2x^3 + x}{x^3 + 1} = 2$ (funkce toho typu, který jsme počítali na hodině; o výsledku \uv{rozhodují} jen koeficienty u $x^3$) \graf{rational}
+\end{enumerate}
+
+
+\section*{Příklady a ne-příklady nevlastních limit}
+
+\begin{enumerate}
+	\item $\lim_{x \to 0} \tfrac{1}{x^2} = \infty$ (definice: pro každé okolí nekonečna $B(\varepsilon, \infty)$ najdeme prstencové okolí nuly $P(\delta, 0)$, že pro $x \in P(\delta, 0)$ je $\tfrac1{x^2} \in B(\varepsilon, \infty)$) \graf{invkvadr}
+	\item $\lim_{x \to 0} \tfrac{1}{x}$ neexistuje (zatímco \uv{zleva} se hodnoty \uv{blíží $-\infty$}, \uv{zprava} se \uv{blíží $\infty$}) \graf{invzero}
+	\item $\lim_{x \to 0} \operatorname{cotg} x$ neexistuje (ze stejných důvodů jako předchozí případ) \graf{cotg}
+	\item $\lim_{x \to 0} \operatorname{ln}\mathopen|x\mathclose| = -\infty$ \graf{logabs}
+\end{enumerate}
+
+\section*{Jiné příklady}
+
+\begin{enumerate}
+	\item $\lim_{x \to 0} x\sin\tfrac1x = 0$ \graf{sincrazy} 
+\end{enumerate}
+
+
+\end{document}

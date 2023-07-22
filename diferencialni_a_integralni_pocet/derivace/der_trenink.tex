@@ -1,0 +1,95 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\DeclareMathOperator{\tg}{tg}
+\def\ee{\mathrm{e}}
+
+\setlist[enumerate]{label={(\alph*)}}
+
+\begin{document}
+
+\section*{Derivace -- trénink na písemku}
+%\bigskip
+
+\emph{Výsledky jsou na druhé straně.}
+
+%Zderivujte uvedené funkce. V mnoha případech je možné nejprve výraz trochu upravit, čímž si člověk zjednoduší derivování, případně využít toho, co už má spočtené.
+\begin{uloha}
+Nalezněte rovnici tečny %k funkci
+\begin{enumerate}
+	\item k funkci $2^x$ v bodě $0$,
+	\item k funkci $\sin x$ v bodě $\pi$.
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+U následujících funkcí určete maximální (tj. co největší) intervaly, na kterých je funkce rostoucí či klesající, a nalezněte všechna lokální maxima a minima.
+\begin{enumerate}
+	\item $2 x^3 - x^2 - 8 x - 4$
+	\item $x^4 - 8 x^3 + 18 x^2 - 5$
+	\item $\displaystyle \frac3x - \frac{1}{x^2}$
+	\item $\dfrac{1-2x^2}{x^2+3}$
+	\item $x^2 - \ln(x^2)$
+\end{enumerate}
+\end{uloha}
+
+\begin{uloha}
+Nalezněte globální extrémy následujících funkcí na zadaných intervalech:
+\begin{enumerate}
+	\item $\dfrac{x}{x^2+1}$ na $\langle0; 2\rangle$
+	\item $(x^2+1)\ee^{x}$ na $\langle-2; 0\rangle$
+	\item $2 x^3 - x^2 - 8 x - 4$ na $\langle -3; 2)$
+\end{enumerate}
+\end{uloha}
+
+
+%\end{document}
+
+
+\newpage
+
+
+
+\subsection*{Výsledky}
+
+\setcounter{uloha}{0}
+
+\begin{uloha}
+(a) $y = (\ln 2) x + 1$; (b) $y = -x + \pi$
+\end{uloha}
+
+
+\begin{uloha}
+\begin{enumerate}
+	\item Rostoucí na $(-\infty; -1\rangle$ a $\langle \frac43; \infty)$, klesající na $\langle -1; \frac43 \rangle$, lok. maximum v~$-1$, lok. minimum v $\frac43$.
+	\item Rostoucí na $\langle0; \infty)$, klesající na $(-\infty; 0\rangle$, lok. minimum v $0$. (Stacionární bod $3$ není extrémem.)
+	\item Rostoucí na $(0; \frac23\rangle$, klesající na $(-\infty; 0)$ a $\langle \frac23; \infty)$, lok. maximum v $\frac23$. (Pozor na to, že je potřeba vzít v potaz i bod $0$, ve kterém funkce není definována.)
+	\item Rostoucí na $(-\infty; 0\rangle$, klesající na $\langle0; \infty)$, lok. maximum v $0$.
+	\item Rostoucí na $\langle-1; 0)$ a $\langle1; \infty)$, klesající na $(-\infty; 1\rangle$ a $(0; 1\rangle$, lok. minimum v $-1$ a $1$.
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+\begin{enumerate}
+	\item Minimum v 0, maximum v 1.
+	\item Minimum v $-1$, maximum v $0$.
+	\item Minimum v $-3$, maximum v $-1$.
+\end{enumerate}
+\end{uloha}
+
+\end{document}

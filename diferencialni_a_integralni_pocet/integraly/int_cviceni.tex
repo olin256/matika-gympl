@@ -1,0 +1,57 @@
+\documentclass[12pt,a5paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1cm]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+
+\DeclareMathOperator{\tg}{tg}
+\def\ee{\mathrm{e}}
+\def\dd{\,\mathrm{d}}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+ 	\oldshipout\vbox{\hbox{%
+       	\copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\begin{document}
+
+% \tisk
+
+\section*{Prostě integrování}
+
+%\emph{Výsledky jsou na druhé straně.}
+
+\def\vysl#1{\hfill#1\par}
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\parskip\medskipamount
+	\item $\int \ee^x \cos x \dd x$ \vysl{$\frac12 \ee^x (\cos x + \sin x) + C$}
+	\item $\int \frac{5}{2x-3}\dd x$ \vysl{$\frac52\ln|2x-3|+C$}
+	\item $\int 10x(x^2 + 13)^{12} \dd x$ \vysl{$\frac{5}{13}(x^2 + 13)^{13} + C$}
+	\item $\int 5x^2 \ee^{x^3} \dd x$ \vysl{$\frac53 \ee^{x^3} + C$}
+	\item $\int \frac{5x}{3x^2+1} \dd x$ \vysl{$\frac56 \ln(3x^2+1) + C$}
+	\item $\int \sin 7x \dd x$ \vysl{$-\frac17 \cos 7x + C$}
+	\item $\int 2\ee^{3x-1} \dd x$ \vysl{$\frac23 \ee^{3x-1} + C$}
+	\item $\int \frac{\ln x}{x} \dd x$ \vysl{$\frac12 \ln^2 x + C$}
+	\item $\int \sin^3 x \dd x$ \vysl{$\frac13 \cos^3 x - \cos x + C$}
+	\item $\int \sin^3 x \cos^3 x \dd x$ \vysl{$\frac 14 \sin^4 x - \frac16 \sin^6 x + C$}
+\end{enumerate}
+
+
+\end{document}

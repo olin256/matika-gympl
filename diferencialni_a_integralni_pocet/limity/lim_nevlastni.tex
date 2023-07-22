@@ -1,0 +1,241 @@
+\documentclass[handout]%
+{beamer}
+%\usetheme{Execushares}
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+%\setbeamercolor{title}{parent=structure,bg=green!50!black,fg=white}
+%\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage[IL2]{fontenc}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+
+%\usepackage{beamerarticle}
+
+%\usepackage{bbm}
+
+\def\rllap#1{\hbox to0pt{\hss#1\hss}}
+
+%\newcommand{\bubblethis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(#1) {\underline{#1}};\node[overlay,cloud callout,callout relative pointer={(-0.2cm,+0.7cm)},%
+        %aspect=2.5,fill=yellow!90] at ($(#1.north)+(-0.5cm,1.6cm)$) {#2};}%
+    %}%
+		%
+%\newcommand{\speechthis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(pom) {#1};\node[overlay,ellipse callout,fill=blue!50] 
+        %at ($(pom.north)+(1cm,+0.8cm)$) {#2};}%
+    %}%
+		
+\newcommand{\R}{\mathbb R}
+
+\title{Limity funkcí}
+\author{Alexander Slávik} %  and J. Trlifaj
+\subtitle{Nevlastní body}
+\institute{Gymnázium Voděradská}
+\date{21. 10. 2020}
+
+\begin{document}
+
+%
+%\frame{\titlepage}
+
+
+\section{Standardní limity}
+
+\begin{frame}
+	\frametitle{Standardní limity}
+	
+	\begin{itemize}
+		\parskip\medskipamount
+		\item $\displaystyle\lim_{x \to 0} \frac{\sin x}{x} = 1$
+		\item $\displaystyle\lim_{x \to 0} \frac{\mathrm{e}^x - 1}{x} = 1$
+		\item $\displaystyle\lim_{x \to 0} \frac{\operatorname{ln}(x+1)}{x} = 1$
+		\item $\displaystyle\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12$
+	\end{itemize}
+\end{frame}
+
+
+
+\section{Nevlastní body}
+
+\begin{frame}
+	\frametitle{Rozšířená reálná čísla}\let\pause\relax
+	Rozšíříme reálná čísla o prvky $\infty$ a $-\infty$, tzv. \emph{nevlastní body};\pause
+	\begin{center}\LARGE
+	$\alert{\R^*} = \R \cup\{\infty; -\infty\}.$
+	\end{center}
+	\pause
+	\begin{block}{Počítání v $\R^*$}\pause
+	\begin{itemize}
+		\item s \uv{běžnými} reálnými čísly se počítá stále stejně\pause
+		\item $\infty + {}$reálné číslo = \pause $\infty$, \pause $-\infty + {}$reálné číslo = \pause $-\infty$\pause
+		\item $\infty \cdot {}$kladné reálné číslo = $\infty$, \pause $\infty \cdot {}$záporné reálné číslo = $-\infty$, \pause
+			$-\infty \cdot {}$kladné reálné číslo = $-\infty$, $-\infty \cdot {}$záporné reálné číslo = $\infty$\pause
+		\item $\infty + \infty = \infty$, $-\infty + (-\infty) = -\infty$\pause
+		\item $\infty \cdot \infty = \infty$, $-\infty \cdot (-\infty) = \infty$, $-\infty \cdot \infty = -\infty$\pause
+		\item $\frac{\text{reálné číslo}}{\infty} = 0$, $\frac{\text{reálné číslo}}{-\infty} = 0$
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Počítání a výjimky}
+	\begin{block}{Počítání v $\R^*$}
+	\footnotesize
+	\begin{itemize}
+		\item s \uv{běžnými} reálnými čísly se počítá stále stejně
+		\item $\infty + {}$reálné číslo =  $\infty$,  $-\infty + {}$reálné číslo =  $-\infty$
+		\item $\infty \cdot {}$kladné reálné číslo = $\infty$,  $\infty \cdot {}$záporné reálné číslo = $-\infty$, 
+			$-\infty \cdot {}$kladné reálné číslo = $-\infty$, $-\infty \cdot {}$záporné reálné číslo = $\infty$
+		\item $\infty + \infty = \infty$, $-\infty + (-\infty) = -\infty$
+		\item $\infty \cdot \infty = \infty$, $-\infty \cdot (-\infty) = \infty$, $-\infty \cdot \infty = -\infty$
+		\item $\frac{\text{reálné číslo}}{\infty} = 0$, $\frac{\text{reálné číslo}}{-\infty} = 0$
+	\end{itemize}
+	\end{block}
+	\pause
+	\vskip-2mm
+	\begin{alertblock}{Není definováno!}\let\pause\relax \pause
+	\begin{itemize}
+		\item $\frac{\text{reálné číslo}}{0}$, $\frac{\infty}{0}$, $\frac{-\infty}{0}$\pause
+		\item $0 \cdot \infty$, $0 \cdot (-\infty)$\pause
+		\item $-\infty + \infty$\pause
+		\item $\frac{\infty}{\infty}$, $\frac{-\infty}{\infty}$, $\frac{\infty}{-\infty}$, $\frac{-\infty}{-\infty}$
+	\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+
+\section{Definice limity podruhé}
+
+
+\begin{frame}
+	\frametitle{Okolí nevlastních bodů}\pause
+	\begin{block}{Definice}
+	Definujeme \emph{$\varepsilon$-okolí bodu $\infty$} jako
+	\[ B(\infty; \varepsilon) = \bigl(\tfrac1\varepsilon; \infty\bigr) \]\pause
+	a \emph{$\varepsilon$-okolí bodu $-\infty$} jako
+	\[ B(-\infty; \varepsilon) = \bigl(-\infty; -\tfrac1\varepsilon\bigr). \]\pause
+	\emph{Prstencová $\varepsilon$-okolí} definujeme \alert{stejně} jako ta normální, tedy
+	\begin{align*}
+	P(\infty; \varepsilon) &= B(\infty; \varepsilon)\\
+	P(-\infty; \varepsilon) &= B(-\infty; \varepsilon).
+	\end{align*}
+	\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Definice limity podruhé}
+	
+	\begin{alertblock}{Stěžejní Definice}
+	Řekneme, že \emph{funkce $f$ má v bodě $c \alert{\in \R^*}$ limitu $A \alert{\in \R^*}$}, pokud platí
+	\[ \textcolor{blue}{\forall \varepsilon \in \R, \varepsilon>0} \  \textcolor{red}{\exists \delta \in \R, \delta > 0}\  \textcolor{green!50!black}{\forall x \in P(c; \delta)\colon f(x) \in B(A; \varepsilon)}.  \]
+	\pause
+	Jinak řečeno:\pause
+	\begin{itemize}
+		\item Pro jakkoliv malé okolí bodu $A$ je možné nalézt dostatečně malé prstencové okolí bodu $c$ takové, že funkční hodnoty bodů z tohoto prstencového okolí budou všechny v onom okolí $A$.\pause
+		\item \sout{Pro každé kladné $\varepsilon$ existuje kladné $\delta$ takové, že pokud se $x$ liší od $c$ o~méně jak $\delta$ (ovšem $x \neq c$), tak se $f(x)$ liší od $A$ o méně jak $\varepsilon$.}
+	\end{itemize}
+	
+	\end{alertblock}
+	\pause
+	%Uvedenou skutečnost zapisujeme jako
+	To, že $f$ má v $c$ limitu $A$, zapisujeme jako
+	\[ \lim_{x \to c} f(x) = A. \]
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Příklady}
+	\begin{itemize}\pause
+		\everymath{\displaystyle}
+		\item $\lim_{x \to \infty} x = \infty$ \pause
+		\item $\lim_{x \to \infty} \frac 1x = 0$\pause
+		\item $\lim_{x \to \alt<-4>{\infty}{\textcolor{green!75!black}{\infty}}} \frac{\sin x}{x} = 0$\pause\qquad(\alert{neplést s} $\lim_{x \to\alert 0} \frac{\sin x}{x} = 1$!)\pause
+		\item $\lim_{x \to 0} \frac 1{x^2} = \infty$\pause
+		\item \alert{ale není pravda} \alt<-7>{$\lim_{x \to 0} \frac 1x = \infty$}{\sout{$\displaystyle\lim_{x \to 0} \frac 1x = \infty$}}\pause\quad tato limita \emph{neexistuje}\pause
+		\item podobně $\lim_{x \to \infty} \sin x$ neexistuje
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Terminologie}
+	Jestliže $\lim\limits_{x\to c}f(x) = A$:\pause
+	{\scriptsize
+	\[ \text{limitu počítáme}
+	\begin{cases}
+	\text{ve \alert{vlastním bodě}, tj. }c \in \R\text{ a} 
+		\begin{cases}
+			A \in \R \text{ (limita je \alert{vlastní})}\\
+			A = \infty\ \vtop{\hbox{\strut(limita je \alert{nevlastní},}\hbox{\phantom(rovna \alert{(plus) nekonečnu})}}\\
+			A = -\infty\ \vtop{\hbox{\strut(limita je \alert{nevlastní},}\hbox{\phantom(rovna \alert{mínus nekonečnu})}}
+		\end{cases} \\
+	\text{v \alert{nevlastním bodě}, tj. }c = \pm\infty\text{ a}
+		\begin{cases}
+			A \in \R \text{ (limita je \alert{vlastní})}\\
+			A = \infty\ \vtop{\hbox{\strut(limita je \alert{nevlastní},}\hbox{\phantom(rovna \alert{(plus) nekonečnu})}}\\
+			A = -\infty\ \vtop{\hbox{\strut(limita je \alert{nevlastní},}\hbox{\phantom(rovna \alert{mínus nekonečnu})}}
+		\end{cases}
+	\end{cases}
+	\]}
+	
+	\pause\bigskip\bigskip
+	Kromě toho limita \emph{vůbec nemusí existovat}.
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Počítání s limitami podruhé}\pause
+	Mějme dvě funkce $f$, $g$, které mají v bodě $c \alert{\in \R^*}$ limity:
+	\[ \lim_{x\to c}f(x) = A\alert{\in \R^*}, \qquad \lim_{x\to c}g(x) = B\alert{\in \R^*}. \]
+	Potom:\pause
+	\begin{itemize}
+		\item Limita funkce $f + g$ v bodě $c$ existuje a je rovna $A + B$, \pause \emph{je-li $A + B$ definováno}.\pause
+		\item Limita funkce $f \cdot g$ v bodě $c$ existuje a je rovna $A \cdot B$, \pause \emph{je-li $A\cdot B$ definováno}.\pause
+		\item Limita funkce $\frac fg$ v bodě $c$ existuje a je rovna $\frac AB$, \pause \emph{je-li $\frac AB$ definováno}.%\pause
+	\end{itemize}
+	\pause
+	Symbolicky -- \emph{kdykoliv má pravá strana smysl}, tak platí:\pause
+	\begin{align*}
+	\lim_{x \to c}(f(x) + g(x)) &= \lim_{x \to c}f(x) + \lim_{x \to c}g(x),\\
+	\lim_{x \to c}(f(x) \cdot g(x)) &= \bigl(\lim_{x \to c}f(x)\bigr) \cdot \bigl(\lim_{x \to c}g(x)\bigr),\\
+	\lim_{x \to c}\frac{f(x)}{g(x)} &= \frac{\lim\limits_{x \to c}f(x)}{\lim\limits_{x \to c}g(x)}
+	\end{align*}%\pause
+	%\[ \lim_{x \to c}(f(x) + g(x)) =  \]
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Oblíbené limity v nevlastním bodě}\pause
+	\begin{exampleblock}{Polynomy (= mnohočleny)}\pause
+	Je-li $P$ nekonstantní polynom, tak $\lim\limits_{x \to \pm\infty} P(x)$ bude vždy $\infty$ či $-\infty$.
+	\end{exampleblock}
+	
+	\pause
+	
+	\begin{exampleblock}{Podíly polynomů (\uv{racionální funkce})}\pause
+	O výsledku rozhoduje \emph{stupeň} čitatele a jmenovatele.
+	\end{exampleblock}
+	
+\end{frame}
+
+
+\end{document}

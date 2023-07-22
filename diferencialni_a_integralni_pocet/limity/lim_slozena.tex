@@ -1,0 +1,75 @@
+\documentclass%[handout]%
+{beamer}
+%\usetheme{Execushares}
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+%\setbeamercolor{title}{parent=structure,bg=green!50!black,fg=white}
+%\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage[IL2]{fontenc}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+
+%\usepackage{beamerarticle}
+
+%\usepackage{bbm}
+
+\def\rllap#1{\hbox to0pt{\hss#1\hss}}
+
+%\newcommand{\bubblethis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(#1) {\underline{#1}};\node[overlay,cloud callout,callout relative pointer={(-0.2cm,+0.7cm)},%
+        %aspect=2.5,fill=yellow!90] at ($(#1.north)+(-0.5cm,1.6cm)$) {#2};}%
+    %}%
+		%
+%\newcommand{\speechthis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(pom) {#1};\node[overlay,ellipse callout,fill=blue!50] 
+        %at ($(pom.north)+(1cm,+0.8cm)$) {#2};}%
+    %}%
+		
+\newcommand{\R}{\mathbb R}
+
+\title{Limity funkcí}
+\author{Alexander Slávik} %  and J. Trlifaj
+\subtitle{Limita složené funkce}
+\institute{Gymnázium Voděradská}
+\date{11. 11. 2020}
+
+\begin{document}
+
+%
+%\frame{\titlepage}
+
+%
+\begin{frame}
+	\frametitle{Limita složené funkce}
+	
+	Alias \uv{substituce v limitách}.
+	\pause
+	
+	\begin{block}{Věta o limitě složené funkce}
+	Nechť funkce $f$ a $g$ splňují
+	\[ \lim_{x \to c}g(x) = D \quad \text{a} \quad \lim_{y \to D}f(y) = A, \]
+	kde $c, D, A \in \R^*$. \pause Dále nechť je splněna jedna z těchto podmínek:\pause
+	\begin{itemize}
+		\item[(P)] Existuje $\delta > 0$ takové, že $g(x) \neq D$ pro $x \in P(c; \delta)$;\pause
+		\item[(S)] $f$ je spojitá v bodě $D$ \pause (neboli $\lim\limits_{y \to D}f(y) = f(D)$).\pause
+	\end{itemize}
+	Potom $\lim\limits_{x \to c}f(g(x)) = A$.
+	
+	\end{block}
+\end{frame}
+
+
+\end{document}

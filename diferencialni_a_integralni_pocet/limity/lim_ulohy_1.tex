@@ -1,0 +1,34 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+
+\def\vysl#1{}
+
+\begin{document}
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\parskip\bigskipamount
+	\item $\lim_{x\to0} \frac{x^2}{x}$ \vysl{0}
+	\item $\lim_{x\to0} \frac{x^2-1}{x-1}$ \vysl{1}
+	\item $\lim_{x\to1} \frac{x^2-1}{x-1}$ \vysl{2}
+	\item $\lim_{x\to2} \frac{x^2-4}{x^2 - 3x + 2}$ \vysl{4}
+	\item $\lim_{x\to-4} \frac{x^2+x-12}{x^2+6x+8}$ \vysl{-3/2}
+	
+	
+	\item $\lim_{x\to3/2} \frac{2x^2 - 7x + 6}{2x^2 - x - 3}$ \vysl{-1/5}
+	\item $\lim_{x\to5} \frac{x^2 - 10x + 25}{x^2 - 11x + 30}$ \vysl{0}
+	
+	
+	\item $\lim_{x\to1} \left(\frac{1}{x-1} - \frac{3}{x^3-1}\right)$ \vysl{1}
+	\item $\lim_{x\to1} \frac{x^3 - 3x + 2}{x^4 - 4x + 3}$
+	\item $\star$ $\lim_{x\to1} \frac{x^n-1}{x-1}$, kde $n \in \mathbb N$ \vysl{-3/2}
+	\item $\star\star$ $\lim_{x\to1} \frac{x^{100} - 2x + 1}{x^{50} - 2x + 1}$
+	\item $\lim_{x \to 0} \frac{x}{\sin x}$ \vysl{1}
+	\item $\lim_{x \to 0} \frac{1 - \cos x}{x}$ \vysl{0}
+	\item $\lim_{x \to 0} \frac{\sin x}{\mathrm{e}^x - 1}$ \vysl{1}
+\end{enumerate}
+
+\end{document}

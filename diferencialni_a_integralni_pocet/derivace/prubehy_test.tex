@@ -1,0 +1,65 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+%\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amsthm}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\DO}{D}
+\DeclareMathOperator{\HO}{H}
+\def\ee{\mathrm{e}}
+\def\R{\mathbb R}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\begin{document}
+
+\section*{Test na průběh funkce -- ukázka}
+
+Pro funkci
+\[ f(x) = x + 1 + \frac{1}{x} \]
+určete:
+\begin{enumerate}
+	\item definiční obor,
+	\item limity v nevlastních bodech a jednostranné limity v bodech mimo def. obor, kde existují,
+	\item 1. derivaci a její nulové body,
+	\item lokální extrémy, intervaly monotónnosti,
+	\item 2. derivaci a její nulové body,
+	\item inflexní body, intervaly konvexnosti a konkávnosti,
+	\item asymptoty,
+	\item obor hodnot,
+	\item náčrtek grafu.
+\end{enumerate}
+
+
+%\end{document}
+
+
+\newpage
+
+\subsection*{Výsledky}
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\item $\R \setminus \{0\}$,
+	\item $\lim_{x \to \infty} f(x) = \infty$, $\lim_{x \to -\infty} f(x) = -\infty$, $\lim_{x \to 0_+} f(x) = \infty$, $\lim_{x \to 0_-} f(x) = -\infty$
+	\item $f'(x) = 1 - x^{-2}$, stac. body $\pm 1$
+	\item rostoucí na $(-\infty; -1\rangle$ a $\langle1; \infty)$, klesající na $\langle-1; 0)$ a $(0; 1\rangle$, lok. max. v $-1$ a lok. min. v $1$
+	\item $f''(x) = 2x^{-3}$, nemá nulové body
+	\item inflexní body nejsou, konkávní na $(-\infty; 0)$, konvexní na $(0; \infty)$
+	\item bez směrnice $x = 0$, se směrnicí $y = x+1$ jak v $\infty$, tak $-\infty$.
+	\item $(-\infty; -1\rangle \cup \langle 3; \infty)$
+	\item viz např. Geogebra...
+\end{enumerate}
+
+
+\end{document}

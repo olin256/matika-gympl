@@ -1,0 +1,9 @@
+# auxiliary files
+*.log
+*.aux
+*.out
+*.out
+*.nav
+*.toc
+*.snm
+*.synctex

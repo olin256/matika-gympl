@@ -1,0 +1,30 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+
+\def\vysl#1{}
+
+\begin{document}
+
+\section*{Test na limity I}
+
+Vypočtěte:
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\parskip\bigskipamount
+	\item $\lim_{x \to -1} \frac{x^2 + 4x + 3}{x^3 + x^2 - 4x - 4}$
+	\item $\lim_{x \to -2} \frac{2 - \sqrt{6+x}}{x+2}$
+	\item $\lim_{x \to \infty} \frac{1 + x + x^2}{1 + 2x + 4x^2}$
+	\item $\lim_{x \to \frac\pi2} \frac{1-\sin x}{\cos^2 x}$
+	\item $\lim_{x\to 2_-} \frac{x+2}{x-2}$
+\end{enumerate}
+
+\end{document}

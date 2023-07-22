@@ -1,0 +1,236 @@
+\documentclass%[handout]%
+{beamer}
+%\usetheme{Execushares}
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+%\setbeamercolor{title}{parent=structure,bg=green!50!black,fg=white}
+%\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage[IL2]{fontenc}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+
+%\usepackage{beamerarticle}
+
+%\usepackage{bbm}
+
+\def\rllap#1{\hbox to0pt{\hss#1\hss}}
+
+%\newcommand{\bubblethis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(#1) {\underline{#1}};\node[overlay,cloud callout,callout relative pointer={(-0.2cm,+0.7cm)},%
+        %aspect=2.5,fill=yellow!90] at ($(#1.north)+(-0.5cm,1.6cm)$) {#2};}%
+    %}%
+		%
+%\newcommand{\speechthis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(pom) {#1};\node[overlay,ellipse callout,fill=blue!50] 
+        %at ($(pom.north)+(1cm,+0.8cm)$) {#2};}%
+    %}%
+		
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\def\d{\text{d}}
+
+%\title{Limity funkcí}
+\author{Alexander Slávik} %  and J. Trlifaj
+\title{Derivace funkce}
+\subtitle{Pravidla a aplikace}
+\institute{Gymnázium Voděradská}
+\date{9. 12. 2020}
+
+\begin{document}
+
+
+
+\begin{frame}
+	\frametitle{Úvodní varování}
+	Derivace je nějaká limita, takže:
+	
+	\[ \text{Derivace funkce} \pause \begin{cases} \text{je vlastní (tj. reálné číslo),}  \\ \text{je nevlastní (tj. $\pm \infty$) -- \alert{to vůbec nebudeme uvažovat}},  \\ \text{vůbec neexistuje.} \end{cases} \]
+	\pause
+	Bude potřeba si dávat (trochu) pozor na definiční obory funkce a její derivace \pause (ten může být menší).
+	
+	\pause 
+	Platí následující věta:
+	\begin{block}{Věta}
+	Má-li funkce $f$ v nějakém bodě derivaci, je v tom bodě spojitá.
+	\end{block}
+	\pause
+	\dots ovšem ne všechny spojité funkce musí mít derivaci všude! (Např. $|x|$ nemá derivaci v $0$).
+\end{frame}
+
+
+
+\section{Pravidla pro derivování}
+
+\begin{frame}
+	\frametitle{Pravidla pro derivování}
+	Už víme
+	\begin{itemize}
+		\item $(f+g)' = f' + g'$
+		\item $(f \cdot g)' = f' \cdot g + f \cdot g'$
+	\end{itemize}
+	\pause
+	Kromě toho v bodech, kde je $g$ nenulová, platí:
+	\begin{itemize}
+		\item $\bigl(\frac fg\bigr)' = \frac{f' \cdot g - f \cdot g'}{g^2}$
+	\end{itemize}
+	\pause
+Přesné znění:	
+\begin{block}{Věta}
+Mají-li funkce $f$, $g$ v bodě $x_0$ derivaci, pak v tomto bodě mají derivace i $f+g$, $f\cdot g$ a je-li $g(x_0)\neq0$, tak také $\frac fg$ a platí $(f+g)'(x_0) = f'(x_0) + g'(x_0)$,\\ $(f\cdot g)'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0)$ \\ a $\bigl(\frac fg\bigr)'(x_0) = \frac{f'(x_0) \cdot g(x_0) - f(x_0) \cdot g'(x_0)}{g^2(x_0)}$
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Derivace mocninných funkcí podruhé}
+	Už víme, že $(x^n)' = n x^{n-1}$ pro všechna $n \in \N$ (a $x \in \R$).
+
+	\pause
+	Pro záporná $n$ to platí také, jen pozor na definiční obory;
+	\pause položíme $m = -n$ a máme
+	\[ (x^n)' = \pause \left(\frac{1}{x^m}\right)' = \pause \frac{(1)'\cdot x^m - 1 \cdot (x^m)'}{(x^m)^2} = \pause \frac{-mx^{m-1}}{x^{2m}} = \pause -mx^{-m-1} = \pause nx^{n-1}, \]\pause
+	což platí pro všechna $x \in \R \setminus \{0\}$.
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Derivace dalších elementárních funkcí}
+	
+	\begin{itemize}
+		\item $(\mathrm{e}^x)' = \mathrm{e}^x$ (\uv{$\mathrm{e}^x$ nelze zderivovat}) \pause
+		\item $(\sin x)' = \cos x$ \pause
+		\item $(\cos x)' = -\sin x$ \pause
+		\item $(\ln x)' = \frac 1x$ \alert{pro $x \in \R^+$}  \pause
+		\item $(\operatorname{tg} x)' = \dfrac{1}{\cos^2 x}$ pro $x \in \R \setminus \{\tfrac12 \pi + k \pi; k \in \Z\}$  \pause
+		\item $(\operatorname{cotg} x)' = -\dfrac{1}{\sin^2 x}$ pro $x \in \R \setminus \{k \pi; k \in \Z\}$
+	\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Derivace složené funkce}
+	\begin{block}{Věta}
+	Jestliže funkce $g$ má derivaci v bodě $x_0$ a funkce $f$ v bodě $z_0 = g(x_0)$, pak také \emph{složená funkce} $f \circ g$ má derivaci v bodě $x_0$ a platí
+	\[ (f \circ g)'(x_0) = f'(g(x_0)) \cdot g'(x_0). \]
+	\end{block}
+	\pause
+	Též nazývané řetízkové pravidlo (chain rule).
+\end{frame}
+
+
+\end{document}
+
+
+%\section{Extrémy a monotonie}
+
+
+
+\begin{frame}
+	\frametitle{Extrémy funkce}
+	\pause
+	\begin{itemize}
+		\item extrémy $\displaystyle \begin{cases}\text{maxima} \\ \text{minima} \end{cases}$ \pause
+		\item extrémy $\displaystyle \begin{cases}\text{globální} \\ \text{lokální} \end{cases}$ \pause
+		\item extrémy $\displaystyle \begin{cases}\text{ostré} \\ \text{(neostré)} \end{cases}$ 
+	\end{itemize}
+	
+	%\pause
+	%\begin{block}{Definice}
+	%\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Extrémy -- definice}
+	%\renewcommand{\baselinestretch}{1.5}
+	
+  Řekneme, že funkce $f$ má v bodě $x_0 \in D_f$	
+	\begin{center}
+	\begin{tabular}{c|c}
+	
+	\vtop{\advance\baselineskip15pt \hsize.4\hsize \alert{(neostré) globální maximum}, pokud
+	pro všechna $x \in D_f$ platí $f(x) \leq f(x_0)$.} 
+		& \vtop{\advance\baselineskip15pt \hsize.4\hsize \alert{(neostré) lokální maximum}, pokud
+	existuje okolí $B(x_0; \varepsilon)$ takové, že pro všechna $x \in D_f \cap B(x_0; \varepsilon)$
+		platí $f(x) \leq f(x_0)$.
+	} \\ \hline
+	\vtop{\advance\baselineskip15pt \hsize.4\hsize \alert{ostré globální maximum}, pokud
+	pro všechna $x \in D_f$, $x \neq x_0$ platí $f(x) < f(x_0)$. }
+	
+	& \vtop{\advance\baselineskip15pt \hsize.4\hsize \alert{ostré lokální maximum}, pokud
+	existuje okolí $B(x_0; \varepsilon)$ takové, že pro všechna $x \in D_f \cap B(x_0; \varepsilon)$,
+	$x \neq x_0$ platí $f(x) < f(x)$.}
+	\end{tabular}
+\end{center}
+\pause
+Pro minima to je úplně stejné, jen se všude otočí znaménko nerovnosti.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Extrémy a derivace}
+
+Klíčový vztah:
+\begin{block}{Věta}
+Má-li funkce $f$ v bodě $a$ (neostrý) lokální extrém a existuje-li derivace $f'(a)$, pak je $f'(a) = 0$.
+\end{block}
+\pause
+\begin{alertblock}{Častý omyl}
+\alert{Neplatí} $f'(a) = 0 \Rightarrow$ $f$ má v $a$ extrém. 
+\end{alertblock}
+\pause
+Příklad hodný zapamatování: $x^3$ (v nule je derivace nulová, ale extrém tam není).
+
+\medskip\pause
+Body, kde je derivace nulová, nazýváme \emph{stacionární} nebo též \emph{podezřelé z~extrému}.
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Extrémy a monotonie}
+%
+%Klíčové vztahy:
+%\begin{block}{Věta}
+%Má-li funkce $f$ v bodě $a$ (neostrý) lokální extrém a existuje-li derivace $f'(a)$, pak je $f'(a) = 0$.
+%\end{block}
+%\pause
+%\begin{alertblock}{Častý omyl}
+%\alert{Neplatí} $f'(a) = 0 \Rightarrow$ $f$ má v $a$ extrém. 
+%\end{alertblock}
+%\pause
+%Příklad hodný zapamatování: $x^3$ (v nule je derivace nulová, ale extrém tam není).
+%
+%\medskip\pause
+%Body, kde je derivace nulová, nazýváme \emph{stacionární} nebo též \emph{podezřelé z~extrému}.
+%\end{frame}
+
+
+%\begin{frame}
+	%\frametitle{Možné výsledky}
+	%
+	%\[ \text{Derivace funkce} \pause \begin{cases} \text{je vlastní (tj. reálné číslo),} \pause \\ \text{je nevlastní (tj. $\pm \infty$)}, \pause \\ \text{vůbec neexistuje.} \end{cases} \]
+	%
+%\end{frame}
+
+
+
+
+\end{document}

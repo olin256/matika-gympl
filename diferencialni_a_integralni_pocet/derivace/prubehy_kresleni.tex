@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+%\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{amsthm}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\DO}{D}
+\DeclareMathOperator{\HO}{H}
+\def\ee{\mathrm{e}}
+\def\R{\mathbb R}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\begin{document}
+
+\section*{Kreslení grafů}
+
+%Výsledky jsou na druhé straně.
+
+
+\begin{uloha}
+Načrtněte graf funkce, o které víte příslušné údaje.
+\begin{enumerate}[label={(\alph*)}]
+	%\everymath{\displaystyle}
+	\parskip\bigskipamount
+	\item $\DO_f = \R$, $\HO_f = \langle-1; \infty)$, funkce je sudá, průsečíky s osami jsou v $[\pm \sqrt2; 0]$ a $[0; 0]$, funkce je kladná na $(-\infty; -\sqrt2)$ a $(\sqrt2; \infty)$, záporná na $(-\sqrt2; 0)$ a $(0; \sqrt2)$, klesající na $(-\infty; -1\rangle$ a $\langle0; 1\rangle$, rostoucí na $\langle-1; 0\rangle$ a $\langle1; \infty)$, lok. minima v $-1$ a $1$, přičemž $f(\pm1) = -1$, lok. maximum v $0$ a $f(0) = 0$, konvexní na $(-\infty; -\sqrt3 /3\rangle$ a $\langle\sqrt3 /3; \infty)$, konkávní na  $\langle-\sqrt3 /3; \sqrt3 /3\rangle$, $\pm \sqrt3/3$ jsou inflexní body a $f(\pm\sqrt3 /3) = -5/9$, asymptoty nejsou, $\lim_{x \to \pm \infty} f(x) = \infty$.
+	
+	\item $\DO_f = (-\infty;0)\cup(0;\infty)$, $\HO_f = \R$, není sudá ani lichá, průsečík s $x$ je $[-1/\sqrt[3]2; 0]$, funkce kladná na $(-1/\sqrt[3]2; 0)$ a $(0; \infty)$, záporná na $(-\infty; -1/\sqrt[3]2)$, rostoucí na $(-\infty; 0)$ a $(1; \infty)$, klesající na $(0; 1)$, lok. minimum v $1$ a $f(1) = 3$, konvexní na $(-\infty; 0)$ a $(0; \infty)$, asymptota bez směrnice $x = 0$, asymptota se směrnicí $y = 2x$ v~$\infty$ i $-\infty$, $\lim_{x \to 0}f(x) = \infty$, $\lim_{x \to \infty} f(x) = \infty$, $\lim_{x \to -\infty} f(x) = -\infty$.
+	
+	
+	\item $\DO_f = \R$, $\HO_f = (0; 1)$, není sudá ani lichá, průsečík s $y$ je $[0; \frac12]$, klesající na $(-\infty; \infty)$, konvexní na $\langle0; \infty)$, konkávní na $(-\infty; 0\rangle$, inflexní bod v $0$, asymptoty se směrnicí $y = 0$ v $\infty$ a $y = 1$ v $-\infty$.
+
+	\item $\DO_f = (-\infty; -1) \cup (-1; 0) \cup (0; \infty)$, $\HO_f = (-\infty; 0) \cup (0; \infty)$, není sudá ani lichá, průsečíky s osami nejsou, klesající na $(-\infty; -1)$, $\langle -\frac13; 0)$ a $(0; \infty)$, rostoucí na $(-1; -\frac13\rangle$, lok. maximum v $-\frac13$, přičemž $f(-\frac13) = -\frac{27}{4}$, konkávní na $(-\infty; -1)$ a $(-1; 0)$, konvexní na $(0; \infty)$, asymptoty bez směrnice $x = -1$ a $x = 0$, se směrnicí $y = 0$ v~$\infty$ i~$-\infty$, $\lim_{x \to -1}f(x) = -\infty$, $\lim_{x \to 0_-} f(x) = -\infty$, $\lim_{x \to 0_+} f(x) = \infty$, $\lim_{x \to \pm \infty} f(x) = 0$.
+\end{enumerate}
+\end{uloha}
+
+\begin{uloha}
+Pokračujte průběhy funkcí a) a c) z učebnice (Příklad 17)...
+\end{uloha}
+
+\newpage
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\item Vykreslete si v Geogebře nebo něčem podobném: (a) $x^4-2x^2$, (b) $2x + x^{-2}$, (c)~$\frac{1}{1+\ee^x}$, (d) $\frac{1}{x(x+1)^2}$
+\end{enumerate}
+
+
+\end{document}

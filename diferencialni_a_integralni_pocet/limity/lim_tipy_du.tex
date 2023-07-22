@@ -1,0 +1,34 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+
+\def\vysl#1{}
+
+\begin{document}
+
+\section{Když si chcete započítat}
+
+\begin{enumerate}
+	\everymath{\displaystyle}
+	\parskip\bigskipamount
+	\item $\lim_{x \to -2} \frac{x^4+6 x^3+9 x^2-4 x-12}{x^4+2 x^3-7 x^2-20 x-12}$
+	\item $\lim_{x \to 0}\frac{(\sin x)^2}{\cos x - 1}$
+\end{enumerate}
+
+\section{WolframAlpha}
+
+WolframAlpha umí spočítat asi všechny limity, co kdy budeme počítat, umí dobře rozkládat mnohočleny a mnoho dalšího. Nějaké příklady vstupů:
+\begin{itemize}
+	\item \href{https://www.wolframalpha.com/input/?i=lim+\%28x\%5E2-1\%29\%2F\%28x-1\%29+x+-\%3E+1}{\texttt{lim (x\^{}2-1)/(x-1) x -> 1}} přímý výpočet limity (\uv{stříšku} lze napsat na běžné české klávesnici jako pravý Alt+š a pak mezera nebo levý Alt+94 na numerické klávesnici)
+	\item \href{https://www.wolframalpha.com/input/?i=x\%5E3+-+4x\%5E2+\%2B+6x+-+24}{\texttt{x\^{}3 - 4x\^{}2 + 6x - 24}} zobrazí rozličné informace o mnohočlenu, v sekci Alternate forms je typicky užitečný rozklad
+	\item \href{https://www.wolframalpha.com/input/?i=factor+x\%5E3+-+4x\%5E2+\%2B+6x+-+24}{\texttt{factor x\^{}3 - 4x\^{}2 + 6x - 24}} přímo rozloží zadaný mnohočlen
+\end{itemize}
+
+\end{document}

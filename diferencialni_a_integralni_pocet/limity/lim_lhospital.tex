@@ -1,0 +1,45 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\pagestyle{empty}
+\usepackage[margin=.75in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{graphicx}
+
+\def\vysl#1{}
+
+\def\ee{\mathrm{e}}
+
+\parindent 0pt
+\def\graf#1{\[\includegraphics[width=.65\hsize]{grafy/#1.pdf}\]\par\vfil}
+
+\begin{document}
+
+\section*{Prostě limity, hlavně na l'Hospitalovo pravidlo}
+
+\everymath{\displaystyle}
+
+\begin{enumerate}
+	\item $\lim_{x \to 2}\frac{x^2 + x - 6}{x^2 - 4}$
+	\item $\lim_{x \to \infty} \frac{\ln x}{x}$
+	\item $\lim_{x \to 0} \frac{x - \sin x}{x^3}$
+	\item $\lim_{x \to 0} \frac{\sin(\ee^x - 1)}{x}$
+	\item $\lim_{x \to 0} \frac{\ln(\cos x)}{x^2}$
+	\item ($\star$) Najděte lineární funkci $f$ takovou, aby $\lim_{x \to 0}\frac{\ee^x - f(x)}{x^2}$ bylo kladné reálné číslo.
+\end{enumerate}
+
+\newpage
+
+%\subsection*{Výsledky}
+%
+%\begin{enumerate}
+	%
+%\end{enumerate}
+
+
+
+\end{document}

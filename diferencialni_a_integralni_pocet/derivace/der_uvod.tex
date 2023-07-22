@@ -1,0 +1,89 @@
+\documentclass%[handout]%
+{beamer}
+%\usetheme{Execushares}
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+%\setbeamercolor{title}{parent=structure,bg=green!50!black,fg=white}
+%\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage[IL2]{fontenc}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+
+%\usepackage{beamerarticle}
+
+%\usepackage{bbm}
+
+\def\rllap#1{\hbox to0pt{\hss#1\hss}}
+
+%\newcommand{\bubblethis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(#1) {\underline{#1}};\node[overlay,cloud callout,callout relative pointer={(-0.2cm,+0.7cm)},%
+        %aspect=2.5,fill=yellow!90] at ($(#1.north)+(-0.5cm,1.6cm)$) {#2};}%
+    %}%
+		%
+%\newcommand{\speechthis}[2]{
+        %\tikz[remember picture,baseline]{\node[anchor=base,inner sep=0,outer sep=0]%
+        %(pom) {#1};\node[overlay,ellipse callout,fill=blue!50] 
+        %at ($(pom.north)+(1cm,+0.8cm)$) {#2};}%
+    %}%
+		
+\newcommand{\R}{\mathbb R}
+\def\d{\text{d}}
+
+%\title{Limity funkcí}
+\author{Alexander Slávik} %  and J. Trlifaj
+\title{Derivace funkce}
+\subtitle{Úvod}
+\institute{Gymnázium Voděradská}
+\date{25. 11. 2020}
+
+\begin{document}
+
+
+
+\section{Úvod do derivace}
+
+\begin{frame}
+	\frametitle{Co je derivace?}
+	Derivace $\approx$ jak rychle funkce roste či klesá v daném bodě.
+	
+	\medskip
+	\pause
+	Trochu přesněji: Derivace $\approx$ směrnice tečny v daném bodě.
+	
+	\pause
+	\begin{block}{Definice}
+	Funkce $f$ má v bodě $x \in \R$ derivaci $c \in \R^*$, pokud platí
+	\[ c = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \]
+	\end{block}
+	\pause
+	\bigskip
+	Značení pro derivaci $f$ v $x$:
+	\[ f'(x), \qquad \frac{\d f(x)}{\d x} \]
+	
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Možné výsledky}
+	
+	\[ \text{Derivace funkce} \pause \begin{cases} \text{je vlastní (tj. reálné číslo),} \pause \\ \text{je nevlastní (tj. $\pm \infty$)}, \pause \\ \text{vůbec neexistuje.} \end{cases} \]
+	
+\end{frame}
+
+
+
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\DeclareMathOperator{\tg}{tg}
+\def\ee{\mathrm{e}}
+\def\R{\mathbb R}
+
+%\setlist[enumerate]{label={(\alph*)}}
+
+\begin{document}
+
+\section*{Monotónnost a extrémy}
+
+U následujících funkcí určete definiční obor, maximální intervaly, na kterých je rostoucí / klesající a všechna lokální minima / maxima. Všimněte si, že pokud derivujete podíl, vyjde vám ve jmenovateli druhá mocnina, což je vždy \emph{nezáporný} výraz. Že máte dobře zderivováno si můžete ověřit např. ve WolframuAlpha.
+\begin{enumerate}[itemsep=\bigskipamount]
+	\everymath{\displaystyle}
+	\item $x^3 - 6x^2 + 12x - 4$
+	\item $3 + 36 x - 3 x^2 - 2 x^3$
+	\item $\frac1x + \frac{1}{x+1}$
+	\item $\frac{x+1}{x^2+1}$
+	\item $\ee^{-x^2}$
+	\item $x \cdot \ee^x$
+	\item $x + \sin x$
+	\item $\frac{\ln x}{x}$
+\end{enumerate}
+
+\newpage
+
+\subsection*{Výsledky}
+
+\begin{enumerate}[itemsep=\bigskipamount]
+	\everymath{\displaystyle}
+	\item Def. obor $\R$, je rostoucí na celém $\R$ a nemá lokální extrémy.
+	\item Def. obor $\R$, rostoucí na $\langle -3; 2\rangle$, klesající na $(-\infty; -3\rangle$ a $\langle2; \infty)$, lok. minimum v~$-3$ a lok. maximum v $2$.
+	\item Def. obor $\R \setminus\{0;-1\}$, na invervalech $(-\infty;-1)$, $(-1;0)$ a $(0;\infty)$ je klesající, nemá lokální extrémy.
+	\item Def. obor $\R$ (jmenovatel není nula pro žádné $x \in \R$), klesající na $(-\infty;-1-\sqrt2\rangle$ a $\langle -1+\sqrt2; \infty)$, rostoucí na $\langle-1-\sqrt2;-1+\sqrt2\rangle$, v $-1-\sqrt2$ je lok. minimum a v~$-1+\sqrt2$ je lok. maximum.
+	\item Def. obor $\R$, rostoucí na $(-\infty;0\rangle$, klesající na $\langle0;\infty)$, lok. maximum v $0$.
+	\item Def. obor $\R$, klesající na $(-\infty; -1\rangle$, rostoucí na $\langle-1; \infty)$, lok. minimum v $-1$.
+	\item Def. obor $\R$, je rostoucí na celém $\R$ a nemá lokální extrémy.
+	\item Def. obor $(0;\infty)$, rostoucí na $(0; \ee\rangle$, klesající na $\langle\ee; \infty)$, lok. maximum v $\ee$.
+\end{enumerate}
+
+\end{document}
