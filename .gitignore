@@ -7,3 +7,6 @@
 *.toc
 *.snm
 *.synctex
+
+# cleaning script
+clean.py

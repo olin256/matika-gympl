@@ -1,0 +1,142 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\def\R{\mathbb{R}}
+
+\begin{document}
+
+% \tisk
+
+\section{Definiční obory}
+
+\begin{uloha}
+Co nejefektivněji určete, která z čísel $-3$, $0$, $1$, $4$ patří do definičního oboru výrazu $\dfrac{1}{\sqrt{x^2+x-6}}$.\vysl{jenom 4}
+\end{uloha}
+
+\begin{ulohav}\everymath{\displaystyle}
+Určete definiční obory výrazů:\par
+\vskip-\bigskipamount
+\vskip0pt
+\begin{flushleft}
+\baselineskip=2\baselineskip
+\begin{enumerate*}[itemjoin=\qquad]
+    \item $\frac{x^2 - 3x + 2}{x^2 - 5x + 6}$\lv{$\R\setminus\{2; 3\}$}
+    \item $\frac{1}{\sqrt x} + \sqrt{2-x}$\lv{$(0;2\rangle$}
+    \item $|x| \cdot \sqrt{3-|x+1|}$\lv{$\langle-4;2\rangle$}
+    \item $\left| \sqrt x + 1 \right|$\lv{$\langle0; \infty)$}
+    \item $\frac{1}{\sqrt{x^2}}$\lv{$\R\setminus\{0\}$}
+\end{enumerate*}
+\end{flushleft}
+\end{ulohav}
+
+\begin{ulohav}
+Vymyslete výraz, jehož definiční obor bude
+\begin{enumerate}
+    \item $\R\setminus\{1;2;3\}$,\lv{např. $\frac{1}{(x-1)(x-2)(x-3)}$}
+    \item $(-2; 2)$,\lv{např. $\frac{1}{\sqrt{2-|x|}}$ nebo třeba $\frac{1}{\sqrt{x+2}} - \sqrt{\frac1{2-x}}$ apod.}
+    \item $\langle-1; \infty) \setminus\{2\}$\lv{např. $\frac{\sqrt{x+1}}{x-2}$}.
+\end{enumerate}
+\end{ulohav}
+
+
+\section{Vyjadřování neznámých}
+% vykradacka realisticky.cz
+
+\begin{ulohav}\everymath{\displaystyle}
+Vyjádřete
+\begin{enumerate}
+    \item ze vzorce pro velikost magnetické indukce $B = \mu \frac{NI}{l}$ počet závitů $N$,\lv{$N = \frac{Bl}{\mu I}$}
+    \item ze stavové rovnice plynu $\frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}$ teplotu $T_2$,\lv{$T_2 = \frac{p_2V_2T_1}{p_1T_1}$}
+    \item ze vzorce pro zvětšení mikroskopu $\frac{\tau'}{\tau} = \frac{\Delta}{f_1} \cdot \frac{d}{f_2}$ ohniskovou vzdálenost $f_1$,\lv{$f_1 = \frac{\Delta d \tau}{f_2 \tau'}$}
+    \item ze vzorce zrychlení rovnoměrně zrychleného pohybu $a = \frac{v-v_0}{t}$ poč. rychlost $v_0$,\lv{$v_0 = v - at$}
+    \item ze vzorce pro objemovou roztažnost kapalin $V = V_0(1 + \beta \cdot \Delta t)$ poč. objem $V_0$,\lv{$V_0 = \frac{V}{1+\beta \cdot \Delta t}$}
+    \item z předchozího vzorce změnu teploty $\Delta t$,\lv{$\Delta t = \frac{V-V_0}{V_0 \beta}$}
+    \item ze vzorce pro výšku svislého vrhu $h = v_0 t - \frac12 g t^2$ poč. rychlost $v_0$,\lv{$v_0 = \frac{2h + gt^2}{2t}$}
+    \item z předchozího vzorce gravitační zrychlení $g$,\lv{$g = \frac{2v_0t - 2h}{t^2}$}
+    \item ze vzorce pro povrch kvádru $S = 2ab + 2bc + 2ac$ délku strany $b$.\lv{$b = \frac{S - 2ac}{2a + 2c}$}
+\end{enumerate}
+\end{ulohav}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+
+\end{document}

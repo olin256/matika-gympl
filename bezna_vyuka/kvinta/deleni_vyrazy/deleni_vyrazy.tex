@@ -1,0 +1,130 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=1.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\begin{document}
+
+%\tisk
+
+\section{Dělení polynomů}
+
+\begin{ulohav}
+Vydělte následující polynomy se zbytkem:
+\begin{enumerate}
+    \item $\bigl(14 t^5 + 4 t^4 - t^3 + 2 t^2 + 3 t + 5\bigr) : \bigl(2 t^2 - 1\bigr)$\lv{$7 t^3+2 t^2+3 t+2$ zb. $6t+7$}
+    \item $\bigl(5s^4 + s^2 + 2s + 21\bigr) : s^2$\lv{$5s^2+1$ zb. $2s+21$}
+    \item $\bigl(x^3+\sqrt{3} x-3 \sqrt{3}\bigr) : \bigl(x+\sqrt3\bigr)$\lv{$x^2-\sqrt{3} x+\sqrt{3}+3$ zb. $-6 \sqrt{3}-3$}
+    \stitem $\bigl(x^{2022} + x^{2021} + \dots + x^2 + x^1 + 1\bigr) : (x-1)$\lv{$x^{2021} + 2x^{2020} + 3x^{2019} + \dots + 2020x^2 + 2021x + 2022$ zb. $2023$}
+\end{enumerate}
+\end{ulohav}
+
+\interest
+\begin{uloha}
+Rozmyslete si, že pokud nějaký polynom $p$ (s jedinou neznámou~$x$) dělíme dvojčlenem $x - a$ (kde $a$ je nějaké číslo), tak zbytek po tomto dělení bude stejný, jako když za $x$ dosadíme $a$.
+\end{uloha}
+
+\section{Úpravy polynomů}
+
+\begin{ulohav}
+Rozložte následující polynomy \uv{maximálně} na součin:
+\begin{enumerate}
+    \item $16 x^2-24 x y+9 y^2$\lv{$(4x-3y)^2$}
+    \item $2 r s t + t^2 + r^2 s^2$\lv{$(r s + t)^2$}
+    \item $4 x^4 y^6 - x^2 y^8$\lv{$x^2  y^6 (2 x - y) (2 x + y)$}
+    \item $4 x^2 y^4 - x^4 y^8$\lv{$x^2y^4 (2-xy^2)(2+xy^2)$}
+    \item $(x+y)^2 - (x+2y)^2$\lv{$-y(2x+3y)$}
+    \item $a^2 - 3$\lv{$(a+\sqrt3)(a-\sqrt3)$}
+    \item $x^3 - y^6$\lv{$\left(x-y^2\right) \left(x^2+x y^2+y^4\right)$}
+    \item $27a^3 + \frac{b^3}{27}$\lv{$\bigl(3a+\frac b3\bigr)\bigl(9a^2 + ab + \frac{b^2}{9}\bigr)$}
+    \item $x^4 - y^4$\lv{$(x-y)(x+y)(x^2+y^2)$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Vymyslete \uv{vzorec} pro $(a+b+c)^2$.\vyslplain{$(a+b+c)^2 = a^2+b^2+c^2+2 b c + 2 a b+2 a c$}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Rozmyslete si, že pro libovolné přirozené číslo $n > 1$ platí
+\[ a^n - b^n = (a-b)\bigl(a^{n-1} + a^{n-2}b + a^{n-3}b^2 +  \dots + ab^{n-2} + b^{n-1}\bigr), \]
+tedy např. $a^4 - b^4 = (a-b)\bigl(a^3 + a^2b + ab^2 + b^3\bigr)$.
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
