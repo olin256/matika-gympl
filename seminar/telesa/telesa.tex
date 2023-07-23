@@ -1,0 +1,136 @@
+\documentclass[12pt,a5paper]{article}
+\usepackage[margin=.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\begin{document}
+
+%\tisk
+
+\section*{Tělesa}
+
+\begin{defn}
+\emph{Platónské těleso} je konvexní mnohostěn splňující
+\begin{enumerate}[label={(\arabic*)}]
+    \item všechny stěny jsou shodné pravidelné mnohoúhelníky,
+    \item z každého vrcholu vede stejný počet hran.
+\end{enumerate}
+\end{defn}
+
+\begin{uloha}
+Nalezněte příklad tělesa, které bude splňovat podmínku (1) z~definice platónských těles, ale ne (2).\vysl{třeba slepíme dva pravidelné čtyřstěny podél jedné stěny}
+\end{uloha}
+
+\begin{uloha}\label{moznosti}
+Jaké vlastně stěny mohou platónská tělesa mít? Kolik nejméně/\penalty0nejvíce mohou mít ony stěnové mnohoúhelníky mít stran? (Proč?)\vysl{mohou to být max. pětiúhelníky}
+\end{uloha}
+
+\begin{ulohav}\label{vzorce}
+Máme-li platónské těleso, jehož stěny jsou pravidelné $n$-úhelníky a z každého vrcholu vychází $d$ hran, vyjádřete
+\begin{enumerate}
+    \item počet hran $e$ pomocí počtu stěn $f$, $n$ a $d$,\lv{$e = \frac12 n f$}
+    \item počet vrcholů $v$ pomocí $f$, $n$ a $d$.\lv{$v = \frac{fn} d$}
+\end{enumerate}
+(Vyjádření nemusí využít všechny neznámé.)
+\end{ulohav}
+
+\begin{uloha}
+Pomocí Eulerova vzorce $v-e+f=2$ a výsledků úloh \ref{moznosti} a \ref{vzorce} odvoďte, jaká přesně mohou existovat platónská tělesa; ke každému určete, kolik má stěn, hran a vrcholů, stupeň vrcholů $d$ a počet stran stěn $n$.
+\vysl{\begin{tabular}{ccccc}
+$f$ & $v$ & $e$ & $n$ & $d$ \\
+4 &   4 &    6  &  3 &   3 \\
+6 &   8 &   12  &  4 &   3 \\
+8 &   6 &   12  &  3 &   4 \\
+12&  20 &   30  &  5 &   3 \\
+20&  12 &   30  &  3 &   5
+\end{tabular}}
+\end{uloha}
+
+\begin{uloha}
+Proč jsou ve výsledné tabulce určité \uv{symetrie}?\vysl{jistě jste na to přišli} % dualita
+\end{uloha}
+
+
+\begin{ulohav}
+% jde o archimedovska telesa
+% https://en.wikipedia.org/wiki/Archimedean_solid
+Zkuste nalézt/popsat těleso (spočíst, kolik bude mít jakých stěn), v jehož každém vrcholu se stýkají
+\begin{enumerate}
+    \item dva šestiúhelníky a jeden trojúhelník,\lv{čtyři šestiúhelníky, čtyři trojúhelníky}
+        % https://en.wikipedia.org/wiki/Truncated_tetrahedron
+    \item dva osmiúhelníky a jeden trojúhelník,\lv{šest osmiúhelníků, osm trojúhelníků}
+        % https://en.wikipedia.org/wiki/Truncated_cube
+    \item dva čtverce a dva trojúhelníky,\lv{šest čtverců, osm trojúhelníků}
+        % https://en.wikipedia.org/wiki/Cuboctahedron
+    \item tři čtverce a jeden trojúhelník.\lv{osmnáct čtverců, osm trojúhelníků}
+        % https://en.wikipedia.org/wiki/Rhombicuboctahedron
+\end{enumerate}
+(Všechny mnohoúhelníky uvažujeme \emph{pravidelné}.)
+\end{ulohav}
+
+
+\newpage
+\parindent=0pt
+\parskip=\bigskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+\end{document}

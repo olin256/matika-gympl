@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\begin{document}
+
+\section*{Cvičení na soustavy rovnic}
+
+\begin{uloha}\label{soustavy}
+Nalezněte množiny řešení následujících soustav rovnic:
+\[
+\text{(a)}\ 
+\begin{amatrix}{2}3&5&2 \\ 300&500&200\end{amatrix},\quad
+\text{(b)}\ 
+\begin{amatrix}{3}0&1&1&2 \\1&2&3&1\\1&1&2&1\end{amatrix},\quad
+\text{(c)}\ 
+\begin{amatrix}{4}1&1&3&2&2 \\1&0&1&1&1\\2&1&-1&1&0\\2&2&1&2&1\end{amatrix} ,\quad
+\text{(d)}\ 
+\begin{amatrix}{6}1&1&0&1&2&-1&1 \\2&2&1&0&-1&1&3\end{amatrix}.
+\]
+\vysl{(a) $\{(\frac23 - \frac53t; t) \mid t \in \R\}$ (b) $\emptyset$, (c) $\bigl\{(\frac25 -\frac35t; -\frac15 -\frac15t; \frac35 - \frac25t; t) \mid t \in \R\bigr\}$,\\ (d) $\bigl\{(1-a-b-2c+d; a; 1+2b+5c-3d; b; c; d) \mid a, b, c, d \in \R\bigr\}$}
+\end{uloha}
+
+
+\begin{ulohav}
+Rozhodněte, pro které dvojice reálných čísel $(p, q)$ bude mít soustava daná maticí
+\[ \begin{amatrix}{3}
+-1 & 2 & 0 & 2 \\
+1 & 0 & 3 & -1 \\
+1 & 2 & p & q
+\end{amatrix}\]
+\begin{enumerate*}
+    \item nekonečně mnoho řešení,\lv{$p = 6$, $q = 0$,}
+    \item žádné řešení,\lv{$p = 6$, $q \neq 0$,}
+    \item právě jedno řešení.\lv{$p \neq 6$, $q$ může být cokoliv}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav} % tezka uloha, asi spatne pochopitelna bez analyticke geometrie
+Rozhodněte, zda se množiny $K$ a $L$ rovnají, pokud
+\begin{enumerate}
+    \item $K = \{(1; t) \mid t \in \R\}$, $L = \{(1; -s) \mid s \in \R\}$,\lv{ano}
+    \item $K = \{(t; t) \mid t \in \R\}$, $L = \{(2s; 2s) \mid s \in \R\}$,\lv{ano}
+    \item $K = \{(1 + t; 1 - t) \mid t \in \R\}$, $L = \{(2 + t; -t) \mid t \in \R\}$,\lv{ano}
+    \item $K = \{(2; 3-t; t) \mid t \in \R\}$, $L = \{(3; 2-t; t) \mid t \in \R\}$,\lv{ne}
+    \item $K = \{(-1 + 2t; t; 2+2t) \mid t \in \R\}$, $L = \{(3-p; 2-\frac p2; 6 - p) \mid p \in \R \}$.\lv{ne}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Nalezněte zápis množiny řešení části (a) Úlohy \ref{soustavy} takový, že bude obsahovat jen celá čísla.
+\vysl{Např. $\{(-1-5t; 1+3t) \mid t \in \R\}$}
+\end{uloha}
+
+
+\begin{uloha}
+Z celkem jednadvaceti dvorních dam některé hrají na loutnu a některé na harfu.
+Deset jich hraje na loutnu. Těch, co hrají na harfu, je dvakrát více než těch, co hrají \emph{pouze} na loutnu. Určete, kolik jich hraje na harfu; nalezněte všechny možnosti.
+\vysl{$h \in \{8; 10; 12; 14\}$}
+\end{uloha}
+
+
+\begin{ulohav}
+Vymyslete soustavu $n$ lineárních rovnic, jejíž množina řešení bude $K$, pokud
+\begin{enumerate}
+    \item $n = 2$, $K = \{(1+t; 1-2t) \mid t \in \R\}$,\lv{např. $\begin{amatrix}{2} 2 & 1 & 3 \\ 2 & 1 & 3 \end{amatrix}$,}
+    \item $n = 3$, $K = \{(1-2s; 2; 3s) \mid s \in \R \}$,\lv{např. $\begin{amatrix}{3} 0 & 1 & 0 & 2 \\ 3 & 0 & 2 & 3 \\ 0 & 0 & 0 & 0 \end{amatrix}$,}
+    \item $n = 2$, $K = \{(t-u; t+u; u; t) \mid t, u \in \R\}$\lv{např. $\begin{amatrix}{3} 0 & 1 & 0 & 2 \\ 3 & 0 & 2 & 3 \\ 0 & 0 & 0 & 0 \end{amatrix}$.}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Pavouk má 8 očí, 8 nohou a žádné rohy.
+Nosorožec má 2 oči, 4 nohy a 1 roh.
+Hlemýžď má 2 oči, žádné nohy a 2 rohy.
+Jacksonův chameleon má 2 oči, 4 nohy a 3 rohy.
+V matfyzácké zoo mají dohromady 14 očí, 20 nohou a 9 rohů. Kolik kterých druhů zvířat se tam nachází? Najděte všechny možnosti. Předpokládáme, že žádná jiná než zmiňovaná zvířata se zde nevyskytují a že počet zvířat je nezáporné celé číslo.
+\vysl{$(p, n, h, c) \in \{ (0, 5, 2, 0),\> (1, 0, 0, 3) \}$}
+\end{uloha}
+
+
+\begin{uloha}
+Nalezněte předpis kvadratické funkce $y=ax^2+bx+c$, jejíž graf prochází body $(-1;0)$, $(1;5)$ a $(2;2)$.
+\vysl{$y = -\frac{1}{6}(11x^2-15x-26)$}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+
+\end{document}

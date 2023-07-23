@@ -1,0 +1,122 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\usepackage[inline]{enumitem}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\begin{document}
+
+%\tisk
+
+\section*{Cvičení na kongruence}
+
+
+\begin{ulohav}
+\begin{enumerate}
+    \item Nalezněte inverzní prvek k $6$ modulo $23$ (tj. řešení kongruence $6x \equiv 1 \pmod{23}$).\lv{4}
+    \item Pomocí předchozího bodu vyřešte kongruence (1) $6x \equiv 4 \pmod{23}$ a (2) $6x \equiv 21 \pmod{23}$.\lv{(1) $x \equiv 16 \pmod{23}$;\quad (2) $x \equiv 15 \pmod{23}$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Sudý počet lidí se postavil do sedmi řad; v posledním sloupci chyběli tři lidé (do sedmi), aby byl kompletní. Kolik lidí by chybělo v posledním sloupci, pokud by těch lidí byla jen polovina?\vysl{5}
+\end{uloha}
+
+\begin{ulohav}
+Vyřešte soustavy kongruencí:
+\begin{enumerate}
+    \item $x \equiv 2 \pmod{7}$, $x \equiv 2 \pmod{1000}$\lv{$x \equiv 2 \pmod{7000}$}
+    \item $x \equiv 3 \pmod{7}$, $x \equiv 2 \pmod{1000}$\lv{$x \equiv 6002 \pmod{7000}$}
+    \item $2x \equiv 1 \pmod{3}$, $3x \equiv 1 \pmod{4}$\lv{$x \equiv 11 \equiv -1 \pmod{12}$}
+    \item $x \equiv 4 \pmod{6}$, $x \equiv 2 \pmod{9}$\lv{nemá řešení}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Vyřešte kongruenci $23x \equiv 12\pmod{77}$ tak, že ji vyřešíte zvlášť modulo 7 a 11 a výsledky \uv{dáte dohromady}.\footnote{To je možné díky čínské zbytkové větě.}\vysl{dostaneme $x \equiv -1 \pmod 7$ a $x \equiv 1 \pmod{11}$, takže $x \equiv 34 \pmod{77}$}
+\end{uloha}
+
+\begin{ulohav}
+Učete poslední cifru čísla
+\begin{enumerate}
+    \item $6^{2022}$\lv{6} % trochu hloupa uloha - mocniny 6 vzdycky konci 6
+    \item $7^{2022}$\lv{9} % taky se to snaz spocte pres 7^2 = -1
+\end{enumerate} tak, že určíte zvlášť jeho zbytek po dělení $2$ a $5$ a výsledky \uv{dáte dohromady}.
+\end{ulohav}
+
+\begin{uloha}
+Šest loupežníků si chtělo rozdělit zlaťáky, které měli na stole. Když je rozdělovali na šest stejných hromádek, tři zlaťáky zbyly. Když je zkusili rozdělit na pět stejných hromádek, jeden zlaťák zbyl. Nakonec se nepoprali, protože se vrátil sedmý loupežník, který z kapsy přidal tři zlaťáky na stůl a všechny zlaťáky pak rozdělil na sedm stejných hromádek. Kolik zlaťáků bylo původně na stole, víte-li, že jich nebylo více než 400 a méně než 100?\vysl{291}
+\end{uloha}
+
+\begin{ulohav}
+Šedesát čarodějnic očíslovaných $0, 1, \dots, 59$ zasedlo kolem kulatého stolu. Nejprve kolem stolu putovala mošna s dukáty, ze které si čarodějnice postupně braly 0, 1, 2, 0, 1, 2 atd. dukátů. Dále si rozebraly kočky podle schématu 0, 1, 2, 3, 0 atd. Nakonec si rozebraly žáby podle schématu 0, 1, 2, 3, 4, 0 atd. Určete,
+\begin{enumerate}
+    \item které čarodějnice mají dva dukáty, jednu kočku a jednu žábu,\lv{41}
+    \item které čarodějnice mají dvě kočky a tři žáby (a libovolný počet dukátů),\lv{18, 38, 58}
+    \item které čarodějnice nemají žádné dukáty ani žáby (a libovolný počet koček),\lv{0, 15, 30, 45}
+    \item které čarodějnice mají stejně mnoho dukátů jako žab (a libovolný počet koček).\lv{0, 1, 2, 15, 16, 17, 30, 31, 32, 45, 46, 47} % maji bud 0, 1, nebo 2 dukaty a zaby
+\end{enumerate}
+\end{ulohav}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+\end{document}
