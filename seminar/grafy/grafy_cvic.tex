@@ -1,8 +1,5 @@
-%\documentclass[10pt,a5paper]{article}
-\documentclass[10pt,a5paper]{extarticle}
-%\usepackage[margin=.75in]{geometry}
+\documentclass[10pt,a5paper]{article}
 \usepackage[margin=1cm]{geometry}
-%\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[IL2]{fontenc}
 \usepackage[czech]{babel}
@@ -12,17 +9,10 @@
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{graphicx}
-%\usepackage{tikz}
-%\usetikzlibrary{shapes,arrows}
 
 \usepackage[inline]{enumitem}
 
 \newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
-
-\newcommand{\R}{\mathbb{R}}
-
-\DeclareMathOperator{\tg}{tg}
-\DeclareMathOperator{\cotg}{cotg}
 
 \setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
 \setlist[itemize]{topsep=\smallskipamount,noitemsep}
@@ -34,13 +24,12 @@
 \def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
 \def\zdvojtmp{\aftergroup\zdvoj}%
 \def\zdvoj{%
- 	\oldshipout\vbox{\hbox{%
-       	\copy\shipouthackbox
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
         \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
         \box\shipouthackbox
     }}%
 }}%
-
 
 
 \newtheorem*{poz}{Pozorování}
@@ -53,13 +42,6 @@
 
 \pagestyle{empty}
 
-%\newtoks\vysltoks
-
-\DeclareMathOperator{\arctg}{arctg}
-
-%\def\vysl#1{}
-%\let\vysl\relax
-\let\=\doteq
 \let\ee\expandafter
 
 \def\vysld{}
@@ -67,7 +49,6 @@
 \let\printalphvysl\relax
 
 \makeatletter
-%\def\vysl#1{\xdef\vysld{\vysld\printvysl{\arabic{uloha}}{\unexpanded{#1}}}}
 \def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
 \let\vysl\vyslplain
 
@@ -78,35 +59,10 @@
 \newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
 
 \makeatother
-%\def\vysl#1{\vysltoks\ee\ee{\the\vysltoks}}
-
-
-%\tikzstyle{prohr}=[diamond]
-%\tikzstyle{vyhr}=[star,star points=8]
-
-%\tikzset{every node/.style={draw,circle,inner sep=1pt,minimum width={width("M")+4pt},minimum height={height("M")+2pt}}, >=latex'}
-
-\newcommand{\stav}[3][]{\node[#1] (#2) at (#3) {#2};}
-\def\tbr{to [bend right]}
-\def\tbl{to [bend left]}
-\def\cn#1#2{\draw[->] (#1) to (#2);}
-\def\cnr#1#2{\draw[->] (#1) \tbr (#2);}
-\def\cnl#1#2{\draw[->] (#1) \tbl (#2);}
-\newcommand{\ctkz}[2][]{$\vcenter{\hbox{\begin{tikzpicture}[#1]#2\end{tikzpicture}}}$}
-
-\newcommand{\nstav}[4][]{\node[#1] (#2) at (#3) {$#4{}$};}
 
 \begin{document}
 
-%\tisk
-
-%\noindent \textbf{EC}, úvodní skupinová práce
 \section*{Teorie grafů}
-%
-%Ve všech úlohách značí $S_{XY}$ střed úsečky $XY$.
-
-%\the\mathcode`\,
-%\mathcode`\,="013B
 
 
 \begin{uloha}
@@ -173,11 +129,7 @@ Rozmyslete si, že každý souvislý graf, který má o jedna méně hran než v
 \parindent=0pt
 \parskip=\smallskipamount
 \def\printvysl#1#2{\textbf{#1.}\ #2\par}
-\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
 \vysld
-%\ee\def\ee\mmm\ee{\arabic{uloha}}
-%\the\csname c@uloha\endcsname
-
 
 
 \end{document}
