@@ -1,0 +1,124 @@
+\documentclass[12pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+
+\begin{document}
+
+% \tisk
+
+\let\ra\rangle
+\let\la\langle
+
+\section*{Lineární nerovnice}
+
+\begin{ulohav}
+Nalezněte všechna řešení (tj. množinu $K$ všech řešení) následujících nerovnic:
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $-x > 1$\lv{$(-\infty; -1)$}
+    \item $0\cdot x \geq 0$\lv{$\R$}
+    \item $0\cdot x < 0$\lv{$\emptyset$}
+    \item $0\cdot x \leq -3$\lv{$\emptyset$}
+    \item $3\cdot x < 0$\lv{$(-\infty;0)$}
+    \item $-5\cdot x \leq 0$\lv{$\la0;\infty)$}
+    \item $2x-\sqrt2 < x\sqrt2 - 2$\lv{$(-\infty;-1)$}
+    \item $x+3 \leq 2x-7$\lv{$\la10;\infty)$}
+    \item $y+1 \geq y$\lv{$\R$}
+    \item $2y+5 < 2y+3$\lv{$\emptyset$}
+    \item $2z+1 > 1 - z$\lv{$(0;\infty)$}
+    \item $2\pi z > 1$\lv{$(\frac{1}{2\pi}; \infty)$}
+    \item $2 - \dfrac{x+2}3 > x - \dfrac{x+3}{3}$\lv{$(-\infty;\frac73)$}
+    \item $(4-t)t > 24 - t^2$\lv{$(6; \infty)$}
+    \item $x\sqrt2 + 1 > \sqrt 3 + x$\lv{$(\sqrt6 + \sqrt3 - \sqrt2 - 1 ; \infty)$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+\begin{uloha}
+Prospěchové stipendium může být každému studentu zvýšeno o 300\,Kč, nebo o 5\,\%. Pro Karla by byla výhodnější druhá varianta. Co z toho plyne pro výši jeho stipendia?\vysl{Je vyšší než 6000\,Kč.}
+\end{uloha}
+
+
+\begin{ulohav}
+Řešte soustavy nerovnic:
+\begin{enumerate}
+    \item $2x-7 \leq 0$, $3x+1 > 0$\lv{$(-\frac13; \frac72)$}
+    \item $2x-7 \geq 0$, $3x+1 < 0$\lv{$\emptyset$}
+    \item $2x-7 \leq 0$, $3x+1 < 0$\lv{$(-\infty;-\frac13)$}
+\end{enumerate}
+\end{ulohav}
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+
+\end{document}

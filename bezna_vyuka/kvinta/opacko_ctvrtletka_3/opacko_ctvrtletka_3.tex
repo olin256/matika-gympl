@@ -1,0 +1,154 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=1.25\bigskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\DeclareMathOperator{\NSD}{NSD}
+\DeclareMathOperator{\nsn}{nsn}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\let\la\langle
+\let\ra\rangle
+\def\bla{\bigl\la}
+\def\bra{\bigr\ra}
+\def\blz{\bigl(}
+\def\brz{\bigr)}
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\begin{document}
+
+% \resultssame
+% \tisk
+
+
+\section*{Opáčko před čtvrtletkou}
+
+
+\begin{ulohav}
+Spočtěte
+\begin{enumerate*}
+    \item $\NSD(3953, 4757)$,\lv{$67$}
+    \item $\NSD(28\,000, 8\,960).$\lv{$1120 = 2^5 \cdot 5 \cdot 7$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Určete definiční obory výrazů
+\begin{enumerate}
+    \item $\frac{\frac1{x+2}}{|2 x^2+3 x-2|}$\lv{$\R\setminus\{-2; \frac12\}$}
+    \item $\frac{\sqrt{x+2}}{x-1} \cdot \frac{\sqrt{10-x}}{x-\frac12}$\lv{$\la-2;10\ra \setminus\{1;\frac12\}$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Vyřešte nerovnice či jejich soustavy:
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\frac{1}{x^2-4} \geq \frac{2}{x+2}$\lv{$(-\infty; -2) \cup (2; \frac52\ra$}
+    \item $(x^2-4x+3)(2x^2+x-1)>0$\lv{$(-\infty;-1)\cup(\frac12; 1)\cup (3; \infty)$}
+    \item $3 x^2 - 2 x - 6 < 0$\lv{$\blz\frac13(1-\sqrt{19}); \frac13(1+\sqrt{19})\brz$}
+    \item $5(x-1)-x(7-x)\leq x^2$\lv{$\bla-\frac52; \infty\brz$}
+    \item $4x^2-9<0$,\quad $x-15\geq0$\lv{$\emptyset$}
+    \item $x^2-8x+15>0$,\quad $x^2+3x-28<0$\lv{$(-7;3)$}
+    \item $\frac1x + \frac{1}{x^2} \geq 1$\lv{$\bla\frac12(1-\sqrt5); \frac12(1+\sqrt5)\bra \setminus\{0\}$}
+    \item $\frac{x-1}{x+1} + \frac{x+1}{x-1} > \frac{10}{3}$\lv{$(-2; -1) \cup (1; 2)$}
+    \item $\frac{x^4 - 3x^3 + 2x^2}{x^2-x-30}>0$\lv{$(-\infty;-5) \cup (1;2) \cup (6;\infty)$}
+    \item $\frac1{x-8} + \frac1{x+8} + \frac1{x+6} + \frac1{x-6} > 0$\lv{$(-8;-5\sqrt2) \cup (-6; 0) \cup (6;5\sqrt2) \cup (8; \infty)$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\baselineskip=1.5\baselineskip
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+\endresults
+
+
+\end{document}

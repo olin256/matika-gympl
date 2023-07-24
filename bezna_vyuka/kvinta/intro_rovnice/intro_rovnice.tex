@@ -1,0 +1,127 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\medskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem{xuloha}[uloha]{\llap{\mdseries$\sun$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\makeatother
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\let\imp\Rightarrow
+\let\equ\Leftrightarrow
+\let\aand\wedge
+\let\oor\vee
+
+
+\begin{document}
+
+% \tisk
+
+\section*{Procvičování rovnic}
+
+\let\AA\forall
+\let\EE\exists
+
+\begin{ulohav}
+Rozhodněte, které z výroků platí (přeskočte ($\star$c) a vraťte se k němu, jen když vám zbude čas po ostatních úlohách):
+\begin{enumerate}
+    \item $\AA a, b, c \in \R\ \EE x \in \R \colon ax^2 + bx + c = 0$\lv{0}
+    \item $\EE a, b, c \in \R\ \AA x \in \R \colon ax^2 + bx + c = 0$\lv{1}
+    \item[($\star$c)] $\AA a, b \in \R \ \EE c, x \in \R \colon ax^2 + bx + c = 0$\lv{1}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Nalezněte všechna řešení následujících rovnic; kde je to potřeba, určete \textbf{podmínky}, za kterých jsou výrazy definovány:
+\everymath{\displaystyle}
+\def\lm#1{\lv{$\{#1\}$}}
+\begin{enumerate}
+    \item $\bigl(2x+\tfrac54\bigr)(2x+1)(x+2) = 0$\lm{-\frac58; -\frac12; -2}
+    \item $\left(\frac1x - \frac2{x+1}\right)\left(\frac2x - \frac1{x+1}\right) = 0$\lv{$\{1; -2\}$, $x\neq0,-1$}
+    \item $2x^2 - 16x + 32 = 0$\lm{4}
+    \item $3x^2 + 3x + 1 = 0$\lv{$\emptyset$}
+    \item $\frac{3x-2}{2x+1} = \frac32$\lv{$\emptyset$, $x \neq -\frac12$}
+    \item $\frac2{x-3} + 1 = \frac{x-1}{x-3}$\lv{$\R\setminus\{3\}$, $x \neq 3$}
+    \item $\frac x{x-2}-\frac{x+1}{2-x} = 0$\lv{$\{-\frac12\}$, $x \neq 2$}
+    \item $x^2 = (x+1)(x+2)$\lm{-\frac23}
+    \item $x^2 + 4x - 2 = 0$\lm{-2-\sqrt6; -2+\sqrt6}
+    \item $x^2 = 50$\lm{5\sqrt2; -5\sqrt2}
+    \item $(x^2 + 3x - 4)(x^2 + 3x + 4) = 0$\lm{-1; 4}
+    \item $\frac{2}{x} = \frac{1}{x+1} + \frac{3}{1-x}$\lv{$\{\frac12(-1-\sqrt3); \frac12(-1+\sqrt3)\}$, $x\neq\pm1, 0$}
+    \item $-\frac{1}{x} = \frac{1}{x+1} + \frac{3}{1-x}$\lv{$\{-2-\sqrt3; -2+\sqrt3\}$, $x\neq\pm1, 0$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Vymyslete kvadratickou rovnici, jejíž kořeny budou
+\begin{enumerate}
+    \item $3$ a $4$\lv{$x^2 - 7x + 12 = 0$}
+    \item $-3$ a $-4$\lv{$x^2 + 7x + 12 = 0$}
+    \item jenom $-3$\lv{$x^2 + 6x + 9 = 0$}
+    \item $-1 + \sqrt3$ a $-1 - \sqrt3$\lv{$x^2+2x-2 = 0$}
+    \item $\sqrt 2$ a $\sqrt 3$\lv{$x^2 - (\sqrt2 + \sqrt3) x + \sqrt6 = 0$}
+\end{enumerate}
+\end{ulohav}
+
+
+\newpage
+\renewcommand{\baselinestretch}{1.5}
+\setlist[enumerate]{itemjoin={\quad},label={(\alph*)}}
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}

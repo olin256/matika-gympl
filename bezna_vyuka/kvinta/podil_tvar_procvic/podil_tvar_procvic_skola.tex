@@ -1,0 +1,131 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=1.25\bigskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+
+\let\la\langle
+\let\ra\rangle
+\def\bla{\bigl\la}
+\def\bra{\bigr\ra}
+\def\blz{\bigl(}
+\def\brz{\bigr)}
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+
+\begin{document}
+
+% \tisk
+
+\section*{Procvičování podílového tvaru II}
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Vyřešte nerovnice:
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\frac1x \geq x$\lv{$(-\infty;-1\rangle\cup (0;1\rangle$}
+    \item $1-\frac{2-x}{1+x} > 0$\lv{$(-\infty;-1)\cup \bigl(\frac12;\infty\bigr)$}
+    \item $\frac{x-2}{x-3} \leq \frac{x-5}{x-7}$\lv{$\langle-1;3) \cup (7;\infty)$}
+    \item $\frac{5-x}{x-3} \leq \frac{x-5}{x-7}$\lv{$(-\infty;3)\cup \{5\} \cup (7;\infty)$}
+    \item $\frac{6-4x}{x-2} < \frac{x}{2-x}$\lv{$\R \setminus\{2\}$ neboli $(-\infty;2)\cup(2;\infty)$}
+    \item $\frac{1}{2x-1} + \frac{3}{2x+3} \geq 1$\lv{$\blz-\frac32;-\frac12\bra \cup \blz\frac12;\frac32\bra$}
+    \item $\frac{1}{x^3-x} \geq \frac{1}{x^2-1}$\lv{$(-1;0)$}
+    \item $\frac{1}{\frac{1}{x-1} + \frac{1}{x-2}} > 0$\lv{$\blz1;\frac32\brz \cup (2;\infty)$}
+    \item $\frac{1}{\frac{1}{x-1} + \frac{1}{x-2}} \geq x$\lv{$\blz-\infty;-\sqrt2\bra \cup \bla\sqrt2;\frac32\brz$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\vskip2\bigskipamount
+
+\section*{$\star$ Trochu související úlohy}
+
+\begin{uloha}
+Které číslo je nutné odečíst od čitatele i jmenovatele zlomku $\frac25$, aby se jeho hodnota změnila na $\frac52$?\vysl{7}
+\end{uloha}
+
+\begin{uloha}
+Pro které $n \in \N$ platí, že vnitřní úhel v pravidelném $n$-úhelníku má velikost $177^\circ$?\vysl{120}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Voda v řece teče rychlostí $2\,\frac{\mathrm{m}}{\mathrm{s}}$. Cesta od přístavu k mostu a zpět trvá malému člunu 33 minut a velkému člunu, který má (ve stojaté vodě) dvojnásobnou rychlost, 16 minut. Jak daleko je od přístavu k mostu?\vysl{9504\,m}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
