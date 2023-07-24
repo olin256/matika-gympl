@@ -1,0 +1,49 @@
+\documentclass[14pt,a4paper]{extarticle}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=6mm]{geometry}
+\pagestyle{empty}
+
+\newcount\pr
+
+% zadani
+\def\priklad#1#2{\advance\pr1\nointerlineskip\vbox to.07\vsize{\vss\hbox{{\Large\bfseries \tym\ifnum\pr<10 0\fi\the\pr}\quad#1}\vss}\vfil}
+
+\def\printtym#1{\pr0\def\tym{#1}\priklady\vfill\newpage}
+
+% vysledky
+\def\priklad#1#2{\advance\pr1 \hbox{\textbf{\the\pr.} #1\qquad #2}\bigskip}
+
+\begin{document}
+
+
+\def\priklady{%
+\priklad{$|3x+1| = 4$}{$\{-\frac53; 1\}$}
+\priklad{$|x| = |x+1|$}{$\{-\frac12\}$}
+\priklad{$x^2+|x| = 0$}{$\{0\}$}
+\priklad{$x^2 + |x+1| = 1$}{$\{-1; 0\}$}
+\priklad{$|x+2| = x - |x+3|$}{$\emptyset$}
+\priklad{$2x + |x| - 3|x-3| = 0$}{$\{\frac32\}$}
+\priklad{$|2x-1| + |3-x| = 1$}{$\emptyset$}
+\priklad{$|x+2| = 4|x-3|$}{$\{2; \frac{14}{3}\}$}
+\priklad{$|8-5x| = 5x-8$}{$\langle \frac85; \infty)$}
+\priklad{$|4x-7| = -1$}{$\emptyset$}
+\priklad{$|x-1|+3|2-x| = x - |1-x|$}{$\{2\}$}
+\priklad{$2x^2 + |x-1| + |x+2| = 0$}{$\emptyset$}
+\priklad{$|x+2| \cdot |x-2| = 3$}{$\{1; -1; \sqrt7; -\sqrt7\}$}
+}
+
+
+\printtym{A}
+%\printtym{B}
+%\printtym{C}
+%\printtym{D}
+%\printtym{E}
+%\printtym{F}
+%\printtym{G}
+
+\end{document}

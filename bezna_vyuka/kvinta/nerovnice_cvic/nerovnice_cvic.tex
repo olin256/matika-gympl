@@ -1,0 +1,142 @@
+\documentclass[12pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\medskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\let\la\langle
+\let\ra\rangle
+\def\bla{\bigl\la}
+\def\bra{\bigr\ra}
+
+\def\R{\mathbb{R}}
+
+\begin{document}
+
+% \tisk
+
+
+\section*{Nerovnice a jejich soustavy}
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Vyřešte nerovnice:
+\begin{enumerate}
+    \item $5(x-1) - x(7-x) \leq x^2$\lv{$\bla-\frac52; \infty\bigr)$}
+    \item $\frac{37-2x}{2} + 9 \leq \frac{3x-8}{4} - x$\lv{$\bigl\la \frac{118}{3}; \infty\bigr)$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Vyřešte následující soustavy nerovnic:
+\begin{enumerate}
+    \item $x \leq 3$,\quad $x \geq 6$\lv{$\emptyset$}
+    \item $x \leq 3$,\quad $x \geq 3$\lv{$\{3\}$}
+    \item $7 - 7x < 3x + 4$,\quad $7-4x > 3 + 3x$\lv{$\bigl(\frac{3}{10};\frac{4}{7}\bigr)$}
+    \item $\frac{1-2x}{3} < \frac{1+3x}{4}$,\quad $1-7x \geq -6x$\lv{$\bigl(\frac{1}{17}; 1\bra$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Vyřešte následující nerovnice:
+\begin{enumerate}
+    \item $(2-x)(3-x)(4-x) > 0$\lv{$(-\infty;2) \cup (3;4)$}
+    \item $(x - \pi)(x - \sqrt{10})(x-\sqrt[3]{31})(7x - 22) \geq 0$\lv{$(-\infty; \sqrt[3]{31}\rangle \cup \bla\pi;\frac{22}{7}\bra \cup \langle \sqrt{10}; \infty)$}
+    \item $x^2 - x < 0$\lv{$(0;1)$}
+    \item $2 - x - x^2 > 0$\lv{$(-2; 1)$}
+    \item $4x^2 - 3 \leq 0$\lv{$\bla-\frac{\sqrt3}{2};\frac{\sqrt3}{2}\bra$}
+    \item $(x - 2) (x - 3) \geq 2x$\lv{$(-\infty; 1\ra\cup \la 6; \infty)$}
+    \item $(x-1)^2 (x-2)^3 \geq 0$\lv{$\{1\} \cup \la2;\infty)$}
+    \item $x^6 \leq x^5$\lv{$\la0;1\ra$}
+\end{enumerate}
+\end{ulohav}
+
+
+\interest
+\begin{uloha}
+Součet druhých mocnin tří po sobě jdoucích celých čísel je menší než 110. O jaká čísla mohlo jít?\vysl{možnosti jsou 123, 234, 345 nebo 456}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}

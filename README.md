@@ -18,6 +18,6 @@ Materiály ze semináře oficiálně nazývaného *Základy aplikované matemati
 U teorie her jsem hodně čerpal z [diplomky Alči Skálové](http://hdl.handle.net/20.500.11956/71391).
 
 ## Běžná výuka
-Materiály použité ve výuce mých dvou tříd. Nemálo z toho je vykrádačka [realisticky.cz](http://www.realisticky.cz/) a Petákové, mnoho jsou ale i mé originální výtvory.
+Materiály použité ve výuce mých dvou tříd. Nemálo z toho je vykrádačka [realisticky.cz](http://www.realisticky.cz/) a Petákové, mnoho jsou ale i mé originální výtvory. Materiály, které jsou 100% převzaté (např. jen zkopírované kusy Petákové), sem neumisťuji.
 
-Vývoj postupoval od celkem náhodných papírů, na kterých se klidně sešla i nesouvisející témata, k víceméně monotematickým zadáním. V nižším ročníku ještě proběhlo období sbírek inspirované sbírkami z [realisticky.cz](http://www.realisticky.cz/).
+Historický vývoj postupoval od celkem náhodných papírů, na kterých se klidně sešla i nesouvisející témata, k číslovaným víceméně monotematickým zadáním. V nižším ročníku kromě toho ještě proběhlo „období sbírek“ inspirované sbírkami z [realisticky.cz](http://www.realisticky.cz/).
