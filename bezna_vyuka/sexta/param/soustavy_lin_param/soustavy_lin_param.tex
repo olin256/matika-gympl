@@ -1,0 +1,70 @@
+\documentclass[12pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep} %noitemsep,
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% \tisk
+
+\begin{uloha}
+Adriana je přesně o pět let starší než Bertold. Za deset let bude Adriana $k$-krát starší než Bertold.
+\begin{enumerate}
+    \item Sestavte soustavu rovnic s reálným parametrem $k \in \R$ a věky zúčastněných jakožto neznámými a zcela obecně ji vyřešte.
+    \item Pro které hodnoty parametru $k \in \R$ má výsledek smysl vzhledem k zadání?
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+Říční člun zvládá v jednom směru (A) toku řeky plout rychlostí $10\,\mathrm{km}\cdot\mathrm{h}^{-1}$, v opačném směru (B) pak $t$-krát rychleji. (Předpokládáme, že řeka teče konstantní rychlostí.)
+\begin{enumerate}
+    \item Sestavte soustavu rovnic s reálným parametrem $t \in \R$ a rychlostmi člunu a řeky jakožto neznámými a zcela obecně ji vyřešte.
+    \item Pro které hodnoty parametru $t$ teče řeka ve směru (A) a pro které ve směru (B)?
+    \item Pro které hodnoty parametru $t$ se člun není schopen prosadit proti proudu řeky?
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+Máme dva roztoky, $A$ a $B$. Když smícháme dva litry $A$ a s~dvěma litry $B$, získáme roztok o koncentraci $25\,\%$. Pokud do tohoto roztoku ještě dále přilijeme $t$ litrů roztoku $A$, vzroste koncentrace o $5t\,\%$.
+\begin{enumerate}
+    \item Sestavte soustavu rovnic s reálným parametrem $t \in \R$ a koncentracemi roztoků jakožto neznámými a zcela obecně ji vyřešte.
+    \item Pro které hodnoty parametru $t$ dávají zádání a výsledky smysl \uv{v~reálném světě}?
+    \item Pro které hodnoty parametru $t$ se člun není schopen prosadit proti proudu řeky?
+\end{enumerate}
+\end{uloha}
+
+
+\end{document}

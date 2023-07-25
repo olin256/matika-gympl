@@ -1,0 +1,85 @@
+\documentclass[12pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{nccmath}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% \tisk
+
+\begin{uloha}[2 body]
+V závislosti na parametru $p \in \R$ řešte rovnici
+\[ 2 x p + p (1 - x) = 3 p - 4 + 2 x. \]
+\end{uloha}
+
+
+\begin{uloha}[3 body]
+V závislosti na parametru $k \in \R$ řešte rovnici
+\[ \frac{k^2(x-1)}{kx - 2} = 2. \]
+\end{uloha}
+
+
+\begin{uloha}[3 body]
+V závislosti na parametru $p \in \R$ řešte soustavu rovnic
+\useshortskip
+\begin{alignat*}{2}
+3x + 2y &= 6 \\
+px + 4y &= 2p.
+\end{alignat*}
+\end{uloha}
+
+
+\begin{uloha}[2 body]
+Nalezněte všechny hodnoty parametru $m \in \R$ takové že rovnice
+\[ mx^2 + 2mx + m = x + 2 \]
+má právě jedno reálné řešení, a toto řešení nalezněte.
+\end{uloha}
+
+
+\begin{uloha}
+Je dána rovnice
+\[ x + m x + 3 m x^2 + 1 = 5 x^2 \]
+s parametrem $m \in \R$.
+\begin{enumerate}
+    \item V závislosti na parametru $m$ určete, kolik má rovnice reálných řešení. (3~body)
+    \item Nalezněte všechny hodnoty $m$, pro které je $x = 1$ řešením rovnice.  (1~bod)
+    \item Nalezněte všechny hodnoty $m$, pro které je součet kořenů rovnice roven $3$. (2~body)
+\end{enumerate}
+\end{uloha}
+
+
+
+\end{document}

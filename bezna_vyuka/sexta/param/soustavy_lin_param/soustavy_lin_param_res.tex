@@ -1,0 +1,166 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep} %noitemsep,
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\newenvironment{res}{\proof}{\endproof}
+
+\renewcommand{\arraystretch}{1.5}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\renewcommand*{\proofname}{Řešení}
+
+\begin{uloha}
+Adriana je přesně o pět let starší než Bertold. Za deset let bude Adriana $k$-krát starší než Bertold.
+\begin{enumerate}
+	\item Sestavte soustavu rovnic s reálným parametrem $k \in \R$ a věky zúčastněných jakožto neznámými a zcela obecně ji vyřešte.
+	\item Pro které hodnoty parametru $k \in \R$ má výsledek smysl vzhledem k zadání?
+\end{enumerate}
+\end{uloha}
+
+\begin{res}
+\textbf{(a)} Označmě $a$ věk Adriany a $b$ věk Bertolda. První větu přepíšeme do rovnice
+\[ a = b + 5. \]
+Za deset let bude Adrianě $a+10$ a Bertoldovi $b+10$ a jelikož má být první číslo podle zadání $k$-krát větší, než to druhé, máme další rovnici
+\[ a + 10 = k  (b + 10). \]
+Máme soustavu dvou lineárních rovnic o dvou neznámých $a$, $b$, přičemž už v první rovnici máme užitečně vyjádřeno $a$ tak, aby šlo dosadit do druhé rovnice:
+\[ b + 5 + 10 = k (b + 10). \]
+Nyní máme lineární rovnici s neznámou $b$ (a parametrem $k$); upravme ji tak, abychom měli na jedné straně násobek $b$ a na druhé jen členy bez $b$:
+\begin{align*}
+b + 15 &= kb + 10 k \\
+b - kb &= 10 k - 15 \\
+b(1-k) &= 10 k - 15.
+\end{align*}
+Výraz $1-k$ nabývá nuly pro $k = 1$; v té situaci je pravá strana rovna $-5$, máme tedy neplatnou rovnost $0 = -5$ a rovnice -- a tedy i celá soustava -- nemá řešení. Je-li $k \neq 1$, pak můžeme dvojčlenem rovnici $1-k$ dělit a získáváme
+\[ b = \frac{10k - 15}{1 - k}. \]
+Dopočteme příslušnou hodnotu $a$ pomocí první rovnice:
+\[ a = b + 5 = \frac{10k - 15}{1 - k} + 5 = \frac{10k - 15 + 5(1-k)}{1 - k} = \frac{5k - 10}{1 - k}. \]
+Shrnutí tedy vypadá takto:
+\begin{center}
+\begin{tabular}{c|c}
+$k = 1$ & $K = \emptyset$ \\ \hline
+$k \in \R \setminus \{1\}$ & $K = \left\{ \left[ \frac{5k - 10}{1 - k}; \frac{10k - 15}{1 - k} \right] \right\}$
+\end{tabular}
+\end{center}
+
+Zde stojí za to se zmínit, proč je už ze zadání jasné, že pro hodnotu $k = 1$ nebude mít soustava rovnic žádné řešení. Pro onu hodnotu totiž zadání zní v podstatě následovně:
+\begin{center}
+\uv{Adriana je přesně o pět let starší než Bertold. Za deset let bude Adriana \emph{stejně stará} jako Bertold.}
+\end{center}
+Pokud je nyní Adriana starší než Bertold, nikdy nebude \emph{stejně stará} jako Bertold.
+
+\medskip
+\noindent\textbf{(b)} Chceme-li, aby věky zúčastněných osob byly kladná čísla, musíme splnit podmínky
+\[ a = \frac{5k - 10}{1 - k} > 0 \qquad \text{a} \qquad b = \frac{10k - 15}{1 - k} > 0. \]
+Jelikož $a = b+5$, je $a$ vždy větší než $b$, takže nám stačí řešit nerovnici
+\[ \frac{10k - 15}{1 - k} > 0, \]
+která je splněna pro $1 < k < 1{,}5$.
+\end{res}
+
+
+
+
+\begin{uloha}
+Říční člun zvládá v jednom směru (A) toku řeky plout rychlostí $10\,\mathrm{km}\cdot\mathrm{h}^{-1}$, v opačném směru (B) pak $t$-krát rychleji. (Předpokládáme, že řeka teče konstantní rychlostí.)
+\begin{enumerate}
+	\item Sestavte soustavu rovnic s reálným parametrem $t \in \R$ a rychlostmi člunu a řeky jakožto neznámými a zcela obecně ji vyřešte.
+	\item Pro které hodnoty parametru $t$ teče řeka ve směru (A) a pro které ve směru (B)?
+	\item Pro které hodnoty parametru $t$ se člun není schopen prosadit proti proudu řeky?
+\end{enumerate}
+\end{uloha}
+
+
+\begin{res}
+\textbf{(a)}
+Označíme-li $c$ rychlost člunu a $r$ rychlost řeky, pak z informace o rychlosti ve směru (A) máme rovnici
+\[ c + r = 10. \]
+(Zde nejspíš ledaskdo namítne, že ještě nevíme, zda řeka teče směrem (A), proto není jasné, zda chceme $r$ k $c$ přičítat, nebo ho naopak odčítat. Vyjde to nastejno, pokud se domluvíme, že rychlost řeky může být i záporná -- to tehdy, pokud teče směrem (B).)
+
+Pluje-li člun opačným směrem, bude tok řeky na výslednou rychlost působit opačně; výsledná rychlost bude $t$-krát větší, než v předchozím případě, tedy $10t$. Dostáváme rovnici
+\[ c - r = 10t. \]
+Nyní můžeme například obě rovnice sečíst, čímž se zbavíme $r$ a dostáváme
+\begin{align*}
+2c &= 10 + 10t \\
+c &= 5 + 5t.
+\end{align*}
+V této lineární rovnici s neznámou $c$ koeficient u $c$, tj. $1$, nijak nezávisí na parametru $t$, takže má rovnice pro libovolné $t \in \R$ právě jedno řešení -- ono $5 + 5t$. Např. z první rovnice dopočteme $r$:
+\[ r = 10 - c = 10 - (5 + 5t) = 5 - 5t. \]
+Pro všechna $t \in \R$ je tedy množina všech řešení soustavy jednoprvková, $\{[5 + 5t, 5 - 5t]\}$.
+
+\medskip
+\noindent\textbf{(b)}
+Ze zadání je jasné, že pokud $t > 1$, pak je ve výsledku rychlejší směr (B), takže v takovém případě teče řeka ve směru (B). Je-li $t = 1$, tak máme na obě strany stejnou rychlost, takže řeka neteče vůbec. Je-li $t < 1$, je rychlejší směr (A), ve kterém tedy teče řeka. Toto ostatně souvisí s tím, jak jsme si v bodě (a) zvolili, že rychlost řeky budeme přičítat ve směru (A): Je-li $t < 1$, pak je $r = 5 - 5t > 0$, takže opravdu pro směr (A) přičítáme \emph{kladnou} rychlost řeky; naopak pro $t > 1$ je $r$ záporné číslo.
+
+\medskip
+\noindent\textbf{(c)}
+Ze zadání víme, že člun se ve směru (A) dokáže hýbat ve správném směru. Tedy situace, že se nedokáže prosadit, může nastat jen tehdy, když směr (B) je proti proudu, a ještě musí být výsledná rychlost \emph{nekladná}, takže toto nastane pro $t \leq 0$ (pro $t = 0$ člun stojí na místě).
+\end{res}
+
+
+
+
+\begin{uloha}
+Máme dva roztoky, $A$ a $B$. Když smícháme dva litry $A$ a s~dvěma litry $B$, získáme roztok o koncentraci $25\,\%$. Pokud do tohoto roztoku ještě dále přilijeme $t$ litrů roztoku $A$, vzroste koncentrace o $5t\,\%$.
+\begin{enumerate}
+	\item Sestavte soustavu rovnic s reálným parametrem $t \in \R$ a koncentracemi roztoků jakožto neznámými a zcela obecně ji vyřešte.
+	\item Pro které hodnoty parametru $t$ dávají zádání a výsledky smysl \uv{v~reálném světě}?
+	%\item Pro které hodnoty parametru $t$ se člun není schopen prosadit proti proudu řeky?
+\end{enumerate}
+\end{uloha}
+
+\begin{res}
+\textbf{(a)}
+Nechť mají roztoky po řadě koncentrace $a$ a $b$ (které chápeme jako reálná čísla z intervalu $\langle0, 1\rangle$). Sestavíme rovnice podle množství rozpouštěné látky: v prvním případě máme celkem čtyři litry o koncentraci $25\,\% = 1/4$, takže máme rovnici
+\[ 2a + 2b = 4 \cdot \tfrac14 = 1. \]
+V druhém případě máme dva litry $B$, $2+t$ litrů $A$ a výsledný roztok má $4 + t$ litrů a koncentraci $(25 + 5t)\,\% = 1/4 + t/20$, tedy
+\[ (2+t)a + 2b = (4+t)\left(\tfrac14 + \tfrac{t}{20}\right), \]
+po roznásobení
+\[ 2a + ta + 2b = 1 + \tfrac{9}{20}t + \tfrac{1}{20}t^2. \]
+Asi nejlepší je v tuto chvíli první rovnici odečíst od druhé, čímž se zbavíme neznámé $b$ a dostáváme
+\[ ta = \tfrac{9}{20}t + \tfrac{1}{20}t^2. \]
+Koeficient u neznámé $a$ je $2t$, což je nulové pro $t = 0$; v tom případě dostáváme do dosazení do obou stran rovnici $0 = 0$, tedy $a$ může být libovolné reálné číslo. Pokud je naopak $t \neq 0$, můžeme celou rovnici číslem $t$ dělit a dostáváme
+\[ a = \tfrac{9}{20} + \tfrac{1}{20}t. \]
+Dopočítáme $b$ pomocí první rovnice:
+\[ b = \tfrac12 - a = \tfrac{1}{20} - \tfrac{1}{20}t. \]
+Závěr \uv{obecného řešení} tedy je:
+
+\begin{center}
+\begin{tabular}{c|c}
+$t = 0$ & $K = \left\{ \left[a, \tfrac12 - a\right]; a \in \R \right\}$ \\ \hline
+$t \in \R \setminus \{0\}$ & $K = \left\{ \left[ \tfrac{9}{20} + \tfrac{1}{20}t; \tfrac{1}{20} - \tfrac{1}{20}t \right] \right\}$
+\end{tabular}
+\end{center}
+Všimněme si, že opět je už ze zadání \uv{jasné}, že pro hodnotu $t = 0$ dostaneme nekonečně mnoho řešení: v onom případě totiž druhá věta v zadání v podstatě říká
+\begin{center}
+\uv{Pokud do roztoku \emph{nic} nepřidáme, \emph{nijak} se nezmění jeho koncentrace.}
+\end{center}
+To je ovšem samozřejmé. Lze si také všimnout, že při $t = 0$ je druhá rovnice úplně stejná, jako ta první.
+
+\medskip
+\noindent\textbf{(b)}
+Koncentrace roztoku by měla být číslo z intervalu $\langle0, 1\rangle$. Řešíme-li příslušné nerovnice
+\[ 0 \leq \tfrac{9}{20} + \tfrac{1}{20}t \leq 1 \qquad \text{a} \qquad 0 \leq \tfrac{1}{20} - \tfrac{1}{20}t \leq 1, \]
+dostaneme po řadě výsledky $t \in \langle-9; 11\rangle$ a $t \in \langle-19; 1\rangle$, jejichž průnikem je $t \in \langle -9; 1\rangle$. Ještě bychom asi pro \uv{reálnost} měli vzít v potaz, že objem $2 + t$ roztoku $A$ v druhém případě by měl být nezáporné číslo, čímž navíc obdržíme $t \geq -2$, takže dostáváme $t \in \langle -2; 1\rangle$.
+
+(Jiní vykladači zadání mohou poukázat na to, že máme do roztoku \emph{přilévat} $t$ litrů, takže by mělo být $t \geq 0$, v kterémžto případě je závěrem $t \in \langle 0; 1\rangle$. Nechávám na vás, co se vám více líbí.)
+\end{res}
+\end{document}

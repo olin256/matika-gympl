@@ -1,0 +1,175 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{nccmath}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep} %noitemsep,
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+
+\newenvironment{res}{\proof}{\endproof}
+
+\renewcommand{\arraystretch}{1.5}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\renewcommand*{\proofname}{Řešení}
+
+
+\begin{uloha}
+V závislosti na parametru $p \in \R$ řešte rovnici
+\[ 2 x p + p (1 - x) = 3 p - 4 + 2 x. \]
+\end{uloha}
+\begin{res}
+Rovnici upravíme do tvaru \uv{$\text{něco}\cdot x = \text{něco}$}:
+\begin{align*}
+2xp + p - px &= 3p - 4 + 2x \\
+px - 2x &= 2p - 4 \\
+(p - 2)x &= 2p - 4.
+\end{align*}
+Koeficient u $x$ je $p - 2$, což je nulové pro $p = 2$. V tomto případě dostáváme rovnici $0 = 0$, tedy řešením jsou všechna reálná čísla. Je-li $p \neq 2$, můžeme celou rovnici podělit $p-2$ a dostáváme
+\[ x = \frac{2p-4}{p-2} = \frac{2(p-2)}{p-2} = 2. \]
+Výsledky můžeme shrnout v tabulce takto:
+\begin{center}
+\begin{tabular}{c|c}
+$p = 2$ & $K = \R$ \\ \hline
+$p \in \R \setminus \{2\}$ & $K = \{2\}$
+\end{tabular}
+\end{center}
+\end{res}
+
+
+\begin{uloha}
+V závislosti na parametru $k \in \R$ řešte rovnici
+\[ \frac{k^2(x-1)}{kx - 2} = 2. \]
+\end{uloha}
+\begin{res}
+Aby měl zlomek na levé straně smysl, musí být $kx \neq 2$. S touto podmínkou se vyrovnáme na konci řešení, nyní se zbavíme zlomku a budeme pokračovat jako při řešení \uv{obyčejné} lineární rovnice s~parametrem.
+\begin{align*}
+k^2(x-1) &= 2(kx - 2) \\
+k^2 x - 2kx &= k^2 - 4 \\
+k(k-2)x &= (k+2)(k-2).
+\end{align*}
+Koeficient u $x$ je $k(k-2)$, což je nulové pro $k = 0$ a $k = 2$. V případě $k = 0$ dostáváme (nepravdivou) rovnici $0 = -4$, rovnice tedy nemá řešení. V případě $k = 2$ máme rovnici $0 = 0$, řešením rovnice $k(k-2)x = (k+2)(k-2)$ jsou tedy všechna reálná čísla; pro určení množiny řešení původní rovnice ještě musíme vyloučit ta $x$, která porušují podmínku $kx \neq 2$. Jelikož se zabýváme případem $k = 2$, tato podmínka zní $2x \neq 2$, neboli $x \neq 1$. Množinou řešení tedy je $\R \setminus \{1\}$.
+
+Konečně se podíváme na situaci, kdy $k$ není ani $0$, ani $2$. V tom případě můžeme celou rovnici dělit $k(k-2)$ a dostáváme
+\[ x = \frac{(k+2)(k-2)}{k(k-2)} = \frac{k+2}{k}. \]
+Musíme ještě ověřit, zda je poté vždy splněna podmínka $kx \neq 2$. Už víme, kolik je v této situaci $x$, stačí tedy dosadit:
+\begin{align*}
+k \cdot \frac{k+2}{k} &\neq 2 \\
+k + 2 &\neq 2 \\
+k &\neq 0.
+\end{align*}
+Zde si ovšem všimneme, že do této \uv{větve} řešení jsme se už dostali s tím, že $k \neq 0$, tedy podmínka pro smysluplnost zlomku je splněna pro všechna $k \in \R \setminus \{0; 2\}$. Zjištěné poznatky shrneme do tabulky:
+\begin{center}
+\begin{tabular}{c|c}
+$k = 0$ & $K = \emptyset$ \\ \hline
+$k = 2$ & $K = \R \setminus \{1\}$ \\ \hline
+$k \in \R \setminus \{0;2\}$ & $K = \left\{\frac{k+2}k\right\}$
+\end{tabular}
+\end{center}
+\end{res}
+
+
+\begin{uloha}
+V závislosti na parametru $p \in \R$ řešte soustavu rovnic
+\useshortskip
+\begin{alignat*}{2}
+3x + 2y &= 6 \\
+px + 4y &= 2p.
+\end{alignat*}
+\end{uloha}
+\begin{res}
+Odečteme dvojnásobek první rovnice od druhé a dostáváme
+\[ px - 6x = 2p - 12 \]
+neboli
+\[ x(p-6) = 2(p-6). \]
+Koeficient u $x$ je $p-6$, což je nulové pro $p = 6$; v tom případě má rovnice tvar $0 = 0$, řešením této jedné rovnice tedy jsou všechna reálná čísla a řešením původní soustavy jsou tedy ty dvojice reálných čísel $[x; y]$, které splňují první rovnici $3x + 2y = 6$. Po vyjádření (např.) $y$ máme $y = (6-3x)/2$, jde tedy o dvojice ve tvaru
+\[ \left[x; \tfrac{6-3x}{2}\right]. \]
+Pokud je $p \neq 6$, můžeme rovnici dělit $p-6$ a dostáváme
+\[ x = 2. \]
+Dopočteme $y$ pomocí vyjádření výše:
+\[ y = \frac{6 - 3 \cdot 2}{2} = 0. \]
+Poznatky shrneme v tabulce:
+\begin{center}
+\begin{tabular}{c|c}
+$p = 6$ & $K = \left\{\left[x; \tfrac{6-3x}{2}\right]; x \in \R\right\}$ \\ \hline
+$p \in \R \setminus \{6\}$ & $K = \left\{[2; 0]\right\}$
+\end{tabular}
+\end{center}
+\end{res}
+
+
+\begin{uloha}
+Nalezněte všechny hodnoty parametru $m \in \R$ takové že rovnice
+\[ mx^2 + 2mx + m = x + 2 \]
+má právě jedno reálné řešení, a toto řešení nalezněte.
+\end{uloha}
+\begin{res}
+Kvadratická rovnice může mít právě jedno reálné řešení ze dvou důvodů: buď je koeficient u kvadratického členu nulový (a jedná se ve skutečnosti o lineární rovnici), nebo je diskriminant roven nule. Koeficient u kvadratického členu je jednoduše $m$; v případě $m = 0$ tedy dostáváme lineární rovnici $x + 2 = 0$ s řešením $x = -2$. Je-li $m$ nenulové, spočteme si diskriminant; pro přehlednost nejprve rovnici přepíšeme tak, aby bylo vidět, co je který koeficient.
+\[ mx^2 + (2m-1)x + (m-2) = 0. \]
+Máme tedy
+\[ D = (2m-1)^2 - 4m(m-2) = 4m^2 - 4m + 1 - 4m^2 + 8m = 4m + 1. \]
+Diskriminant je tedy nulový pro $m = -1/4$. Pro tuto hodnotu dostáváme rovnici
+\[ -\tfrac14 x^2 - \tfrac32 x - \tfrac 94 = 0 \]
+neboli (po vynásobení $-4$ pro přehlednost)
+\[ x^2 + 6x + 9 = 0, \]
+což má dvojnásobný kořen $x = -3$.
+\end{res}
+
+
+\begin{uloha}
+Je dána rovnice
+\[ x + m x + 3 m x^2 + 1 = 5 x^2 \]
+s parametrem $m \in \R$.
+\begin{enumerate}
+	\item V závislosti na parametru $m$ určete, kolik má rovnice reálných řešení.
+	\item Nalezněte všechny hodnoty $m$, pro které je $x = 1$ řešením rovnice.
+	\item Nalezněte všechny hodnoty $m$, pro které je součet kořenů rovnice roven $3$.
+\end{enumerate}
+\end{uloha}
+\begin{res}
+Začneme tím, že si rovnici přepíšeme do přehlednějšího tvaru:
+\[ (3m-5)x^2 + (m+1)x + 1 = 0. \]
+\par
+\noindent\textbf{(a)} Stejně jako v předchozí úloze, i zde se nejprve podíváme, kdy je rovnice lineární: to nastane pro $3m - 5 = 0$, neboli $m = 5/3$. V té situaci má rovnice tvar $8x/3 + 1 = 0$, což je nepochybně lineární rovnice s právě jedním řešením. Jinak o počtu řešení rozhodne diskriminant:
+\[ D = (m+1)^2 - 4(3m-5) = m^2 + 2m + 1 - 12m + 20 = m^2 - 10m + 21 = (m-3)(m-7). \]
+Tento výraz je kladný pro $m \in (-\infty; 3) \cup (7; \infty)$, nulový pro $m \in \{3; 7\}$ a záporný pro $m \in (3; 7)$. V~kombinaci s předchozím zjištěním tedy učiníme závěr, že daná rovnice má dvě různá reálná řešení pro $m \in (-\infty; 5/3) \cup (5/3; 3) \cup (7; \infty)$, právě jedno reálné řešení pro $m \in \{5/3; 3; 7\}$ a žádné reálné řešení pro $m \in (3; 7)$.
+
+\par\medskip\noindent\textbf{(b)}
+Aby bylo $x = 1$ řešením rovnice, musí nám po dosazení rovnice platit. Dosadíme tedy a dostáváme
+\begin{align*}
+(3m-5) \cdot 1^2 + (m+1) \cdot 1 + 1 &= 0 \\
+4m - 3 &= 0 \\
+m &= \tfrac34.
+\end{align*}
+
+\par\medskip\noindent\textbf{(c)}
+Součet kořenů kvadratické rovnice je roven mínus koeficientu u lineárního členu, vyděleného koeficientem u kvadratického členu (Vietovy vztahy), dostáváme tedy rovnici
+\begin{align*}
+3 &= -\tfrac{m+1}{3m-5} \\
+3(3m-5) &= -(m+1) \\
+9m - 15 &= -m - 1 \\
+10m &= 14 \\
+m &= \tfrac{7}{5}.
+\end{align*}
+\end{res}
+
+
+
+\end{document}
