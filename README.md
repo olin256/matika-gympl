@@ -21,3 +21,6 @@ U teorie her jsem hodně čerpal z [diplomky Alči Skálové](http://hdl.handle.
 Materiály použité ve výuce mých dvou tříd. Nemálo z toho je vykrádačka [realisticky.cz](http://www.realisticky.cz/) a Petákové, mnoho jsou ale i mé originální výtvory. U některých si jejich přesný původ už nepamatuji, u něčeho jsem si vzpomněl a uvedl ve zdrojáku. Materiály, které jsou 100% převzaté (např. jen zkopírované kusy Petákové), sem neumisťuji.
 
 Historický vývoj postupoval od celkem náhodných papírů, na kterých se klidně sešla i nesouvisející témata, k číslovaným víceméně monotematickým zadáním. V nižším ročníku kromě toho ještě proběhlo „období sbírek“ inspirované sbírkami z [realisticky.cz](http://www.realisticky.cz/).
+
+## Extra úlohy
+Celkem náhodné sady úloh pro zájemce.
