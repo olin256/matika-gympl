@@ -1,0 +1,172 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[margin=.7cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={\textbf{\arabic*.}},topsep=\smallskipamount,itemsep=1.2\medskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\long\def\itvysl#1{\ee\gdef\ee\vysld\ee{\vysld\printvysl{#1}}}
+\def\pr#1#2{\item $#1$\itvysl{#2}}
+\def\prs#1#2{\pr{\left\{\begin{aligned}#1\end{aligned}\right.}{#2}}
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\begin{document}
+
+% \resultssame
+% \tisk
+
+\section*{Algebraické manipulace pro pokročilé}
+
+
+\begin{uloha}
+Nalezněte všechna řešení soustav a dokažte, že žádná další neexistují.
+\begin{multicols}{3}
+\everymath{\displaystyle}
+\begin{enumerate}
+    \rightskip0pt plus1fil\relax
+    \prs{x^2 + 1 &= 2y\\ y^2 + 1 &= 2x}{$\{[1;1]\}$}
+    \prs{x^2 - 3y + 4 &= z\\y^2 - 3z + 4 &= x\\z^2 - 3x + 4 &= y}{$\{[2;2;2]\}$}
+    \prs{x^2 - 3y + 3 &= z\\y^2 - 3z + 4 &= x\\z^2 - 3x + 5 &= y}{$\emptyset$}
+    \prs{2x^2 + 2xy + 1 &= 4z\\2y^2 + 2yz + 1 &= 4x\\2z^2 + 2zx + 1 &= 4y}{$\bigl\{\bigl[\frac12;\frac12;\frac12\bigr]\bigr\}$}
+    \prs{x^2 + y + z = 2\\y^2 + z + x = 2\\z^2 + x + y = 2}{$\bigl\{[-1-\sqrt3;-1-\sqrt3;-1-\sqrt3];\penalty0 [-1+\sqrt3;-1+\sqrt3;-1+\sqrt3];\penalty0 [1;1;0];\penalty0 [1;0;1]; [0;1;1]\bigr\}$}
+    \prs{x^2 + y^2 + z = 2\\y^2 + z^2 + x = 2\\z^2 + x^2 + y = 2}{$\bigl\{\bigl[\frac14(-1-\sqrt{17});\frac14(-1-\sqrt{17});\frac14(-1-\sqrt{17})\bigr];\penalty0 \bigl[\frac14(-1+\sqrt{17});\frac14(-1+\sqrt{17});\frac14(-1+\sqrt{17})\bigr];\penalty0 [1;1;0];\penalty0 [1;0;1];\penalty0 [0;1;1];\penalty0 \bigl[-\frac12; -\frac12; \frac32\bigr];\penalty0 \bigl[-\frac12; \frac32; -\frac12\bigr];\penalty0 \bigl[\frac32; -\frac12; -\frac12\bigr]\bigr\}$}
+    %
+\end{enumerate}
+\end{multicols}
+\end{uloha}
+
+\begin{uloha}
+Dokažte, že pro všechna reálná čísla $x$, $y$ platí $x^2 + y^2 \geq 2xy$ a rozhodněte, ve kterých případech nastane rovnost.
+\end{uloha}
+
+\begin{uloha}
+Dokažte, že pro všechna \emph{kladná} reálná čísla $x$, $y$ platí $\frac xy + \frac yx \geq 2$  a rozhodněte, ve kterých případech nastane rovnost.
+\end{uloha}
+
+\begin{uloha}
+Dokažte, že pro všechna reálná čísla $x$, $y$, $z$ platí $x^2 + y^2 + z^2 \geq xy + yz + zx$ a rozhodněte, ve kterých případech nastane rovnost.
+\end{uloha}
+
+\begin{uloha}[66--C--III--4]
+Dokažte, že pro všechna kladná reálná čísla $a \leq b \leq c$ platí
+\[ (-a+b+c)\left( \frac1a + \frac1b + \frac1c \right) \geq 3 \]
+\end{uloha}
+
+\begin{uloha}[61--C--III--1]
+Pro libovolná reálná čísla $x$, $y$, $z$ splňující $x<y<z$ dokažte nerovnost
+\[ x^2 - y^2 + z^2 > (x-y+z)^2 \]
+\end{uloha}
+
+\begin{uloha}[63--C--III--3]
+Pro kladná reálná čísla $a$, $b$, $c$ platí $c^2 + ab = a^2 + b^2$. Ukažte, že pak také platí $c^2 + ab \leq ac + bc$.
+\end{uloha}
+
+\begin{uloha}[63--C--II--1]
+Určete, jakých hodnot může nabývat výraz $V = ab + bc + cd + da$, splňují-li reálná čísla $a$, $b$, $c$, $d$ dvojici podmínek
+\begin{align*}
+2a - 5b + 2c - 5d &= 4,\\
+3a + 4b + 3c + 4d &= 6.
+\end{align*}
+\end{uloha}
+
+\begin{uloha}[60--C--III--4]
+Nechť $x$, $y$, $z$ jsou kladná reálná čísla. Dokažte, že čísla \[x+y+z-xyz\quad \text{a}  \quad xy + yz + zx - 3\] nemohou být současně záporná.
+\end{uloha}
+
+
+\begin{uloha}[65--C--III--1]
+Najděte nejmenší možnou hodnotu výrazu $3x^2 - 12xy + y^4$, ve kterém $x$ a $y$ jsou libovolná nezáporná \emph{celá} čísla.
+\end{uloha}
+
+
+
+\results
+\footnotesize
+\subsubsection*{Výsledky soustav rovnic}
+\def\printvysl#1{\item #1}
+\rightskip=0pt plus1fill\relax
+\begin{enumerate*}
+    \vysld
+\end{enumerate*}
+\endresults
+
+
+\end{document}
+
