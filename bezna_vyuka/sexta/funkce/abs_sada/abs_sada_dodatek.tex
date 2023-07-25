@@ -1,0 +1,145 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+\pgfplotsset{%
+every tick label/.append style={font=\footnotesize},
+grid=major,
+xlabel={$x$},
+ylabel={$y$},
+axis lines=middle,
+unit vector ratio=1 1,
+xtick distance=1,
+ytick distance=1}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+
+\DeclareMathOperator{\arctg}{arctg}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\newdimen\resgraphwidth
+\resgraphwidth=5.5cm
+\newcommand\smallgraph[3][]{$\vcenter{\hbox{\begin{tikzpicture}%
+\begin{axis}[width=\resgraphwidth, xmin=-#2, xmax=#2, ymin=-#2, ymax=#2]
+\addplot [thick, blue, domain=-#2:#2#1,samples=150] {#3};%
+\end{axis}\end{tikzpicture}}}$}
+\newcommand\resgraph[3][]{\lv{\smallgraph[#1]{#2}{#3}}}
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{4,5. Dodatek k funkcím s abs. hodnotou}
+
+\begin{ulohav}\label{lin-grafy}
+Načrtněte grafy funkcí
+\begin{enumerate}
+\item $y=|3x+2| - 2x - |2x-2|$\resgraph{4}{abs(3*x+2)-2*x-abs(2*x-2)}
+\item $y = |1-x|-|2x-3|-|x|+4$\resgraph{4}{abs(1-x)-abs(2*x-3)-abs(x)+4}
+\item $y = |x - x^2 + 2| - 1$\resgraph{4}{abs(x - x*x + 2) - 1}
+\item $y = x^2 + x - 2|x|$\resgraph{4}{x*x + x - 2*abs(x)}
+\item $y = \frac12 x^2 +\frac12|x+2|\cdot x$\resgraph{4}{x*x/2+x*abs(x+2)/2}
+\item $y = |x| - |x^2 - 1| + 1$\resgraph{4}{abs(x)-abs(x*x-1)+1}
+\end{enumerate}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\pgfplotsset{every tick label/.append style={font=\tiny}}
+\resgraphwidth=7cm
+
+\results
+\subsubsection*{Výsledky}
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+\endresults
+
+
+\end{document}
+
+
+

@@ -1,0 +1,205 @@
+\documentclass[10pt,a4paper]{extarticle}
+\usepackage[margin=1cm,bottom=5mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{pgfplots}
+
+\usepgfplotslibrary{dateplot}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\=\doteq
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+\section*{13. Aplikace exponenciálních funkcí a logaritmů}
+
+\begin{multicols}{2}
+
+\begin{ulohav}[biologická]
+Za optimálních podmínek se jedna bakterie \emph{Escherichia coli} rozdělí na dvě za 20 minut.
+\begin{enumerate}
+    \item Kolik bakterií takto dostaneme z jedné za devět hodin?\lv{$2^{27} = 134\,217\,728$}
+    \item Za kolik minut se z jedné bakterie stane 300? Určete s~přesností na celé minuty.\lv{$20 \cdot \log_2 300 \doteq 165$}
+    \item Jestliže máme kolonii 100 bakterií, jaké množství jich můžeme očekávat po deseti minutách?\lv{$100 \cdot 2^{\frac12} \doteq 141$}
+    \item Napište obecný (přibližný) vztah, který udává počet bakterií $B$ v kolonii po $t$ minutách, jestliže jich na začátku bylo $B_0$.\lv{$B = 2^{\frac{t}{20}}\cdot B_0$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}[radioaktivní]
+Poločas rozpadu francia je cca 22 minut, což znamená, že když máme určité množství částic francia, za 22 minut už jich budeme mít jen polovinu (zbytek se prý rozpadne hlavně na radium).
+\begin{enumerate}
+    \item Kolik minut musíme počkat, aby nám z kusu francia zbyla jenom čtvrtina?\lv{$44$}
+    \item Jaká část nerozpadlého francia zbyde po třech hodinách?\lv{$\left(\frac12\right)^{3\cdot 60/22} \doteq 0{,}344\,\%$}
+    \item Určete, za kolik minut se z jednoho kilogramu francia stane pouhý jeden gram.\lv{$22 \cdot \log_{\frac12}\frac{1}{1000} \doteq 219$}
+    \item Určete poločas rozpadu isotopu uhlíku $^{14}$C, jestliže za sto let se rozpadne $1{,}2\,\%$ tohoto isotopu.\lv{$100\cdot\log_{1-0{,}012}\frac12 \doteq 5741$ (pozn. skutečná udávaná hodnota je 5730 let)}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}[protiradiační]
+Pro ochranu před škodlivým zářením se používají různé materiály; tzv. \emph{polotloušťka} pak udává, jakou tloušťku musí mít bariéra z onoho materiálu, aby odstínila polovinu dopadajícího záření.
+\begin{enumerate}
+    \item Polotloušťka betonu (pro $\gamma$ záření) je $44{,}5\,\mathrm{mm}$. Jaká část záření projde půlmetrovou vrstvou betonu?\lv{$\left(\frac12\right)^{\frac{500}{44{,}5}} \doteq 4{,}14611\cdot10^{-4}$}
+    \item Určete polotloušťku olova, pokud vrstvou o tloušťce $1\,\mathrm{cm}$ projde $58\,\%$ záření.\lv{$\log_{0{,}58}\frac12 \doteq 1{,}27\,\mathrm{cm}$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}[gamblerská]
+Šance, že nám při hodu jednou kostkou padne šestka, je $1/6$. Šance, že nám při hodu dvěma kostkami padne na obou šestka, je $(1/6)^2$ atd. Jaký je nejmenší počet kostek (přirozené číslo), pro který platí, že šance, že nám na všech současně padne šestka, bude nižší než $10^{-10}$?\vysl{$13$, jelikož $\log_{\frac16} 10^{-10} \doteq 12{,}9$}
+\end{uloha}
+
+
+\begin{ulohav}[finanční]
+Máme-li spořící účet s ročním úrokem $1\,\%$ (tedy po roce vždy přibude $1\,\%$ částky, která tam byla předtím), za kolik let budeme mít na účtu alespoň
+\begin{enumerate*}
+    \item dvojnásobek,\lv{$\log_{1{,}01} 2 \doteq 69{,}7$, tedy 70 let}
+    \item trojnásobek\lv{$\log_{1{,}01} 3 \doteq 110{,}4$, tedy 111 let}
+\end{enumerate*}
+částky, se kterou jsme začali? (Pro jednoduchost pomíjíme daně z úroků atd.)
+\end{ulohav}
+
+
+\begin{ulohav}[hudební]
+Standardní tón A1, též známý jako \emph{komorní A}, má frekvenci $440\,\mathrm{Hz}$.
+\begin{enumerate}
+    \item Určete frekvenci D2, což je tón o kvartu (tj. pět půltónů) výše oproti A1.\lv{$440\cdot 2^{\frac{5}{12}} \doteq 587\,\mathrm{Hz}$}
+    \item Určete, o kolik půltónů pod A1 je tón o frekvenci $277\,\mathrm{Hz}$.\lv{$\log_{\sqrt[12]2} \frac{277}{440} \doteq -8$, tedy 8 půltónů (malá sexta)}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}[meteorologická]
+Je známo, že atmosférický tlak s nadmořskou výškou klesá exponenciálně. Jestliže meteostanice v Praze-Ruzyni (364\,m\,n.\,m.) naměřila tlak 974\,hPa a v~Peci pod Sněžkou (816\,m\,n.\,m.) 921,7\,hPa, odhadněte tlak na vrcholu Lysé hory v Beskydech (1322\,m\,n.\,m.). (Jde o skutečná data z 19.\,3.\,2023 21:00 SEČ.)\vysl{$974 \cdot \left(\frac{921{,}7}{974}\right)^{\frac{1322 - 364}{816 - 364}} \doteq 866{,}5\,\mathrm{hPa}$ (pozn. skutečná naměřená hodnota byla $866{,}8\,\mathrm{hPa}$)}
+\end{uloha}
+
+
+\begin{uloha}[encyklopedická]
+Podívejte se na graf, ze kterého je celkem vidět, že v počátcích rostl počet editorů anglické Wikipedie zhruba exponenciálně.
+\[\begin{tikzpicture}
+\begin{axis}[
+    date coordinates in=x,
+    date ZERO=2002-02-01,
+    width=\hsize,
+    xticklabel=\year-\month,
+    minor y tick num = 1,
+    grid=both,
+    ylabel={počet editorů},
+    every x tick label/.append style={font=\footnotesize},
+    xtick={2002-01-01,2002-04-01,2002-07-01,2002-10-01,2003-01-01,2003-04-01,2003-07-01,2003-10-01,2004-01-01,2004-04-01,2004-07-01,2004-10-01,2005-01-01,2005-04-01,2005-07-01,2005-10-01,2006-01-01,2006-04-01},
+    xticklabel style={rotate=90,anchor=near xticklabel}
+]
+\addplot[thick,mark=none,blue] table [mark=none,x=month,y=total.total,col sep=comma] {wikipedisti.csv};
+\end{axis}
+\end{tikzpicture}\]
+Zkuste z těchto dat co nejlépe odhadnout, kolikrát se \uv{v~průměru} počet editorů zvýšil každý měsíc.\vysl{cca 1,13-krát}
+\end{uloha}
+
+
+V následujících úlohách je použito značení $\lceil x \rceil$, které značí \emph{nejmenší celé číslo, které není menší než $x$}, tj. \uv{zaokrouhlení nahoru} (např. $\lceil 3\rceil = 3$, $\lceil 3{,}2\rceil = 4$).
+
+
+\begin{uloha}[informatická]
+Máme pole $n$ čísel, která jsou navíc seřazená (tedy na první pozici je nejmenší číslo, na druhé pozici druhé nejmenší atd.). Popište algoritmus, který pro číslo na vstupu určí, zda se v poli nachází, přičemž mu na to bude stačit $\lceil \log_2(n+1)\rceil$ přístupů k poli (tj. maximálně u tolik položek pole zjistí jejich hodnotu). \hint{Jak to efektivně zjistit pro pole 3 prvků? A co 7 prvků?}
+\end{uloha}
+
+
+\begin{uloha}[logická]
+Máme $n$ závaží, z nichž $n-1$ váží $10$\,g a jedno váží $10{,}001$\,g, ovšem nevíme, které z nich to je. K~tomu máme rovnoramenné váhy, které spolehlivě určí, na které straně je větší hmotnost. Na obě misky vah můžeme umístit najednou libovolný počet závaží. Vymyslete postup, pomocí kterého ve všech případech najdeme ono těžší závaží, ale bude nám na to stačit $\lceil\log_3 n\rceil$ vážení. \hint{Nejprve si rozmyslete postup pro 3 závaží, pak pro 9.}
+\end{uloha}
+
+\end{multicols}
+
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\begin{multicols}{2}
+\vysld
+\end{multicols}
+\endresults
+
+
+\end{document}

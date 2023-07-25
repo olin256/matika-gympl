@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8"/>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<title>Procvičovátko exponenciálních funkcí</title>
+</head>
+<body>
+<div id="ggb-element"></div>
+<script>
+    var params = {"appName": "graphing", "id": "grapher", "width": 800, "height": 600, "showToolBar": false, "showAlgebraInput": false, "showMenuBar": false, "enableCAS": false};
+    var applet = new GGBApplet(params, true);
+    window.addEventListener("load", function() {
+        applet.inject('ggb-element');
+    });
+
+    function generate() {
+        $("#vysledek").hide();
+
+        minus = (Math.random() > .75);
+        inv = (Math.random() > .5);
+
+        do {
+            zaklad = Math.floor(2+6*Math.random());
+            odmrandom = Math.random();
+            if (odmrandom > .9) {
+                odmocnina = 3;
+            } else if (odmrandom > .7) {
+                odmocnina = 2;
+            } else {
+                odmocnina = 1;
+            }
+        } while ((odmocnina == 2) && (zaklad == 4));
+
+        xposun = Math.floor(-5+11*Math.random());
+        yposun = Math.floor(-5+11*Math.random());
+
+        predpis = zaklad.toString();
+        texpredpis = predpis;
+        if (inv) {
+            predpis = "1/"+predpis;
+            texpredpis = "\\frac1"+texpredpis;
+        }
+        texthree = "";
+        if (odmocnina == 3) {
+            texthree = "[3]";
+        }
+        if (odmocnina > 1) {
+            predpis = "("+predpis+")^(1/"+odmocnina+")";
+            texpredpis = "\\sqrt"+texthree+"{"+texpredpis+"}";
+        }
+        if ((odmocnina > 1) || inv) {
+            predpis = "("+predpis+")";
+            texpredpis = "\\left("+texpredpis+"\\right)";
+        }
+        predpis = predpis + "^(x+"+xposun+")+"+yposun;
+        if (xposun > 0) {
+            texpredpis = texpredpis + "^{x+"+xposun+"}";
+        } else if (xposun < 0) {
+            texpredpis = texpredpis + "^{x"+xposun+"}";
+        } else {
+            texpredpis = texpredpis + "^x";
+        }
+
+        if (yposun > 0) {
+            texpredpis = texpredpis + "+"+yposun;
+        } else if (yposun < 0) {
+            texpredpis = texpredpis + yposun;
+        }
+
+        if (minus) {
+            predpis = "-" + predpis;
+            texpredpis = "-" + texpredpis;
+        }
+        grapher.reset();
+        grapher.evalCommand(predpis);
+        $("#vysledek").html("\\(y = "+texpredpis+"\\)");
+        MathJax.typeset();
+    }
+
+    function showresult() {
+        $("#vysledek").slideDown();
+    }
+</script>
+<button onclick="javascript:generate()">Vygeneruj zadání</button>
+<button onclick="javascript:showresult()">Zobraz řešení</button>
+<div id="vysledek" style="display: none"></div>
+</body>
+</html>
