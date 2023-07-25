@@ -1,0 +1,209 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+
+\multicolsep=\smallskipamount
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+\begin{document}
+
+
+% \tisk
+% \resultssame
+
+\section*{7. Mocniny s racionálními exponenty}
+
+
+\begin{uloha}
+Je-li $a$ kladné reálné číslo, vyjádřete součin $\sqrt[3]{a} \cdot \sqrt[4]{a^3} \cdot\sqrt[6]{a^3}$ ve tvaru jediné mocniny $a$ (exponent nemusí být celý) a také pomocí odmocniny (bez použití neceločíselného exponentu).\vysl{$a^{\frac{19}{12}} = \sqrt[12]{a^{19}}$}
+\end{uloha}
+
+\begin{ulohav}
+Vypočtěte následující hodnoty (ideálně s určitým zapojením vlastního intelektu, jinak souhlasím s tím, že to zvládne každá rozumná kalkulačka):
+\begin{enumerate*}
+    \item $\bigl(\frac{8}{125}\bigr)^{\frac13}$\lv{$\frac{2}{5}$}
+    \item $243^{\frac15}$\lv{3}
+    \item $1000^{-\frac23}$\lv{$\frac1{100}$}
+    \item $1^{-\frac54}$\lv{$1$}
+    \item $-1^{\frac54}$\lv{$-1$}
+    \item $8 \cdot \bigl(\frac14\bigr)^{\frac12}$\lv{4}
+    \item $16^{1{,75}}$\lv{$2^7 = 128$}
+\item $5{,}6^{\frac12} : \bigl(\frac75\bigr)^{\frac12}$\lv{2}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}% pet 8.7 51
+Vyjádřete jako jedinou mocninu dvojky:
+\begin{enumerate*}
+    \item $2^{\frac14} \cdot 2^{\frac23}$\lv{$2^{\frac{11}{12}}$}
+    \item $2^{\frac34} : 2^{\frac12}$\lv{$2^{\frac{1}{4}}$}
+    \item $\biggl(\bigl(2^{\frac12}\bigr)^{\frac14}\biggr)^{\frac34}$\lv{$2^{\frac{3}{32}}$}
+    \item $\bigl(2 \cdot 2^{\frac12}\bigr)^{\frac12} : 2^{\frac78}$\lv{$2^{-\frac{1}{8}}$}
+    \item $2^{\frac12} \cdot 4^{\frac14} \cdot 8^{\frac18} \cdot 16^{\frac{10}{16}}$\lv{$2^{\frac{31}{8}}$}
+    \item $\bigl(2^{\frac13}\bigr)^4\cdot 2^{(\frac13)^4}$\lv{$2^{\frac{109}{81}}$}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{uloha}
+Určete hodnotu výrazu $\bigl[a^{-\frac32} \cdot b(ab^{-2})^{-\frac12} \cdot(a^{-1})^{-\frac23}\bigr]^3$ pro $a = \dfrac{\sqrt2}{2}$ a $b = \dfrac{1}{\sqrt[3]2}$. (Doporučuji nejprve výraz zjednodušit.)\vysl{1}
+\end{uloha}
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Zjednodušte tyto výrazy:
+
+\medskip
+\noindent
+\begin{enumerate*}
+    \item $\frac{\bigl(y^{\frac12}\bigr)^3 \cdot (y^2)^{\frac13}}{y \cdot y^{\frac23}}$\lv{$y^{\frac12}$}
+    \item $\frac{(xy)^{\frac12}\cdot(x^2 y)^{-\frac13}}{(xy^2)^{-\frac23}}$\lv{$x^{\frac12}y^{\frac32}$}
+    \item $\left(\frac{x^{\frac25}}{y^{\frac32}}\right)^{-2}\cdot \frac{(y^{-1}x^{-2})^{-\frac12}}{(xy^2)^{\frac1{10}}}$\lv{$x^{\frac1{10}}y^{\frac{33}{10}}$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav} % Petáková
+\everymath{\displaystyle}
+Zjednodušte (užitím racionálních exponentů):
+\begin{enumerate*}
+    \item $\sqrt{3 \cdot \sqrt3}$\lv{$3^{\frac34}$}
+    \item $\sqrt{8 \cdot \sqrt{4 \cdot \sqrt2}}$\lv{$2^{\frac{17}8}$}
+    \item $\sqrt[3]{5^2 \cdot \sqrt5}$\lv{$5^{\frac56}$}
+    \item $\sqrt{5 \cdot \sqrt[3]{\tfrac15}\cdot \sqrt[4]5}$\lv{$5^{\frac{11}{24}}$}
+    \item $\frac{\sqrt[3]{2 \cdot \sqrt8}}{\sqrt{2 \cdot \sqrt[3]4}}$\lv{$1$}
+    \item $\frac{\sqrt[5]{u\cdot \sqrt[6]{u^2}}}{\sqrt u}$\lv{$u^{-\frac7{30}}$}
+    \item $\sqrt[6]{\frac{b^4}{\sqrt b}} \cdot \sqrt[3]{\frac{b^3}{\sqrt b}} \cdot \sqrt b$\lv{$b^{\frac{23}{12}}$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Řešte následující rovnice s neznámou $x \in \mathbb R$:
+\begin{multicols}{3}
+\begin{enumerate}
+    \item $x^{\frac13} = 0{,}4$\lv{$\frac{8}{125} = 0{,}064$}
+    \item $\sqrt{x^3} = 8$\lv{$4$}
+    \item $x^{\frac23} = 0{,}25$\lv{$2^{-3} = 0{,}125$}
+    \item $\sqrt[5]{\sqrt[3]{x^5}} = 3$\lv{$3^3 = 27$}
+    \item $64x^6 - 1 = 0$\lv{$\pm \frac12$}
+    \item $x^{-\frac13} = 4 x^{\frac 14}$\lv{$2^{-\frac{24}7}$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\interest
+\begin{uloha}
+(Žádná zajímavá úloha na racionální exponenty mě nenapadla, tak sem dám tuto.)
+Matematik Pěnkava se jednoho dne rozhodl, že bude zkoumat čísla tvaru $2^{2^n} - 1$, kde $n$ je přirozené číslo. Po dosazení jedničky mu vyšlo $2^{2^1} - 1 = 2^2 - 1 = 3$, z čehož usoudil, že výsledek bude asi vždycky prvočíslo. Vaším úkolem je dokázat, že ze všech Pěnkavových čísel je trojka ve skutečnosti jako jediná prvočíslo.
+\end{uloha}
+
+
+%\renewcommand{\baselinestretch}{1.25}
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+
+\results
+%\subsubsection*{Výsledky}
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+\endresults
+%}
+
+%\copy0
+
+%\vfil
+
+%\box0
+%\eject
+%\unvbox0
+
+
+
+\end{document}
+
+
+
+
