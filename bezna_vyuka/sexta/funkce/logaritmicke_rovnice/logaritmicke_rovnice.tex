@@ -1,0 +1,176 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=.75cm,top=.75cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{alphalph}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\makeatletter
+\newcommand{\AlphAlphFmt}[1]{\@alphfmt{#1}}  % Define the \alphalph wrapper for enumitem 
+\newcommand{\@alphfmt}[1]{\alphalph{\value{#1}}}  % Internal representation 
+\AddEnumerateCounter{\alphalphFmt}{\@alphfmt}{aaa} % Register this new format
+\makeatother
+
+\setlist[enumerate]{label={(\AlphAlphFmt*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\begin{document}
+
+
+% \tisk
+% \resultssame
+
+\section*{11. Logaritmické rovnice}
+
+\def\lm#1{\lv{$\{#1\}$}}
+
+\begin{ulohav}
+Určete, za jakých podmínek jsou definovány tyto výrazy (tj. definiční obory):
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{2}
+\raggedright
+\begin{enumerate}
+    \item $\log(-3x)$\lv{$x\in(-\infty;0)$}
+    \item $\log_7(2x+7)$\lv{$x\in\bigl(-\frac72;\infty\bigr)$}
+    \item $\log_3\bigl(\frac{x-1}{3-x}\bigr)$\lv{$x\in(1;3)$}
+    \item $\ln(-2 x^2-7 x+4)$\lv{$x\in\bigl(-4;\frac12\bigr)$}
+    \item $\log_5 \sqrt{x+2}$\lv{$x\in(-2;\infty)$}
+    \item $\log(|x+3|-4)$\lv{$x\in(-\infty;-7)\cup(1;\infty)$}
+    \item $\frac{1}{\log x}$\lv{$x\in(0;1) \cup (1;\infty)$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+
+\begin{ulohav} % Petákováááá
+Řešte následující rovnice s neznámou $x \in \R$:
+\everymath{\displaystyle}
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{2}
+\raggedright
+\begin{enumerate}
+    \item $\log_2 (x+1) = 3$\lm{7}
+    \item $\log_{\frac12}(2-x) = -2$\lm{-2}
+    \item $\log_4(5x-4) = 2$\lm{4}
+    \item $\log_2\frac{3-x}{x+3} = -2$\lm{\frac95}
+    \item $\log_2 \log_3 \log_{\frac12} x = 0$\lm{\frac18}
+    \item $\log_2\bigl(14+2\log_7(1+2\log_{\frac12}x)\bigr)=4$\lm{\frac18}
+    \item $\log(2x-3) = \log(3x-5)$\lm{2}
+    \item $\log_3(3-4x) = \log_3(2x-3)$\lv{$\emptyset$}
+    \item $\log_5(x^2+2x) = \log_5(-3x)$\lm{-5}
+    \item $\log_2(x^2 - x) = \log_2 x$\lm{2}
+    \item $\log x = 2 \log 5 + \log 4$\lm{100}
+    \item $\frac{\log_3 x}{1 + \log_3 2} = 2$\lm{36}
+    \item $\log_6(x+1) + \log_6 x = 1$\lm{2}
+    \item $\log_2(x+7) - \log_2 x = 3$\lm{1}
+    \item $\log(x+3) = \log x + \log 3$\lm{\frac32}
+    \item $\log_8\sqrt{x+30} + \log_8 \sqrt x = 1$\lm{2}
+    \item $\log x^5 - \log x^4 + \log x^3 = 12$\lm{1000}
+    \item $\log \sqrt x + \log \frac1{x^2} - \log x^3 + \frac{11}2 = \frac{\log x^2}{1 + \log 10}$\lm{10}
+    \item $3\log 2x^2 + 2 \log 3x^3 = 5 \log x + 2 \log 6x^3$\lm{\frac12}
+    \item $\log 100x + \log 10x = 7$\lm{100}
+    \item $\frac32 \log \frac{x^2}{10} + \log \frac{100}{x^3} - \log \frac{\sqrt{10}}{x} = -2$\lm{\frac{1}{100}}
+    \item $\frac{\log_3 (6x-2)}{\log_3 (x-3)} = 2$\lm{11}
+    \item $\log_5\bigl(x-\tfrac14\bigr) = -\log_5\bigl(x+\tfrac72\bigr)$\lm{\frac12}
+    \item $\log_2^2 x + 2 \log_2 x - 3 = 0$\lm{2;\frac18}
+    \item $\log_{\frac12}^2(x+1) + 5 \log_\frac12(x+1) = 6$\lm{-\frac12; 63}
+    \stitem $\log_{\frac12} x \cdot \log_{\frac12} 4x = \frac{\log_{\frac12}16x}{\log_{\frac12}8} + \log_{\frac12}4$\lm{\frac12; \frac{\sqrt[3]2}{2}}
+    \stitem $x^{\log x} = 100x$\lm{\frac1{10}; 100}
+    \stitem $1000x^2 = x^{\log x}$\lm{\frac1{10}; 1000}
+    \stitem $(\sqrt x)^{1+\log_2 x} = 2$\lm{\frac14; 2}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\AlphAlphFmt*)},itemjoin={\quad}}
+\setlength{\columnseprule}{.4pt}
+
+\vskip-\bigskipamount
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
