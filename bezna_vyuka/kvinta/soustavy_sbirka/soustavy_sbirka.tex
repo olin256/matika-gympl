@@ -1,0 +1,156 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{vwcol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={\textbf{\arabic*.}},topsep=\smallskipamount,itemsep=1.2\medskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vysl#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vyslplain\vysl
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\long\def\itvysl#1{\ee\gdef\ee\vysld\ee{\vysld\printvysl{#1}}}
+\def\pr#1#2{\item $#1$\itvysl{#2}}
+\def\pri#1#2{\stitem $#1$\itvysl{#2}}
+
+\def\prs#1#2{\pr{\left\{\begin{aligned}#1\end{aligned}\right.}{#2}}
+\def\prsi#1#2{\pri{\left\{\begin{aligned}#1\end{aligned}\right.}{#2}}
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\let\la\langle
+\let\ra\rangle
+\def\bla{\bigl\la}
+\def\bra{\bigr\ra}
+\def\blz{\bigl(}
+\def\brz{\bigr)}
+
+\def\R{\mathbb{R}}
+\def\N{\mathbb{N}}
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\begin{document}
+
+%\resultssame
+%\tisk
+
+
+\begin{center}
+    \textbf{\LARGE (Obyčejná) sbírka}\\[1mm]
+    na\\[1mm]
+    {\Large všemožné soustavy rovnic}
+\end{center}
+
+
+\begin{multicols}{2}
+\everymath{\displaystyle}
+\begin{enumerate}
+    \rightskip0pt plus1fil\relax
+    \lineskip=4pt\relax
+    \prs{4x+3y&=6\\2x+y&=4}{[3;-2]}
+    \prs{3x-5y&=14\\6x-10y&=17}{}
+    \prs{y+\frac13x &= 2\\ \frac{y}{2}+\frac{x}{6}&=1}{\bigl[x;-\frac13x+2\bigr] \mid x \in \R}
+    \prs{\frac{x+1}{3}-\frac{y+2}{4}&=\frac{2(x-y)}{5}\\ \frac{x-3}{4} - \frac{y-3}{3} &= 2y-x}{[11;6]}
+    \prs{\frac{x\sqrt2}{\sqrt2 - 1} - \frac{y}{\sqrt2 + 1} &= 5 - \sqrt2\\\frac{x}{\sqrt2 + 2} + \frac{y}{\sqrt2-2} &= \frac{-8-\sqrt2}{2}}{[\sqrt2;3]}
+    \prs{\sqrt3 x + \sqrt2 y &= 1\\ \sqrt{2}x + \sqrt3 y &= 2}{[\sqrt3-2\sqrt2; 2\sqrt3-\sqrt2]}
+    \prs{\frac{4}{x-3y} &= \frac{7}{9x+2y}\\\frac{3}{2x+y} &= \frac{9}{x-y+1}}{[1;-1]}
+    \prs{\frac{2x-5}{x-4} - \frac{y+1}{y-2} &= 1\\\frac{3x+1}{x-1}-\frac{2y+9}{y+2} &= 1}{[5;3]}
+    \prs{x+3|y|-1&=0\\x+y+3&=0}{[-5;2]; [-2;-1]}
+    \prs{x+y&=2\\|3x-y|&=1}{[\frac14;\frac74]; [\frac34; \frac54]}
+    \prs{x^2 + y^2 &= 100\\3x+4y&=50}{[6;8]}
+    \prs{x^2+y^2&=4 \\ x+2y &= 4}{[0;2]; [\frac85; \frac65]}
+    \prs{x^2+9y^2 &= 36\\2x-3y&=0}{\bigl[\frac{6\sqrt5}{5};\frac{4\sqrt5}{5}\bigr]; \bigl[-\frac{6\sqrt5}{5};-\frac{4\sqrt5}{5}\bigr]}
+    \prs{x^2+xy-6y^2 &= 0\\3x-2y&=6}{\bigl[3;\frac{3}{2}\bigr]; \bigr[\frac{18}{11}; -\frac{6}{11}\bigl]}
+    \prs{16y^2-40xy+25x^2&=0\\4y-5x&=10}{}
+    \prs{3x^2+3y^2-26x-16y&=-61\\x-y&=-1}{[4;5];[2;3]}
+    \prs{x^2+y^2&=421\\xy&=210}{[15;14]; [-15;-14]; [14;15]; [-14;-15]}
+    \prs{\frac xy + \frac yx &= \frac{41}{20}\\ xy&=20}{[5;4]; [-5;-4]; [4;5]; [-4;-5]}
+    \prs{x + xy &= 60\\y + xy &= 55}{[10;5]; [-6;-11]}
+    \prs{(x-1)(y+5)&=100\\(x-2)(y+6)&=99}{[11;5]; [-9;-15]}
+    \prs{x^2 + y^2 + x + y &= 36\\ 3x^2 + 3y^2 + 4x + 5y &= 117}{[5;2]; \bigl[-\frac95; \frac{27}{5}\bigr]}
+    \prsi{x^2+y^2+x+y&=68\\2xy+x+y&=52}{[3;7]; [7;3]; [-4;-8]; [-8;-4]} % odecteme a rozlozime na soucin
+\end{enumerate}
+\end{multicols}
+
+
+\newcount\pr
+
+\results
+\subsection*{Výsledky}
+% reseni bez enumerate kvuli vwcol
+\def\printvysl#1{\def\tmpres{#1}\advance\pr1\relax \noindent\textbf{\the\pr.} \ifx\tmpres\empty$\emptyset$\else$\left\{\tmpres\right\}$\fi\par}
+\begin{vwcol}[widths={0.4,0.6}, rule=0pt]%
+\parskip=\medskipamount
+\vysld
+\end{vwcol}
+\endresults
+
+
+\end{document}

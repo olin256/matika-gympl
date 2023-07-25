@@ -1,0 +1,141 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+
+\makeatother
+
+\begin{document}
+
+%\tisk
+
+
+\section*{Úlohy na Vennovy diagramy}
+
+\let\vysl\vyslplain
+
+
+\begin{ulohav}
+Konečná množina $A$ má podmnožiny $X$ a $Y$. Víme, že platí $|X \cap Y| = 7$, $|Y \setminus X| = 4$, $|X'_{A}| = 15$ (doplněk) a $|X \cup Y| = 18$. Určete \begin{enumerate*} \item $|A|$,\lv{29} \item $|X \setminus Y|$.\lv{7} \end{enumerate*} (\uv{Absolutními hodnotami} zde značíme počet prvků množiny.)
+\end{ulohav}
+
+\begin{ulohav} % realisticky.cz
+29 studentů v jisté třídě dostalo na začátku školního roku klíč od skříňky a 
+přístupový čip. Alespoň jednu věc ztratilo do konce roku 12 studentů, 
+právě jednu věc pak 9 studentů. Studentů, kteří ztratili klíč, bylo o pět 
+více než studentů, kteří ztratili obě věci. Kolik studentů ztratilo:
+\begin{enumerate*}
+    \item klíč,\lv{8}
+    \item čip,\lv{7}
+    \item nic?\lv{17}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{ulohav} % realisticky.cz
+Děti ve školách nejsou v bezpečí. Je potěšující, že 610 studentů se 
+nezranilo při pádu z~židličky a 605 se jich nezranilo při pádu na 
+chodbě. Přesto alespoň jedno zranění utrpělo 45 dětí. Počet studentů, 
+kteří spadli ze židle byl o jednu menší než počet těch, kteří jenom 
+padli na chodbě. Kolik studentů spadlo:
+\begin{enumerate*}
+    \item ze židličky,\lv{22}
+    \item  na chodbě?\lv{27}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{ulohav} % realisticky.cz
+Písemná práce z matematiky, které se zúčastnilo 35 studentů, obsahovala tři úlohy. 
+Dva studenti vyřešili jenom první úlohu a tři studenti jenom druhou úlohu. První a 
+druhou úlohu vyřešilo 16 studentů, druhou a třetí 14 studentů. Všechny úlohy
+vyřešilo 10 studentů, první nebo třetí 31 studentů a 3 studenti nevyřešili ani první ani 
+druhou úlohu. Kolik studentů vyřešilo
+\begin{enumerate*}
+    \item aspoň dvě úlohy,\lv{27}
+    \item aspoň jednu úlohu?\lv{34}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{ulohav} % realisticky.cz
+Hodina matematiky je v plném proudu. Tahák na češtinu si píše 9 
+studentů, na mobilu si hraje 10 přítomných a 12 studentů se 
+baví se spolusedícím. Celkem je ve třídě 30 studentů, ale pouze 6 jich 
+dělá dvě z uvedených činností najednou. Studentů, kteří si pouze 
+píšou tahák je třikrát více než těch kteří stihnou vedle psaní taháku 
+ještě mobilovat. Ani jeden ze studentů nezvládne všechny tři činnosti, 
+8 studentů píše tahák a nepovídá si při tom. \begin{enumerate*}
+    \item Kolik studentů nedělá ani jednu z činností a dává pozor?\lv{5}
+    \item Kolik studentů je zticha a nebaví se?\lv{18}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{uloha} % vlastní úloha; myslím, že může být celkem povznášející objev, že takovéto výpočty fungují pro "libovolnou míru"
+Severína a Zlatan oba kandidují na pozici starosty Horní Vsi u Dolního Potoka. Z průzkumu mezi elektorátem vyplynulo, že
+\begin{itemize}
+    \item alespoň jeden z kandidátů je přípustný pro čtyři pětiny voličů,
+    \item těch, co by mohli volit Severínu, je dvakrát více než těch, co budou určitě volit Zlatana,
+    \item těch, co mají jasno, koho budou volit (a budou volit), je třikrát více než těch, kterým není po chuti ani jeden kandidát.
+\end{itemize}
+Určete
+\begin{enumerate}
+    \item jaká část ze všech oprávněných voličů zvažuje oba kandidáty,\lv{$\frac15$}
+    \item jakou část z odevzdaných hlasů může maximálně dostat Severína (počítáme, že ti, kteří nechtějí ani jednoho, k volbám nepůjdou).\lv{$\frac23$}
+\end{enumerate}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}

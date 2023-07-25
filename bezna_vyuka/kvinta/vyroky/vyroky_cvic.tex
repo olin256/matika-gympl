@@ -1,0 +1,155 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\makeatother
+
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\let\imp\Rightarrow
+\let\equ\Leftrightarrow
+\let\aand\wedge
+\let\oor\vee
+
+
+\begin{document}
+
+% \tisk
+
+
+\section*{Cvičení na výroky}
+
+\begin{uloha}\label{basic}
+Sestavte tabulku pravdivostních hodnot pro složené výroky
+\begin{enumerate}
+    \item $(x \aand y) \imp (y \oor z)$,
+    \item $(x \equ \neg y) \oor (x \equ y)$,
+    \item $(x \aand y \aand \neg z) \oor (\neg x \aand y \aand \neg z)$. \label{cnd}
+\end{enumerate}
+\vysl{%
+\[\begin{array}{c|c|c|c|c|c}
+x & y & z & (x \aand y) \imp (y \oor z) & (x \equ \neg y) \oor (x \equ y) & (x \aand y \aand \neg z) \oor (\neg x \aand y \aand \neg z) \\\hline
+0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 0 & 1 & 1 & 1 \\
+0 & 1 & 1 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 1 & 1 & 0 \\
+1 & 1 & 0 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1 & 0 
+%
+\end{array}\]
+}
+\end{uloha}
+
+\begin{uloha}
+Výroky z Úlohy \ref{basic} znegujte (tak, aby ve výsledku se negovaly pouze $x$, $y$ či $z$, nikoliv složené výroky).
+\vysl{\begin{enumerate*}\item $(x \aand y) \aand (\neg y \aand \neg z)$, \item $(x \equ y) \aand (\neg x \equ y)$, \item $(\neg x \oor \neg y \oor z) \aand (x \oor \neg y \oor z)$ \end{enumerate*}}
+\end{uloha}
+
+\begin{ulohav}\label{kecy}
+Znegujte následující výroky:
+\begin{enumerate}
+    \item Přišel jsem, viděl jsem, zvítězil jsem.\lv{Nepřišel jsem, nebo jsem neviděl, nebo jsem nezvítězil.}
+    \item Nebude-li pršet, nezmoknem.\label{prset}\lv{Nebude pršet a zmoknem.}
+    \item Bude-li každý z nás z křemene, bude celý národ z kvádru.\label{kvadr}\lv{Bude každý z nás z křemene a celý národ z kvádru nebude.}
+    \item Půjdu do školy právě tehdy, když nebudu nemocný a nebude sněžit.\lv{Nepůjdu do školy právě tehdy, když nebudu nemocný a nebude sněžit.}
+    \item Když půjdu do školy, tak nebudu nemocný a nebude sněžit.\lv{Půjdu do školy a budu nemocný nebo bude sněžit.}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Výroky \ref{prset} a \ref{kvadr} z Úlohy \ref{kecy} přepište pomocí \emph{obměněné implikace} (tj. s využitím \uv{pravidla} $(a \imp b) \equ (\neg b \imp \neg a)$).
+\vysl{\begin{enumerate*}\item[\ref{prset}] Zmokneme-li, bude pršet. \item[\ref{kvadr}] Nebude-li celý národ z kvádru, nebude každý z nás z~křemene. \end{enumerate*}}
+\end{uloha}
+
+
+\begin{uloha} % https://en.wikipedia.org/wiki/Disjunctive_normal_form
+Vymyslete nějaký složený výrok $S$ obsahující $x$, $y$ a $z$, jehož pravdivostní tabulka bude
+\[\begin{array}{c|c|c|c|c|c}
+x & y & z & S \\ \hline
+0 & 0 & 0 &  1 \\
+0 & 0 & 1 &  1 \\
+0 & 1 & 0 &  1 \\
+0 & 1 & 1 &  0 \\
+1 & 0 & 0 &  0 \\
+1 & 0 & 1 &  0 \\
+1 & 1 & 0 &  1 \\
+1 & 1 & 1 &  1 
+%
+\end{array}\]
+Dokážete vymyslet recept pro \emph{jakýkoliv} poslední sloupec?
+\par\smallskip
+\noindent\emph{Nápověda:} Inspirujte se Úlohou \ref{basic} \ref{cnd}.
+\vysl{např. $(\neg x \aand \neg y \aand \neg z) \oor (\neg x \aand \neg y \aand z) \oor (\neg x \aand y \aand \neg z) \oor (x \aand y \aand \neg z) \oor (x \aand y \aand z)$}
+\end{uloha}
+
+
+\begin{suloha} % https://en.wikipedia.org/wiki/Sheffer_stroke
+Ukažte, že pomocí operace $x \uparrow y$, která je definována jako $\neg(x \aand y)$, lze dostat všechny ostatní logické operace.
+\vysl{$\neg x = x \uparrow x$, $x \aand y = (x \uparrow y) \uparrow (x \uparrow y)$, $x \oor y = (x \uparrow x) \uparrow (y \uparrow y)$, $x \imp y = x \uparrow (y \uparrow y)$, $x \equ y = (x \uparrow y) \uparrow ((x \uparrow x) \uparrow (y \uparrow y))$}
+\end{suloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+
+
+\end{document}
+

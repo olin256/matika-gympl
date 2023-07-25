@@ -1,0 +1,173 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{marvosym}
+\usepackage{tikz}
+\usepackage{centernot}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem{xuloha}[uloha]{\llap{\mdseries$\sun$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+
+\let\imp\Rightarrow
+\let\equ\Leftrightarrow
+\let\aand\wedge
+\let\oor\vee
+
+
+\begin{document}
+
+%\tisk
+
+\section*{Výroky s kvantifikátory 2}
+
+\let\AA\forall
+\let\EE\exists
+
+\def\nto{\centernot\to}
+
+\def\Zh{\check Z}
+\def\zh{\check z}
+
+\begin{ulohav}
+Následující diagram označuje, kdo s kým chce chodit. Označme $M$ mno\-ži\-nu všech mužů v tomto diagramu, $\Zh$ mno\-ži\-nu všech žen a $L$ množinu všech lidí. Šipkou $a \to b$ značíme, že $a$ chce chodit s $b$, zatímco $a \nto b$ negaci $a \to b$.
+\[\begin{tikzpicture}[x=2cm,y=1.5cm,bend angle=15,>=stealth]
+    \newcommand{\zena}[3][]{\node (#3) [label=above:#3#1] at (#2) {{\Large\Ladiesroom}};}
+    \newcommand{\muz}[3][]{\node (#3) [label=below:#3#1] at (#2) {{\Large\Gentsroom}};}
+    
+    \muz{0,0}{Kvído}
+    \muz{1,0}{Bruno}
+    \muz{2,0}{Otto}
+    \muz{3,0}{Ivo}
+    \zena[\vphantom{y}]{0,1}{Vilhelmína}
+    \zena{1,1}{Leontýna}
+    \zena{2,1}{Valentýna}
+    \zena{3,1}{Celestýna}
+    \def\tbr{to [bend right]}
+    \def\tbl{to [bend left]}
+    
+    \draw[->](Kvído) \tbr(Vilhelmína);
+    \draw[->](Kvído) to (Leontýna);
+    \draw[->](Vilhelmína) \tbr(Kvído);
+    \draw[->](Bruno) to[bend right=10](Vilhelmína);
+    \draw[->](Vilhelmína)\tbr(Bruno);
+    \draw[->](Bruno) to (Leontýna);
+    \draw[->](Otto) to (Leontýna);
+    \draw[->](Otto) to (Celestýna);
+    \draw[->](Ivo) \tbr (Leontýna);
+    \draw[->](Vilhelmína) to [bend left=6](Otto);
+    \draw[->](Valentýna) \tbr (Bruno);
+    \draw[->](Valentýna) \tbl (Ivo);
+    \draw[->](Celestýna) to (Bruno);
+\end{tikzpicture}\]
+Přeložte následující výroky do \uv{lidské řeči} a rozhodněte o jejich platnosti.
+% Rozhodněte o platnosti následujících výroků, ideálně je předtím 
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\EE \zh \in \Zh\colon \text{Bruno} \to \zh$\lv{Existuje žena, se kterou chce Bruno chodit; 1}
+    \item $\AA \zh \in \Zh\colon \text{Bruno} \to \zh$\lv{Bruno chce chodit se všemi ženami; 0}
+    \item $\EE m \in M\colon \text{Vilhelmína} \nto m$\lv{Existuje muž, který nechce chodit s Vilhelmínou; 1}
+    \item $\EE \zh \in \Zh \ \AA m \in M \colon m \to \zh$\lv{Existuje žena, se kterou chtějí chodit všichni muži; 1}
+    \item $\AA m \in M \ \EE \zh \in \Zh \colon m \to \zh$\lv{Každý muž chce chodit s nějakou ženou; 1}
+    \item $\EE m \in M \ \AA \zh \in \Zh \colon m \to \zh$\lv{Nějaký muž chce chodit se všemi ženami; 0}
+    \item $\AA m \in M \ \EE \zh \in \Zh \colon \zh \to m$\lv{S každým mužem chce chodit nějaká žena; 1}
+    \item $\EE \zh \in \Zh \ \AA m \in M \colon \zh \to m$\lv{Nějaká žena chce chodit se všemi muži; 0}
+    \item $\AA l \in L \ \EE k \in L \colon l \to k$\lv{Každý chce s někým chodit; 0}
+    \item $\AA l \in L \ \EE k \in L \colon l \nto k$\lv{Každý chce s někým nechodit; 1}
+    \item $\AA l \in L \ \EE k \in L \colon k \nto l$\lv{S každým chce někdo nechodit; 1}
+    \item $\EE k, l \in L \colon (k \to l) \aand (l \to k)$\lv{Existují dva lidé, kteří spolu chtějí chodit; 1}
+    \item $\EE k, l \in L \colon (k \nto l) \aand (l \nto k)$\lv{Existují dva lidé, že ani jeden nechce chodit s tím druhým; 1}
+    \item $\AA k, l \in L \colon (k \to l) \oor (l \nto k)$\lv{Pro každé dva lidi platí, že první chce chodit s druhým nebo druhý nechce chodit s prvním; 0 (není splněno např. pro $k={}$Leontýna, $l={}$Bruno)}\label{nesym}
+    \stitem $\EE \zh \in \Zh \  \AA y \in \Zh \  \AA m \in M \colon (m \to y) \imp (y = \zh)$\lv{Existuje žena taková, že všichni muži, kteří vůbec chtějí chodit s nějakou ženou, vlastně chtějí chodit jenom s ní; 0}
+    \item $\AA \zh \in \Zh \  \EE y \in \Zh \  \AA m \in M\colon (y \neq \zh) \aand \bigl((\zh \to m) \imp (y \to m) \bigr)$\lv{Ke každé ženě existuje jiná, která chce chodit se všemi, co ta první; 0 (nesplňují to Vilhelmína a Valentýna)}
+    \item $\EE m, n \in M \  \AA \zh \in \Zh \colon (m \neq n) \aand \bigl((\zh \to m) \equ (\zh \to n)\bigr)$\lv{Existuje dvojice různých mužů, se kterými chtějí chodit ty samé ženy; 1 (jsou to Kvído a Otto)}
+    \item $\EE m \in M \  \AA \zh \in \Zh\colon (\zh \to m) \imp \bigl(\EE n \in M\colon (m \neq n) \aand (\zh \to n)\bigr)$\lv{Existuje muž takový, že každá žena, která s~ním chce chodit, chce také chodit i s nějakým jiným mužem; 1 (splňují všichni muži kromě Bruna)}
+    \item $\EE \zh \in \Zh \ \AA m \in M\colon (m \to \zh) \imp (m \to m)$\lv{Existuje žena taková, že všichni muži, kteří s ní chtějí chodit, chtějí taky chodit sami se sebou; 1 (je to Valentýna)}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\begin{uloha}
+Výroky (o), (p), (q), (r) a (s) z předchozí úlohy znegujte.
+\vyslplain{(o) $\AA \zh \in \Zh \  \EE y \in \Zh \  \AA m \in M \colon (m \to y) \aand (y \neq \zh)$ \par
+(p) $\EE \zh \in \Zh \  \AA y \in \Zh \  \EE m \in M\colon (y = \zh) \oor \bigl((\zh \to m) \aand (y \nto m) \bigr)$\par
+(q) $\AA m, n \in N \  \EE \zh \in \Zh \colon (m = n) \oor \bigl((\zh \nto m) \equ (\zh \to n)\bigr)$\par
+(r) $\AA m \in M \  \EE \zh \in \Zh\colon (\zh \to m) \aand \bigl(\AA n \in M\colon (m = n) \oor (\zh \nto n)\bigr)$\par
+(s) $\AA \zh \in \Zh\ \EE m \in M\colon (m \to \zh) \aand (m \nto m)$
+}
+\end{uloha}
+
+\begin{ulohav}
+Jakou (jedinou) šipku musíme doplnit do diagramu, aby platil výrok
+\begin{enumerate}
+    \item $\EE m \in M \ \AA \zh \in \Zh\colon \zh \to m$,\lv{Leontýna $\to$ Bruno}
+    \item $\EE \zh \in \Zh \ \AA m \in M \colon \zh \to m$?\lv{Vilhelmína $\to$ Ivo}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Vymyslete příklad diagramu, ve kterém bude aspoň jedna šipka a bude platit \ref{nesym}.
+\end{uloha}
+
+
+\newpage
+\renewcommand{\baselinestretch}{1.5}
+\setlist[enumerate]{itemjoin={\quad},label={(\alph*)},itemsep=0pt,topsep=0pt}
+\parindent=0pt
+\parskip=\smallskipamount
+\long\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+
+
+\end{document}

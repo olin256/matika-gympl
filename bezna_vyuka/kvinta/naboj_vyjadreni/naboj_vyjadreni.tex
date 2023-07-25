@@ -1,0 +1,62 @@
+\documentclass[12pt,a4paper]{extarticle}
+
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=6mm]{geometry}
+\pagestyle{empty}
+
+\newcount\pr
+
+% zadani
+\def\priklad#1#2{\advance\pr1\nointerlineskip\vbox to.0587\vsize{\vss\hbox{{\Large\bfseries \tym\ifnum\pr<10 0\fi\the\pr}\quad#1}\vss}\vfil}
+
+\def\printtym#1{\pr0\def\tym{#1}\priklady\vfill\newpage}
+
+% vysledky
+\def\priklad#1#2{\advance\pr1 \hbox{\textbf{\the\pr.} #1\qquad #2}\bigskip}
+
+
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+
+\everymath{\displaystyle}
+
+\def\predp{ (předpokládejte, že je vše kladné)}
+
+\begin{document}
+
+
+\def\priklady{%
+\priklad{$a$ z $b = \frac1a$}{$a = \frac1b$}
+\priklad{$d$ z $\frac{ac}{bed} = \frac{ad}{bc}$ (předpokládejte, že je vše kladné)}{$d = \frac{c}{\sqrt e}$}
+\priklad{$x$ z $a = \frac{b}{2x} + \frac{c}{3x}$}{$x = \frac{3b+2c}{6a}$}
+\priklad{$k$ z $m = \frac{1}{1-\sqrt{k}}$}{$k = \frac{(m-1)^2}{m^2}$}
+\priklad{$k$ z $m = \frac{1}{1-k^2}$ (předpokládejte, že je vše kladné)}{$k = \sqrt{\frac{m-1}{m}}$}
+\priklad{$k$ z $m = \frac{1}{1-k} + \frac{1}{1+k}$\predp}{$k = \sqrt{\frac{m-2}{m}}$}
+\priklad{$k$ z $m = \frac{1}{k+1} + \frac{2k}{k+1}$}{$k = \frac{1-m}{m-2}$}
+\priklad{$\beta$ z $V = V_0(1-\beta^3 \Delta t)$}{$\sqrt[3]{\frac{V_0-V}{V_0 \Delta t}}$}
+\priklad{$a$ z $\gamma = \frac{a+k}{a+l}$}{$a = \frac{k - \gamma l}{\gamma - 1}$}
+\priklad{$t_0$ z $s = \frac12 a (t-t_0)^2$\predp}{$t - \sqrt{\frac{2s}{a}}$}
+\priklad{$a$ z $\frac{1}{s} = \frac xa - \frac za$}{$a = s(x-z)$}
+\priklad{$r$ z $V = \frac{\pi v^2}{3}(3r - v)$}{$r = \frac{\pi  v^3+3 V}{3 \pi  v^2}$}
+\priklad{$\varrho$ z $V = \frac16 \pi v(3\varrho^2 + v^2)$\predp}{$\varrho=\sqrt{\frac{6V-\pi v^3}{3\pi v}}$}
+\priklad{$c$ z $p = \frac{1 + \alpha \sqrt c}{1 + \beta \sqrt c}$}{$c = \left(\frac{p-1}{\alpha-\beta p}\right)^2$}
+\priklad{$t$ z $v t = \frac12 a t^2$}{$t = \frac{2v}{a}$}
+\priklad{$a$ pomocí $b$ a $d$ z $a = b + c$, $a = d - c$}{$a = \frac{b + d}{2}$}
+\priklad{$a$ pomocí $b$ a $d$ z $a = \frac{b}{c}$, $a = \frac{c}{d}$\predp}{$a = \sqrt{\frac bd}$}
+}
+
+
+\printtym{A}
+%\printtym{B}
+%\printtym{C}
+%\printtym{D}
+%\printtym{E}
+%\printtym{F}
+%\printtym{G}
+
+\end{document}

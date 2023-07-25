@@ -1,0 +1,151 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,noitemsep}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\makeatother
+
+\begin{document}
+
+%\tisk
+
+
+\section*{Ostrov Logika}
+% zadání skoro kompletně převzato z https://olympiada.karlin.mff.cuni.cz/prednasky/olsak.pdf
+% doplněna řešení většiny úloh
+
+Na tomto ostrově žijí obyvatelé dvou typů: poctivci vždy říkají pravdu, lháři zásadně lžou.
+
+\begin{uloha}
+Potkají se dva obyvatelé – Honza a Matěj. Honza řekne: \uv{Ale, ale, \dots Alespoň jeden z nás je
+lhář.} Určete, kdo může být Matěj.
+\vysl{Lhář; pokud by byl Honza lhářem, byl by jeho výrok splněn, což nelze, tedy je poctivcem. Tím pádem je jeho výrok prvdivý a oním lhářem musí být Matěj.}
+\end{uloha}
+
+
+\begin{uloha}
+Sedí takhle tři obyvatelé ostrova Logiky – Oliver, Roman a Ivan. Oliver: \uv{Mezi námi není ani
+jeden poctivec.} Roman: \uv{Mezi námi je přesně jeden poctivec.} Kdo je Ivan?
+\vysl{Lhář; Oliver je nutně lhář, protože svou poctivost by vyvracel svým výrokem. Pokud je Roman poctivec, pak je jediný poctivec a Ivan musí být lhář. Pokud je naopak Roman lhář, musí být jeho výrok neplatný, tj. poctivců může být 0, 2, nebo 3, přičemž 3 už nemohou být díky Oliverovi. Žádný poctivec také být nemůže, protože to by potvrzovalo výrok lháře Olivera. Konečně ani dva poctivci být nemohou, protože by to museli být Roman a Ivan, leč my předpokládáme, že Roman je lhář. Jediná možnost tedy je: Oliver lhář, Roman poctivec, Ivan lhář.}
+\end{uloha}
+
+
+\begin{uloha}
+Cestovatel zavítal na ostrov Logiky a vzal si jednoho obyvatele jako průvodce. Cestou potkali
+dalšího domorodce, inu vyslal cestovatel svého průvodce, aby se jej zeptal, zda je poctivcem, nebo lhářem.
+\uv{Tvrdí, že je poctivec,} přinesl zprávu průvodce. Je průvodce poctivec, nebo lhář?
+\vysl{Poctivec; pokud by byl průvodce lhář, znamenalo by to, že onen pocestný o sobě prohlásil, že je lhář, což ovšem nemůže učinit ani lhář, ani poctivec.}
+\end{uloha}
+
+
+\begin{uloha}
+Felix: \uv{Bydlím na pobřeží a jsem lhář.} Šimon: \uv{Bydlím na pobřeží nebo jsem lhář.} Bydlí někdo
+z těchto Logičanů na pobřeží? A kdo jsou tito obyvatelé?
+\vysl{Felix je lhář a nebydlí na pobřeží: uvedený výrok rozhodně neplatí (nikdo o sobě nemůže říct, že je lhář), tudíž je lhář a musí platit negace \uv{nebydlím na pobřeží nebo nejsem lhář}, což vzhledem k tomu, že lhář je, už vynucuje, že nebydlí na pobřeží. Šimon je poctivec a bydlí na pobřeží: kdyby byl lhář, musela by platit negace jeho výroku, tj. \uv{nebydlím na pobřezí a nejsem lhář}, což nelze, protože by lhář byl, je tedy poctivcem a aby byl splněn jeho výrok, musí bydlet na pobřeží.}
+\end{uloha}
+
+
+\begin{uloha}
+Jeden obyvatel řekl: \uv{Tak jestli tady není zakopaný poklad, tak jsem lhář.} Je tento obyvatel
+lhář? A je na ostrově Logiky zakopaný poklad?
+\vysl{Je to poctivec a poklad tam je: kdyby byl lhář, tak by musel platit výrok \uv{poklad tady zakopaný není a nejsem lhář}, což by bylo ve sporu s tím, že to lhář je. Jelikož je tedy poctivec, aby byl jeho výrok pravdivý, musí tam být zakopaný poklad.}
+\end{uloha}
+
+
+\begin{uloha}
+Sejdou se Igor, Lukáš a Michal z ostrova Logiky. Igor: \uv{Lukáš je poctivec.} Lukáš: \uv{Pokud je
+Igor poctivec, tak je poctivec i Michal.} Kdo je kdo?
+\vysl{Všichni jsou poctivci. Kdyby Igor byl lhář, tak by byl lhář i Lukáš, tedy by platil výrok \uv{Igor je poctivec a Michal není}, což by byl spor. Tedy je Igor poctivec, odtud Lukáš taky, takže i Michal.}
+\end{uloha}
+
+
+% další tři úlohy se vyřeší rozborem, viz vyroky_kecy_res.nb
+\begin{uloha}
+Potkají se David, Vojta a Saša z ostrova Logiky. David: \uv{Vojta je lhář a Saša je poctivec.} Vojta:
+\uv{Buď je David poctivec, anebo je poctivec Saša a já jsem lhář.} Saša: \uv{Vojta je lhář a současně jsem
+poctivec buď já, anebo David.} Kdo je kdo?
+\vysl{David je poctivec, Vojta lhář a Saša poctivec}
+\end{uloha}
+
+
+\begin{uloha}
+Na ostrově logiky se sešli Emil, Filip a Vilda. Emil: \uv{Filip je poctivec nebo mám stejnou povahu
+jako Vilda.} Filip: \uv{Emil s Vildou jsou poctivci.} Vilda: \uv{Buď je Filip poctivec, anebo já jsem lhář a
+Emil poctivec.} Kdo je kdo?
+\vysl{Všichni jsou poctivci.}
+\end{uloha}
+
+
+\begin{uloha}
+Setkali se Standa, Pavel a Milan z ostrova Logiky. Standa: \uv{Milan je poctivec a současně jsem
+lhář buď já, anebo Pavel.} Pavel: \uv{Mezi námi je alespoň jeden poctivec a alespoň jeden lhář.} Milan:
+\uv{Standa je poctivec a Pavel lhář.} Kdo je kdo?
+\vysl{Všichni jsou lháři.}
+\end{uloha}
+
+
+\begin{suloha}
+V klubovně sedí pět obyvatelů ostrova Logiky: Mirek, Jarka, Jindra, Červenáček a Rychlonožka.
+Mirek prohlásí: \uv{Můžu říct, že Jarka může říct, že Jindra může říct, že Červenáček může říct, že Rychlonožka může říct, že je mezi námi sudý počet lhářů.} Může být Mirek lhář?
+\end{suloha}
+
+
+\begin{uloha}
+Dvanáct obyvatel Logiky ostrova se posadilo do kruhu. Všichni svorně tvrdí, že jsou pravdomluvní. Také tvrdí, že po jejich pravé ruce sedí lhář. Kolik nejvíce lhářů může být mezi těmito dvanácti lidmi?\vysl{6}
+\end{uloha}
+
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
