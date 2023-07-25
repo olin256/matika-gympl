@@ -1,0 +1,691 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     28882,        683]
+NotebookOptionsPosition[     27814,        656]
+NotebookOutlinePosition[     28249,        673]
+CellTagsIndexPosition[     28206,        670]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ziz", "=", 
+   RowBox[{"Import", "[", "\"\<zizalka.png\>\"", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.899289984703967*^9, 3.8992900371888366`*^9}, {
+  3.8992900807016783`*^9, 3.89929009422575*^9}},
+ CellLabel->
+  "In[165]:=",ExpressionUUID->"6b2d43a2-2fd3-4970-9077-519f00368185"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sin", "[", "x", "]"}], "/", "x"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{
+        RowBox[{"-", "2"}], "Pi"}], ",", 
+       RowBox[{"2", "Pi"}]}], "}"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", 
+           RowBox[{"Directive", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"ColorData", "[", 
+               RowBox[{"97", ",", "\"\<ColorList\>\""}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", "Thick"}], "]"}], "]"}], 
+          ",", "White", ",", 
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "1"}], "}"}], ",", ".05"}], "]"}]}], "}"}], 
+        ",", 
+        RowBox[{"Inset", "[", 
+         RowBox[{"ziz", ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"t", "\[NotEqual]", "0"}], ",", 
+              RowBox[{
+               RowBox[{"Sin", "[", "t", "]"}], "/", "t"}], ",", "1"}], 
+             "]"}]}], "}"}], ",", "Bottom", ",", ".5"}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"t", "==", "0"}], ",", 
+          RowBox[{"Inset", "[", 
+           RowBox[{
+            RowBox[{"Framed", "[", "\"\<1!\>\"", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{".5", ",", "1.2"}], "}"}]}], "]"}]}], "]"}]}], "}"}]}], 
+     ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "1.6"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Larger"}], ",", 
+     RowBox[{"Ticks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"k", " ", "Pi"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", 
+            RowBox[{"-", "2"}], ",", "2", ",", 
+            RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], ",", "Automatic"}], 
+       "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "Pi"}], ",", 
+     RowBox[{"2", "Pi"}], ",", 
+     RowBox[{"Pi", "/", "20"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.810897472782048*^9, 3.8108974971501465`*^9}, {
+   3.810897600016452*^9, 3.8108976657743225`*^9}, {3.8108979694738927`*^9, 
+   3.810897970115217*^9}, {3.810898260897488*^9, 3.810898308646678*^9}, {
+   3.8108984691080046`*^9, 3.810898529566969*^9}, {3.8108985775588784`*^9, 
+   3.8108986717859497`*^9}, {3.810898707013547*^9, 3.8108987077051277`*^9}, {
+   3.8108987771969905`*^9, 3.8108988115564566`*^9}, {3.8108990298036265`*^9, 
+   3.8108990327248898`*^9}, {3.810899128618808*^9, 3.81089914409805*^9}, {
+   3.810899175996291*^9, 3.810899254465064*^9}, 3.810899285219016*^9, {
+   3.810899316176901*^9, 3.8108993568800497`*^9}, {3.810899433906413*^9, 
+   3.8108994690852327`*^9}, {3.8109042280557995`*^9, 
+   3.8109042529912167`*^9}, {3.810904295971857*^9, 3.81090438200099*^9}, {
+   3.810904444253093*^9, 3.8109046635880976`*^9}, 3.8109112662649803`*^9},
+ CellLabel->
+  "In[164]:=",ExpressionUUID->"4a81b5b9-885e-4715-97a9-720690eb40e6"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = Rational[-3, 4] Pi, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], (-2) Pi, 2 Pi, Rational[1, 20] Pi}}, 
+    Typeset`size$$ = {615.6000000000001, {60., 64.9650718173462}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = (-2) Pi}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[Sin[$CellContext`x]/$CellContext`x, {$CellContext`x, (-2) Pi, 2 
+         Pi}, Epilog -> {{
+           EdgeForm[
+            Directive[
+             Part[
+              ColorData[97, "ColorList"], 1], Thick]], White, 
+           Disk[{0, 1}, 0.05]}, 
+          Inset[$CellContext`ziz, {$CellContext`t$$, 
+            
+            If[$CellContext`t$$ != 0, Sin[$CellContext`t$$]/$CellContext`t$$, 
+             1]}, Bottom, 0.5], 
+          If[$CellContext`t$$ == 0, 
+           Inset[
+            Framed["1!"], {0.5, 1.2}]]}, 
+        PlotRange -> {Automatic, {Automatic, 1.6}}, AspectRatio -> Automatic, 
+        LabelStyle -> Larger, Ticks -> {
+          Table[$CellContext`k Pi, {$CellContext`k, -2, 2, 1/2}], Automatic}],
+       "Specifications" :> {{$CellContext`t$$, (-2) Pi, 2 Pi, Rational[1, 20] 
+         Pi}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{939., {94.06083984375, 100.93916015625}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.810898812005256*^9, {3.810899030050686*^9, 3.8108990328954334`*^9}, {
+   3.8108991302980857`*^9, 3.8108991446674814`*^9}, 3.8108991782779384`*^9, {
+   3.810899216512081*^9, 3.8108992549058867`*^9}, 3.81089928572167*^9, 
+   3.8108993576407948`*^9, {3.810899438300312*^9, 3.810899469600256*^9}, 
+   3.8108995299021273`*^9, {3.810904229209208*^9, 3.810904253434402*^9}, {
+   3.8109043526326556`*^9, 3.810904367166338*^9}, {3.8109044534278493`*^9, 
+   3.8109045086555867`*^9}, 3.810904539068899*^9, {3.810904579128255*^9, 
+   3.810904599556925*^9}, {3.810904637739763*^9, 3.810904663806591*^9}, {
+   3.8992900862835083`*^9, 3.899290114083542*^9}},
+ CellLabel->
+  "Out[164]=",ExpressionUUID->"2867d8ac-d13c-432d-8014-235153d44be1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sin", "[", "x", "]"}], "/", "x"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{
+        RowBox[{"-", "2"}], "Pi"}], ",", 
+       RowBox[{"2", "Pi"}]}], "}"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"EdgeForm", "[", 
+           RowBox[{"Directive", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"ColorData", "[", 
+               RowBox[{"97", ",", "\"\<ColorList\>\""}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", "Thick"}], "]"}], "]"}], 
+          ",", "White", ",", 
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "1"}], "}"}], ",", ".05"}], "]"}]}], "}"}], 
+        ",", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"eps1", ",", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], "Pi"}], ",", "0"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"2", "Pi"}], ",", "2"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<B(1; 1)\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], "Pi"}], ",", "1.5"}], "}"}], ",", 
+              "Left"}], "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{"delta1", ",", 
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "Pi"}], ",", 
+                RowBox[{"-", ".2"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"Pi", ",", "2.4"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<P(0; \[Pi])\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "2.4"}], "}"}], ",", "Top"}], "]"}]}], 
+           "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"eps2", ",", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], "Pi"}], ",", ".5"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"2", "Pi"}], ",", "1.5"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<B(1; 0,5)\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], "Pi"}], ",", "1.5"}], "}"}], ",", 
+              "Left"}], "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{"delta2", ",", 
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "1.5"}], ",", 
+                RowBox[{"-", ".2"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1.5", ",", "2.4"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<P(0; 1.5)\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", "2.4"}], "}"}], ",", "Top"}], "]"}]}], 
+           "}"}]}], "]"}], ","}], "\[IndentingNewLine]", "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "2.4"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Larger"}], ",", 
+     RowBox[{"Ticks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"k", " ", "Pi"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", 
+            RowBox[{"-", "2"}], ",", "2", ",", 
+            RowBox[{"1", "/", "2"}]}], "}"}]}], "]"}], ",", "Automatic"}], 
+       "}"}]}]}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"eps1", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< epsilon okol\[IAcute] \[Epsilon]=1\>\"", ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"delta1", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< delta okol\[IAcute] \[Epsilon]=1\>\""}], "}"}], "]"}], ",", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"eps2", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< epsilon okol\[IAcute] \[Epsilon]=0,5\>\"", ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"delta2", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< delta okol\[IAcute] \[Epsilon]=0,5\>\""}], "}"}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8109047684778037`*^9, 3.8109047921245737`*^9}, {
+   3.8109048384675655`*^9, 3.8109048460474324`*^9}, {3.8109051891590004`*^9, 
+   3.8109053273929462`*^9}, {3.81090539272638*^9, 3.8109055571655707`*^9}, {
+   3.8109056652213597`*^9, 3.8109058704071207`*^9}, {3.8109059323716173`*^9, 
+   3.810906115426302*^9}, {3.8109064928705072`*^9, 3.8109064945212245`*^9}, 
+   3.810911587419939*^9},
+ CellLabel->
+  "In[248]:=",ExpressionUUID->"a0829a90-fdaf-4f0d-8bc8-be6ef8d3b3c1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`delta1$$ = False, $CellContext`delta2$$ = 
+    True, $CellContext`eps1$$ = False, $CellContext`eps2$$ = True, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`eps1$$], False, ""}, {True, False}}, {{
+       Hold[$CellContext`delta1$$], False, ""}, {True, False}}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1], " epsilon okol\[IAcute] \[Epsilon]=1", 
+         Manipulate`Place[2], " delta okol\[IAcute] \[Epsilon]=1"}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`eps2$$], False, ""}, {True, False}}, {{
+       Hold[$CellContext`delta2$$], False, ""}, {True, False}}, {
+      Hold[
+       Row[{
+         Manipulate`Place[3], " epsilon okol\[IAcute] \[Epsilon]=0,5", 
+         Manipulate`Place[4], " delta okol\[IAcute] \[Epsilon]=0,5"}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    432., {59., 64.00535540782187}}, Typeset`update$$ = 0, Typeset`initDone$$,
+     Typeset`skipInitDone$$ = True, $CellContext`eps1$229173$$ = 
+    False, $CellContext`delta1$229174$$ = False, $CellContext`eps2$229175$$ = 
+    False, $CellContext`delta2$229176$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`delta1$$ = False, $CellContext`delta2$$ = 
+        False, $CellContext`eps1$$ = False, $CellContext`eps2$$ = False}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`eps1$$, $CellContext`eps1$229173$$, False], 
+        Hold[$CellContext`delta1$$, $CellContext`delta1$229174$$, False], 
+        Hold[$CellContext`eps2$$, $CellContext`eps2$229175$$, False], 
+        Hold[$CellContext`delta2$$, $CellContext`delta2$229176$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[Sin[$CellContext`x]/$CellContext`x, {$CellContext`x, (-2) Pi, 2 
+         Pi}, Epilog -> {{
+           EdgeForm[
+            Directive[
+             Part[
+              ColorData[97, "ColorList"], 1], Thick]], White, 
+           Disk[{0, 1}, 0.05]}, 
+          If[$CellContext`eps1$$, {Red, 
+            Opacity[0.2], 
+            Rectangle[{(-2) Pi, 0}, {2 Pi, 2}], 
+            Inset[
+             Style["B(1; 1)", FontSize -> 14, 
+              Opacity[1]], {(-2) Pi, 1.5}, Left]}], 
+          If[$CellContext`delta1$$, {Blue, 
+            Opacity[0.2], 
+            Rectangle[{-Pi, -0.2}, {Pi, 2.4}], 
+            Inset[
+             Style["P(0; \[Pi])", FontSize -> 14, 
+              Opacity[1]], {1, 2.4}, Top]}], 
+          If[$CellContext`eps2$$, {Red, 
+            Opacity[0.2], 
+            Rectangle[{(-2) Pi, 0.5}, {2 Pi, 1.5}], 
+            Inset[
+             Style["B(1; 0,5)", FontSize -> 14, 
+              Opacity[1]], {(-2) Pi, 1.5}, Left]}], 
+          If[$CellContext`delta2$$, {Blue, 
+            Opacity[0.2], 
+            Rectangle[{-1.5, -0.2}, {1.5, 2.4}], 
+            Inset[
+             Style["P(0; 1.5)", FontSize -> 14, 
+              Opacity[1]], {1, 2.4}, Top]}], Null}, 
+        PlotRange -> {Automatic, {Automatic, 2.4}}, AspectRatio -> Automatic, 
+        LabelStyle -> Larger, Ticks -> {
+          Table[$CellContext`k Pi, {$CellContext`k, -2, 2, 1/2}], Automatic}],
+       "Specifications" :> {{{$CellContext`eps1$$, False, ""}, {True, False}, 
+         ControlPlacement -> 1}, {{$CellContext`delta1$$, False, ""}, {
+         True, False}, ControlPlacement -> 2}, 
+        Row[{
+          Manipulate`Place[1], " epsilon okol\[IAcute] \[Epsilon]=1", 
+          Manipulate`Place[2], 
+          " delta okol\[IAcute] \[Epsilon]=1"}], {{$CellContext`eps2$$, False,
+           ""}, {True, False}, ControlPlacement -> 
+         3}, {{$CellContext`delta2$$, False, ""}, {True, False}, 
+         ControlPlacement -> 4}, 
+        Row[{
+          Manipulate`Place[3], " epsilon okol\[IAcute] \[Epsilon]=0,5", 
+          Manipulate`Place[4], " delta okol\[IAcute] \[Epsilon]=0,5"}]}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{487., {112.06083984375, 118.93916015625}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.8109047709378333`*^9, 3.8109047923621626`*^9}, 
+   3.8109048584511223`*^9, {3.81090522534864*^9, 3.8109052778219795`*^9}, {
+   3.810905421273627*^9, 3.810905432865082*^9}, {3.8109054948729415`*^9, 
+   3.810905527607729*^9}, {3.810905558213304*^9, 3.8109055790668993`*^9}, {
+   3.810905672126994*^9, 3.810905675247698*^9}, {3.8109057123233347`*^9, 
+   3.810905811643717*^9}, {3.8109058538363724`*^9, 3.81090590027651*^9}, {
+   3.8109059409791927`*^9, 3.810905944231943*^9}, {3.8109060175889845`*^9, 
+   3.8109061497135677`*^9}, {3.810906495689511*^9, 3.8109065489001164`*^9}, {
+   3.8109070254621325`*^9, 3.8109070268605957`*^9}, {3.810910672694171*^9, 
+   3.810910687231635*^9}, 3.810911245090716*^9, 3.810911341918499*^9, {
+   3.8109114735775146`*^9, 3.8109114783883867`*^9}, 3.8109115184830933`*^9},
+ CellLabel->
+  "Out[248]=",ExpressionUUID->"76bb710e-6bbc-45de-9273-4ebeed929065"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sin", "[", "x", "]"}], "/", "x"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "0.1"}], ",", "0.1"}], "}"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{"eps1", ",", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", ".1"}], ",", "0.9995"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{".1", ",", "1.0005"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<B(1; 0,0005)\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", ".1"}], ",", "1"}], "}"}], ",", "Left"}], 
+             "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{"delta1", ",", 
+          RowBox[{"{", 
+           RowBox[{"Blue", ",", 
+            RowBox[{"Opacity", "[", ".2", "]"}], ",", " ", 
+            RowBox[{"Rectangle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "0.01"}], ",", 
+                RowBox[{"-", ".0005"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0.01", ",", "1.0008"}], "}"}]}], "]"}], ",", 
+            RowBox[{"Inset", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"\"\<P(0; 0,01)\>\"", ",", 
+                RowBox[{"FontSize", "\[Rule]", "14"}], ",", 
+                RowBox[{"Opacity", "[", "1", "]"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0.02", ",", "1.0008"}], "}"}], ",", "Top"}], "]"}]}], 
+           "}"}]}], "]"}]}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "1.0008"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"LabelStyle", "\[Rule]", "Larger"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"eps1", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< epsilon okol\[IAcute] \[Epsilon]=0,0005\>\"", ",", 
+      RowBox[{"Control", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"delta1", ",", "False", ",", "\"\<\>\""}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+      "\"\< delta okol\[IAcute] \[Epsilon]=0,0005\>\""}], "}"}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.810906180089676*^9, 3.81090645755497*^9}, {
+  3.8109066741236367`*^9, 3.8109067777023087`*^9}, {3.810906823458261*^9, 
+  3.8109068736550026`*^9}, {3.810912313546896*^9, 3.8109123397562647`*^9}},
+ CellLabel->
+  "In[254]:=",ExpressionUUID->"dc3c59fa-80c6-4d5b-a9db-83bf6a72de4b"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`delta1$$ = True, $CellContext`eps1$$ = True,
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`eps1$$], False, ""}, {True, False}}, {{
+       Hold[$CellContext`delta1$$], False, ""}, {True, False}}, {
+      Hold[
+       Row[{
+         Manipulate`Place[1], " epsilon okol\[IAcute] \[Epsilon]=0,0005", 
+         Manipulate`Place[2], " delta okol\[IAcute] \[Epsilon]=0,0005"}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    432., {135., 141.5537988289492}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`eps1$277561$$ = False, $CellContext`delta1$277562$$ = 
+    False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`delta1$$ = False, $CellContext`eps1$$ = 
+        False}, "ControllerVariables" :> {
+        Hold[$CellContext`eps1$$, $CellContext`eps1$277561$$, False], 
+        Hold[$CellContext`delta1$$, $CellContext`delta1$277562$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[Sin[$CellContext`x]/$CellContext`x, {$CellContext`x, -0.1, 0.1}, 
+        Epilog -> {
+          If[$CellContext`eps1$$, {Red, 
+            Opacity[0.2], 
+            Rectangle[{-0.1, 0.9995}, {0.1, 1.0005}], 
+            Inset[
+             Style["B(1; 0,0005)", FontSize -> 14, 
+              Opacity[1]], {-0.1, 1}, Left]}], 
+          If[$CellContext`delta1$$, {Blue, 
+            Opacity[0.2], 
+            Rectangle[{-0.01, -0.0005}, {0.01, 1.0008}], 
+            Inset[
+             Style["P(0; 0,01)", FontSize -> 14, 
+              Opacity[1]], {0.02, 1.0008}, Top]}]}, 
+        PlotRange -> {Automatic, {Automatic, 1.0008}}, LabelStyle -> Larger], 
+      "Specifications" :> {{{$CellContext`eps1$$, False, ""}, {True, False}, 
+         ControlPlacement -> 1}, {{$CellContext`delta1$$, False, ""}, {
+         True, False}, ControlPlacement -> 2}, 
+        Row[{
+          Manipulate`Place[1], " epsilon okol\[IAcute] \[Epsilon]=0,0005", 
+          Manipulate`Place[2], " delta okol\[IAcute] \[Epsilon]=0,0005"}]}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{487., {182.06083984375, 188.93916015625}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.8109062719763126`*^9, 3.8109063418075123`*^9}, {
+   3.8109063806830783`*^9, 3.8109063906678495`*^9}, {3.8109064402348976`*^9, 
+   3.810906469604721*^9}, {3.8109067215322437`*^9, 3.8109067266728263`*^9}, {
+   3.8109067779546566`*^9, 3.8109067863068266`*^9}, {3.8109068612141232`*^9, 
+   3.8109068792358294`*^9}, {3.8109069535069904`*^9, 3.810906958804541*^9}, {
+   3.8109070297470016`*^9, 3.8109070307747927`*^9}, 3.8109115988641367`*^9, 
+   3.8109116314801884`*^9, {3.8109123404255123`*^9, 3.8109123505356503`*^9}},
+ CellLabel->
+  "Out[254]=",ExpressionUUID->"0b2a962f-73ed-43b5-8c02-5a2fea524f28"]
+}, Open  ]]
+},
+WindowSize->{1141.2, 576.6},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0503ac8a-abf8-42fe-97d7-eee824d9dee8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 451, 11, 57, "Input",ExpressionUUID->"6b2d43a2-2fd3-4970-9077-519f00368185"],
+Cell[CellGroupData[{
+Cell[1034, 35, 3440, 86, 126, "Input",ExpressionUUID->"4a81b5b9-885e-4715-97a9-720690eb40e6"],
+Cell[4477, 123, 3015, 59, 217, "Output",ExpressionUUID->"2867d8ac-d13c-432d-8014-235153d44be1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7529, 187, 7357, 188, 401, "Input",ExpressionUUID->"a0829a90-fdaf-4f0d-8bc8-be6ef8d3b3c1"],
+Cell[14889, 377, 5719, 111, 253, "Output",ExpressionUUID->"76bb710e-6bbc-45de-9273-4ebeed929065"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20645, 493, 3494, 88, 218, "Input",ExpressionUUID->"dc3c59fa-80c6-4d5b-a9db-83bf6a72de4b"],
+Cell[24142, 583, 3656, 70, 393, "Output",ExpressionUUID->"0b2a962f-73ed-43b5-8c02-5a2fea524f28"]
+}, Open  ]]
+}
+]
+*)
+
