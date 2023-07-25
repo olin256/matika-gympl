@@ -1,0 +1,207 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=.75cm,top=.75cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\begin{document}
+
+
+% \tisk
+% \resultssame
+
+\section*{10. Výpočty s logaritmy}
+
+\def\lm#1{\lv{$\{#1\}$}}
+
+\begin{ulohav}
+Určete bez techniky, mezi jakými dvěma celými čísly leží tyto hodnoty:\\
+\begin{enumerate*}
+    \item $\log 7386{,}32$\lv{3 a 4}
+    \item $\log_2 100$\lv{6 a 7}
+    \item $\log_5 500$\lv{3 a 4}
+    \item $\log 0{,}3$\lv{$-1$ a $0$}
+    \item $\log 0{,}00425$\lv{$-3$ a $-2$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Určete bez techniky následující hodnoty:
+\begin{enumerate}
+    \item $\log_3(1+\log_3 9)$\lv{$1$}
+    \item $\log_2(\log_3 \sqrt{3})$\lv{$-1$}
+    \item $\log(\log 1{\underbrace{00\dots00}_{100 \text{ nul}}})$\lv{$2$}
+    \item $3 \log_2 \frac53 - 2 \log_2 \frac{10}9 + \log_2 \frac{1}{30}$\lv{$-3$}
+    \item $2^{\log_2 3} + 3^{\log_3 5}$\lv{$8$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Najděte všechna $x \in (0;\infty)$, pro něž platí
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{3}
+\raggedright
+\begin{enumerate}
+    \item $\log_3 x = 4$\lv{$3^4 = 81$}
+    \item $\log_{\frac15} x = -1$\lv{$5$}
+    \item $\log_{17} x = 1$\lv{$17$}
+    \item $\log_{\sqrt2} x = 4$\lv{$4$}
+    \item $\log_2 x = -\frac13$\lv{$2^{-\frac13} = \frac{1}{\sqrt[3]2} = \frac{\sqrt[3]4}{2}$}
+    \item $\log x = -\frac35$\lv{$10^{-\frac35}$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+\begin{ulohav}
+Najděte všechna $a \in (0;\infty)$, pro něž platí
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{3}
+\raggedright
+\begin{enumerate}
+    \item $\log_a 27 = 3$\lv{$3$}
+    \item $\log_a \frac13 = \frac13$\lv{$\frac1{27}$}
+    \item $\log_a 4 = \frac14$\lv{$256$}
+    \item $\log_a 8 = 6$\lv{$\sqrt2$}
+    \item $\log_a 5 = -1$\lv{$\frac15$}
+    \item $\log_a \sqrt8 = 3$\lv{$\sqrt2$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+\begin{ulohav}
+Upravte na jeden logaritmus:
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{2}
+\raggedright
+\begin{enumerate}
+    \item $2 \log 4 + \log 3 - \log 6$\lv{$\log 8$}
+    \item $\log_6 12 - \log_6 \frac{1}{12} - 2$\lv{$\log_6 4$}
+    \item $2\log_{\frac15} 4 + \log_{\frac15} 3 - \log_{\frac15} 6$\lv{$\log_{\frac15} 8$}
+    \item $\ln 4 + \ln \frac13 - 2\left(\ln 2 + \ln \frac14\right)$\lv{$\ln \frac{16}3$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\addtocounter{uloha}{1}
+
+\begin{ulohav}
+Vypočítejte $x$, víte-li, že $a$, $b$, $c$ jsou kladná reálná čísla:
+\begin{enumerate}
+    \item $\log x = 0{,}5 \log a + 3 \log b - 2 \log c$\lv{$a^{\frac12}b^3 c^{-2}$}
+    \item $\log x = \frac12 \log a - \log b - \frac35 \log c + 1$\lv{$10a^{\frac12} b^{-1}c^{-\frac35}$}
+    \item $\log_2 x = 3 \log_2 a + 2 \log_2 b + 4$\lv{$16a^3b^2$}
+    \item $\log_{\frac12} x = \frac14 \left(\log_{\frac12} a + 3 \log_{\frac12}b\right) - 2 + \log_{\frac12} c$\lv{$4(ab^3)^{\frac14} c$}
+\end{enumerate}
+\end{ulohav}
+
+
+
+\begin{ulohav}
+Vyjádřete výrazy pomocí $\log a$, $\log b$, $\log c$, jsou-li $a$, $b$, $c$ kladná reálná čísla.\\
+\everymath{\displaystyle}
+\begin{enumerate*}
+    \item $\log \frac{a^2 b^3}{100\sqrt c}$\lv{$2 \log a + 3 \log b - \frac12 \log c - 2$}
+    \item $\log \sqrt{\frac{10a}{bc}}$\lv{$\frac12 (\log a - \log b - \log c +1)$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+\setlength{\columnseprule}{.4pt}
+
+\vskip-\bigskipamount
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+\vysld
+\endresults
+
+
+\end{document}
