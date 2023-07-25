@@ -1,0 +1,294 @@
+\documentclass[10pt,a4paper]{extarticle}
+\usepackage[margin=.8cm,bottom=10mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+
+\multicolsep=\smallskipamount
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\DeclareMathOperator{\arctg}{arctg}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\sinterest{\def\atr{\llap{$(\star)$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\catcode`<=\active
+\catcode`>=\active
+\def<{\left\langle}
+\def>{\right\rangle}
+
+
+\def\st{^\circ}
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+
+\section*{17. Goniometrické vzorce}
+
+\begin{ulohav}
+Aniž určíte hodnotu $x$,
+určete hodnoty zbývajících goniometrických funkcí z množiny $\{\sin, \cos, \tg, \cotg\}$, víte-li, že
+\begin{multicols}{3}
+\begin{enumerate}
+    \item $\cos x = \frac45$ a $x \in <0; \pi>$
+        \lv{$\sin x = \frac35$, $\tg x = \frac34$, $\cotg x = \frac43$}
+    \item $\cos x = \frac45$ a $x \in <-\pi; 0>$
+        \lv{$\sin x = -\frac35$, $\tg x = -\frac34$, $\cotg x = -\frac43$}
+    \item $\sin x = -\frac27$ a $x \in <\frac\pi2; \frac{3\pi}2>$
+        \lv{$\cos x = -\frac{3\sqrt5}{7}$, $\tg x = \frac{2\sqrt5}{15}$, $\cotg x = \frac{3\sqrt5}{2}$}
+    \item $\sin x = \frac{12}{13}$ a $x \in <-\frac\pi2; \frac\pi2>$
+        \lv{$\cos x = \frac{5}{13}$, $\tg x = \frac{12}{5}$, $\cotg x = \frac5{12}$}
+    \item $\tg x = \frac12$ a $x \in <0;\pi>$
+        \lv{$\cotg x = 2$, $\sin x = \frac{\sqrt5}5$, $\cos x = \frac{2\sqrt5}5$}
+    \item $\tg x = \frac12$ a $x \in <\pi;2\pi>$
+        \lv{$\cotg x = 2$, $\sin x = -\frac{\sqrt5}5$, $\cos x = -\frac{2\sqrt5}5$}
+    \item $\tg x = -\sqrt7$ a $x \in <\frac{\pi}2; \frac{3\pi}2>$
+        \lv{$\cotg x = -\frac{\sqrt7}{7}$, $\sin x = \frac{\sqrt{14}}{4}$, $\cos x = -\frac{\sqrt2}{4}$}
+    \item $\cotg x = 10$ a $x \in <0;\pi>$
+        \lv{$\tg x = \frac1{10}$, $\sin x = \frac{\sqrt{101}}{101}$, $\cos x = \frac{10\sqrt{101}}{101}$}
+    \item $\cotg x = \frac23$ a $x \in <\pi; 2\pi>$
+        \lv{$\tg x = \frac32$, $\sin x = -\frac{3\sqrt{13}}{13}$, $\cos x = -\frac{2\sqrt{13}}{13}$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+
+\begin{ulohav}\label{dvanactiny}
+Určete přesně následující hodnoty:
+\begin{enumerate*}
+    \item $\cos \frac{5\pi}{12}$ \lv{$\frac{\sqrt2}{4}(\sqrt3-1)$}
+    \item $\sin \frac{5\pi}{12}$ \lv{$\frac{\sqrt2}{4}(\sqrt3+1)$}
+    \item $\tg \frac{5\pi}{12}$ \lv{$\frac{\sqrt3+1}{\sqrt3-1} = \sqrt3 + 2$}
+    \item $\cos \frac{\pi}{12}$ \lv{$\frac{\sqrt2}{4}(\sqrt3+1)$}
+    \item $\sin \frac{\pi}{12}$ \lv{$\frac{\sqrt2}{4}(\sqrt3-1)$}
+    \item $\tg \frac{\pi}{12}$ \lv{$\frac{\sqrt3-1}{\sqrt3+1} = 2-\sqrt3$}
+\end{enumerate*}
+\hint{$\frac5{12} = \frac14 + \frac16$, $\frac1{12} = \frac14 - \frac16$.}
+\end{ulohav}
+
+
+\begin{uloha}
+Ověřte pomocí součtových vzorců platnost následujících vzorců (jejichž platnost je ale \uv{zřejmá} z pouhé úvahy o jednotkové kružnici):
+\begin{enumerate*}
+    \item $\sin (x+\pi) = -\sin x$
+    \item $\sin \bigl(x + \frac\pi2\bigr) = \cos x$
+    \item $\cos \bigl(\frac\pi2 - x) = \sin x$
+    \item $\sin \bigl(\frac\pi2 - x) = \cos x$.
+\end{enumerate*}
+\end{uloha}
+
+
+\begin{ulohav}
+Dokažte, že pro všechna $x \in \R$ platí
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $\sin x + \sin \bigl(x+\frac{2\pi}3\bigr) + \sin \bigl(x+\frac{4\pi}3\bigr) = 0$,
+        \lv{$\sin\bigl(x+\frac{2\pi}3\bigr) = \sin x \cos \frac{2\pi}3 + \cos x \sin \frac{2\pi}3 = -\frac12 \sin x + \frac{\sqrt3}{2} \cos x$, dále $\sin\bigl(x+\frac{4\pi}3\bigr) = \sin x \cos \frac{4\pi}3 + \cos x \sin \frac{4\pi}3 = -\frac12 \sin x - \frac{\sqrt3}{2} \cos x$, všechno se to sečte na $0$.}
+    \item $\cos x + \cos \bigl(x+\frac{2\pi}3\bigr) + \cos \bigl(x+\frac{4\pi}3\bigr) = 0$.
+        \lv{$\cos \bigl(x+\frac{2\pi}3\bigr) = \cos x \cos \frac{2\pi}3 - \sin x \sin \frac{2\pi}3 = -\frac12 \cos x - \frac{\sqrt3}{2} \sin x$, dále $\cos \bigl(x+\frac{4\pi}3\bigr) = \cos x \cos \frac{4\pi}3 - \sin x \sin \frac{4\pi}3 = -\frac12 \cos x + \frac{\sqrt3}{2} \sin x$, všechno se to sečte na $0$.}
+\end{enumerate}
+\end{multicols}
+\noindent
+$\star$ Najdete \emph{geometrický} důvod pro tyto rovnosti? \hint{Uvažte tři body na jednotkové kružnici.}
+\end{ulohav}
+
+% \interest
+\begin{ulohav}\label{vzorce}
+Dokažte následující \uv{tabulkové} vzorce:
+\begin{enumerate}
+    \item $\sin 2x = 2 \sin x \cos x$\quad \hint{Do součtových vzorců dosaďte $x$ za $y$.}
+        \lv{$\sin2x = \sin(x+x) = \sin x \cos x + \cos x \sin x = 2 \sin x \cos x$}
+    \item $\cos 2x = \cos^2 x - \sin^2 x = 2 \cos^2 x - 1 = 1 - 2 \sin^2 x$\label{cos2x}
+        \lv{$\cos 2x = \cos(x+x) = \cos x \cos x - \sin x \sin x = \cos^2 x - \sin^2 x$, další dva vztahy pomocí $\sin^2 x + \cos^2 x = 1$}
+    \item $\sin^2 x = \frac12(1-\cos 2x)$\quad \hint{vyjádřete z \ref{cos2x}}\label{sinsquare}
+    \item $\cos^2 x = \frac12(1+\cos 2x)$
+    \item $\bigl|\sin \frac x2\bigr| = \sqrt{\frac{1-\cos x}{2}}$ \label{sinhalf}\quad \hint{dosaďte v \ref{sinsquare} $\frac x2$ za $x$ a odmocněte}
+    \item $\bigl|\cos \frac x2\bigr| = \sqrt{\frac{1+\cos x}{2}}$\label{coshalf}
+    \item $\tg \frac x2 = \frac{\sin x}{1 \textcolor{red}{+} \cos x} = \frac{1 \textcolor{red}{-} \cos x}{\sin x}$; první rovnost platí pro $x \neq 2k \pi$, druhá pro $x \neq k\pi$ ($k \in \Z$)\quad \hint{Místo pro $\frac x2$ a $x$ to raději dokazujte pro $x$ a $2x$.}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Pomocí vzorců \ref{sinhalf} a \ref{coshalf} z Úlohy \ref{vzorce} spočtěte hodnotu $\cos \frac\pi{12}$ a $\sin \frac\pi{12}$. Je to ten samý výsledek jako v Úloze \ref{dvanactiny}?\vysl{Vyjde $\cos \frac\pi{12} = \frac12\sqrt{2 + \sqrt3}$ a $\sin \frac\pi{12} = \frac12\sqrt{2 - \sqrt3}$; že to je stejný výsledek se ověří umocněním na druhou.}
+\end{uloha}
+
+
+
+\begin{ulohav}
+Aniž určíte hodnotu $x$, určete hodnoty $\sin 2x$, $\cos 2x$, $\sin \frac x2$ a $\cos \frac x2$, jestliže platí níže uvedené. Jak se bude určovat znaménko u $\sin \frac x2$ a $\cos \frac x2$?
+\begin{enumerate*}
+    \item $\cos x = \frac45$ a $x \in <0; \pi>$
+        % \lv{$\sin x = \frac35$, $\tg x = \frac34$, $\cotg x = \frac43$}
+        \lv{$\sin 2x = \frac{24}{25}$, $\cos 2x = \frac{7}{25}$, $\sin \frac x2 = \frac{\sqrt{10}}{10}$, $\cos \frac x2 = \frac{3\sqrt{10}}{10}$}
+    \item $\cos x = \frac45$ a $x \in <-\pi; 0>$
+        % \lv{$\sin x = -\frac35$, $\tg x = -\frac34$, $\cotg x = -\frac43$}
+        \lv{$\sin 2x = -\frac{24}{25}$, $\cos 2x = \frac{7}{25}$, $\sin \frac x2 = -\frac{\sqrt{10}}{10}$, $\cos \frac x2 = \frac{3\sqrt{10}}{10}$}
+    \item $\sin x = -\frac27$ a $x \in <\frac\pi2; \frac{3\pi}2>$
+        % \lv{$\cos x = -\frac{3\sqrt5}{7}$, $\tg x = \frac{2\sqrt5}{15}$, $\cotg x = \frac{3\sqrt5}{2}$}
+        \lv{$\sin 2x = \frac{12\sqrt5}{49}$, $\cos 2x = \frac{41}{\textcolor{red}{49}}$, $\sin \frac x2 = \sqrt{\frac{7-3\sqrt5}{14}}$, $\cos \frac x2 = -\sqrt{\frac{7+3\sqrt5}{14}}$}
+    \item $\sin x = -\frac{12}{13}$ a $x \in <-\frac\pi2; \frac\pi2>$.
+        % \lv{$\cos x = \frac{5}{13}$, $\tg x = \frac{12}{5}$, $\cotg x = \frac5{12}$}
+        \lv{$\sin 2x = -120\frac{169}{}$, $\cos 2x = -\frac{119}{169}$, $\sin \frac x2 = -\frac{2\sqrt{13}}{13}$, $\cos \frac x2 = \frac{3\sqrt{13}}{13}$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Aniž určíte hodnoty $x$ a $y$, vypočítejte $\sin(x+y)$ a $\cos(x-y)$, jestliže
+\begin{enumerate*}
+    \item $\cos x = \frac57$, $\sin y = \frac15$, $x \in <0;\frac\pi2>$ a $y \in <\frac\pi2; \pi>$,
+        \lv{$\sin(x+y) = -\frac{19}{35}$, $\cos(x-y) = -\frac{8\sqrt6}{35}$}
+    \item $\tg x = 3$, $\cotg y = -2$, $x \in <\pi; \frac{3\pi}2>$ a $y \in <\frac\pi2; \pi>$.
+        \lv{$\sin(x+y) = \frac{\sqrt2}2$, $\cos(x-y) = -\frac{\sqrt2}{10}$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Vyjádřete uvedený výraz ve tvaru $a \sin (x + b)$, kde $a$ a $b$ jsou nějaká vhodná reálná čísla.
+\begin{multicols}{3}
+\begin{enumerate}
+    \item $\frac12 \sin x - \frac{\sqrt3}{2} \cos x$
+        \lv{$\sin\bigl(x - \frac\pi3\bigr)$}
+    \item $\cos x - \sqrt 3 \sin x$
+        \lv{$2 \sin \bigl(x + \frac{5\pi}{6}\bigr)$}
+    \item $\sin x + \cos x$
+        \lv{$\sqrt 2 \sin \bigl(x + \frac{\pi}{4}\bigr)$}
+    \item $\sin x + \sin \bigl(x + \frac{\pi}{3}\bigr)$
+        \lv{$\sqrt3 \sin\bigl(x + \frac{\pi}{6}\bigr)$}
+    \item $\sin x + 2 \cos x$
+        \lv{$\sqrt 5 \sin \bigl(x + \arcsin\frac{2\sqrt5}5 \bigr)$}
+    \item $3 \sin x - 4 \cos x$\lv{$5 \sin \bigl(x - \arcsin\frac45 \bigr)$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+
+% \begin{uloha}
+% Zjednodušte následující výrazy a určete podmínky, za kterých mají smysl:
+% \begin{multicols}{3}
+% \begin{enumerate}
+    % \item $(1-\cos x)(1+\cos x)$
+% \end{enumerate}
+% \end{multicols}
+% \end{uloha}
+
+% \interest
+% \begin{enumerate}
+% Na zamyšlení: Jestliže známe hodnotu $\sin x$ nebo $\cos x$, tak hodnotu $\sin 2x$ už známe až na znaménko, zatímco hodnotu $\cos 2x$ známe přesně. Jaký je \uv{geometrický} důvod pro 
+% \end{enumerate}
+
+
+% \pgfplotsset{every tick label/.append style={font=\tiny}}
+% \resgraphwidth=5cm
+\setlist[enumerate]{label={{\bfseries(\alph*)}},itemjoin={\quad}}
+
+\results
+%\subsubsection*{Výsledky}
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
+% \begin{multicols}{2}
+\vysld
+% \end{multicols}
+\endresults
+%}
+
+%\copy0
+
+%\vfil
+
+%\box0
+%\eject
+%\unvbox0
+
+
+
+\end{document}
+
+
+
+
