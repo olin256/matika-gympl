@@ -1,0 +1,240 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage[margin=.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{pgfplots}
+
+\multicolsep=\smallskipamount
+
+\pgfplotsset{compat=1.18}
+\pgfplotsset{%
+every tick label/.append style={font=\small},
+grid=major,
+xlabel={$x$},
+ylabel={$y$},
+axis lines=middle,
+unit vector ratio=1 1,
+xtick distance=1,
+ytick distance=1}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+\section*{3. Vlastnosti funkcí -- souhrn}
+
+\begin{uloha}\label{grafy}
+Určete co největší intervaly, na kterých je vyobrazená funkce rostoucí či klesající.
+\[\begin{tikzpicture}\begin{axis}[width=.5\hsize, xmin=-8, xmax=8, ymin=-4, ymax=4]
+\addplot [thick, blue, domain=-8:-6, smooth] {-1/(x+5)}; % konec (-6,1)
+\addplot [thick, blue] coordinates {(-6,1) (-4,-4) (-2,1)};
+\addplot [thick, blue, mark=*] coordinates {(-2,1)};
+\addplot [thick, blue] coordinates {(-2,2) (1,3)};
+\draw[blue,fill=white, thick] (-2,2) circle [radius=.2];
+\addplot [thick, blue, mark=*] coordinates {(1,3)};
+\addplot [thick, blue, domain=1.05:3, smooth] {ln(x-1)/ln(2)}; % konec (3,1)
+\addplot [thick, blue, domain=3:5, smooth] {-2*(x-4)^2 + 3}; % konec (5,1)
+\addplot [thick, blue] coordinates {(5,1) (6,0) (8,-1)};
+\end{axis}\end{tikzpicture}\]
+\vysl{rostoucí na: $(-\infty;-6\rangle$, $\langle-4;1\rangle$, $(1;4\rangle$; klesající na: $\langle-6;-4\rangle$, $\langle4;\infty)$}
+\end{uloha}
+
+\begin{ulohav}
+Rozhodněte, zda v následujících bodech má funkce z úlohy \ref{grafy} extrém, a pokud ano, o jaký typ (jaké typy) se jedná:
+\begin{enumerate*}
+    \item $x=-6$ \lv{ostré lok. maximum}
+    \item $x=-4$ \lv{ostré lok. minimum}
+    \item $x=-5$ \lv{není extrém}
+    \item $x=3$ \lv{není extrém}
+    \item $x=4$ \lv{glob. maximum + ostré lok. maximum}
+    \item $x=8$. \lv{není extrém}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{uloha}
+Rozhodněte, zda je funkce z úlohy \ref{grafy}
+\begin{enumerate*}
+    \item shora omezená, \lv{ano}
+    \item zdola omezená, \lv{ne}
+    \item omezená. \lv{ne}
+\end{enumerate*}
+\end{uloha}
+
+\begin{ulohav}
+Kvadratická funkce $f$ je dána předpisem $f(x) = -x^2 + 4x - 6$.
+\begin{enumerate}
+    \item Určete obor hodnot $f$. \hint{Nejprve si najděte souřadnice vrcholu.}\lv{$H(f) = (-\infty; -2\rangle$}
+    \item Určete, zda je $f$ shora omezená / zdola omezená / omezená.\lv{pouze shora omezená}
+    \item Určete co největší intervaly, na kterých je $f$ rostoucí / klesající.\lv{roustoucí na $(-\infty;2\rangle$, klesající na $\langle2; \infty)$}
+    \item Má tato funkce nějaké extrémy? Pokud ano, kde a jaké?\lv{v $x=2$ je ostré globální maximum}
+    \item Rozmyslete si, jaké budou odpovědi na předchozí otázky pro obecnou kvadratickou funkci $g$ s předpisem ve vrcholovém tvaru $g(x) = a(x-m)^2 + n$. (Odpovědi budou nejspíš nějak záviset na $a$, $m$, $n$.)\lv{Pokud $a>0$: $H(f) = \langle n;\infty)$, klesající na $(-\infty;m\rangle$, rostoucí na $\langle m;\infty)$, v $x=m$ je ostré globální minimum. Pokud $a<0$: $H(f) = (-\infty; n\rangle$, rostoucí na $(-\infty;m\rangle$, klesající na $\langle m;\infty)$, v $x=m$ je ostré globální maximum.}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+U následujících funkcí rozhodněte, zda jsou sudé / liché:
+\begin{multicols}{4}
+\begin{enumerate}
+    \item $y=2x$\lv{lichá}
+    \item $y=-x+1$\lv{ani jedno}
+    \item $y=5$\lv{sudá}
+    \item $y=-4\cdot |x|$\lv{sudá}
+    \item $y=5+2\cdot|x|$\lv{sudá}
+    \item $y = |x+1|$\lv{ani jedno}
+    \item $y=-4x^2$\lv{sudá}
+    \item $y=(1-x)^2$\lv{ani jedno}
+    \item $y=\frac{|x|}{x}$\lv{lichá}
+    \item $y=x^3$\lv{lichá}
+    \item $y=\frac{1}{x^{10}}$\lv{sudá}
+    \item $y=x^2 + x$\lv{ani jedno}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\begin{multicols}{2}
+\begin{uloha}
+Z grafu funkce $h$, jejíž definiční obor je $(-3;3)$, se dochoval jenom fragment. Dokreslete ho tak, aby $h$ byla \begin{enumerate*}\item lichá funkce, \item sudá funkce.\end{enumerate*}
+\[\begin{tikzpicture}\begin{axis}[width=.65\hsize, xmin=-4, xmax=4, ymin=-3, ymax=3]
+\addplot [thick, blue, domain=-1:0, smooth] {sqrt(1-x^2)-1};
+\draw[blue,fill=white, thick] (-1,-1) circle [radius=.15];
+\addplot [thick, blue, mark=*] coordinates {(0,0)};
+\addplot [thick, blue] coordinates {(1,1) (3,2)};
+\addplot [thick, blue, mark=*] coordinates {(1,1)};
+\draw[blue,fill=white, thick] (3,2) circle [radius=.15];
+\end{axis}\end{tikzpicture}\]
+\end{uloha}
+
+\begin{uloha}
+Načrtněte graf funkce $f$ s následujícími vlastnostmi (pro každý podbod jeden graf funkce):
+\begin{enumerate}
+\item $D(f) = \langle-4;4\rangle$, $f$ je omezená, není prostá, $f(1) = 2$, na intervalu $\langle1;2\rangle$ je $f$ rostoucí.
+\item $D(f) = \langle-4;4\rangle$, $H(f) = \langle-1;2\rangle$, $f$ je sudá funkce, v $x=1$ má $f$ ostré lokální maximum, které ovšem není globálním maximem.
+\item $D(f) = (-4;4)$, $f$ je zdola omezená, ale shora ne, je prostá, na intervalu $(-3;2)$ je neklesající, není sudá.
+\item $D(f) = \langle-3;3\rangle$, $f$ je lichá, v $x=-1$ je ostré globální minimum, $f(-1)=-2$, na intervalu $\langle2;3\rangle$ je neklesající.
+\end{enumerate}
+\end{uloha}
+\end{multicols}
+
+\begin{uloha}
+Nechť $k$ je lichá funkce, pro kterou je $0 \in D(k)$. Jakých hodnot může nabývat $k(0)$?\vysl{pouze 0, jelikož musí platit $f(0) = f(-0) = -f(0)$}
+\end{uloha}
+
+
+\interest
+\begin{ulohav}
+Rozhodněte, které z těchto výroků vždy platí:
+\begin{enumerate*}
+    \item Součet rostoucích funkcí je rostoucí funkce.\lv{ano}
+    \item Součet nerostoucích funkcí je nerostoucí funkce.\lv{ano}
+    \item Součet prostých funkcí je prostá funkce.\lv{ne}
+    \item Součet lichých funkcí je lichá funkce.\lv{ano}
+    \item Součet sudých funkcí je sudá funkce.\lv{ano}
+    \item Součin rostoucích funkcí je rostoucí funkce.\lv{ne, ale platilo by to, pokud by jedna nabývala pouze nezáporných hodnot}
+    \item Součin nerostoucích funkcí je nerostoucí funkce.\lv{ne}
+    \item Součin prostých funkcí je prostá funkce.\lv{ne}
+\end{enumerate*}
+\end{ulohav}
+
+
+\interest
+\begin{ulohav}
+Jakou funkci dostaneme, pokud vynásobíme
+\begin{enumerate*}
+    \item dvě liché funkce\lv{sudou}
+    \item dvě sudé funkce\lv{sudou}
+    \item lichou a sudou funkci?\lv{lichou}
+\end{enumerate*}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
