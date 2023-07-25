@@ -1,0 +1,207 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+\pgfplotsset{%
+every tick label/.append style={font=\footnotesize},
+grid=major,
+xlabel={$x$},
+ylabel={$y$},
+axis lines=middle,
+unit vector ratio=1 1,
+xtick distance=1,
+ytick distance=1}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{5. Lineární lomené funkce}
+
+\begin{ulohav}
+\everymath{\displaystyle}%
+Upravte následující předpisy lineárních lomených funkcí do středového tvaru:
+\begin{enumerate*}
+\item $y = \frac{2x+1}{x+1}$\lv{$y = -\frac{1}{x+1}+2$}
+\item $y = \frac{1+x}{1-x}$\lv{$y=-\frac{2}{x-1}-1$}
+\item $y = \frac{2x+1}{3x+1}$\lv{$y = \frac{\frac19}{x+\frac13} + \frac23$}
+\item $y = \frac{-x+2}{2x-3}$.\lv{$y = \frac{\frac14}{x-\frac32}-\frac12$}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{uloha}\label{grafy}
+Určete předpisy lineárních lomených funkcí $f$, $g$, $h$, $i$, jejichž grafy jsou níže.
+
+\hbox to\hsize{\hfil\begin{tikzpicture}\begin{axis}[
+        width=.8\hsize,
+        xmin=-8, xmax=8,
+        ymin=-5, ymax=5,
+        legend pos=south east,
+        extra x ticks={5/2},
+        extra x tick labels={$\frac52$},
+        unbounded coords=discard,restrict y to domain=-15:15]
+\addplot [thick, blue, domain=-8:8, samples=201] {1/(x+6)-1};
+\addplot [thick, red, domain=-8:8, samples=201] {-2/(x+3)+2};
+\addplot [thick, black, densely dashed, domain=-8:8, samples=251] {1/(2*(x-1))};
+\addplot [thick, black, domain=-8:8, samples=251] {-1/(x-5/2)-3};
+\legend{$f$, $g$, $h$, $i$}
+\end{axis}\end{tikzpicture}\hfil}
+\vysl{$f(x) = \frac{1}{x+6}-1$,\quad $g(x) = -\frac{2}{x+3}+2$,\quad $h(x) = \frac{1}{2(x-1)}$,\quad $i(x) = -\frac{1}{x-\frac52}-3$}
+\end{uloha}
+
+\begin{uloha}
+U funkcí z úlohy \ref{grafy} určete definiční obory a obory hodnot.
+\vysl{$D(f) = \R\setminus\{-6\}$,~$H(f) = \R\setminus\{-1\}$,\quad
+$D(g) = \R\setminus\{-3\}$,~$H(g) = \R\setminus\{2\}$,\quad
+$D(h) = \R\setminus\{1\}$,~$H(h) = \R\setminus\{0\}$,\quad
+$D(i) = \R\setminus\{\frac52\}$,~$H(i) = \R\setminus\{-2\}$}
+\end{uloha}
+
+
+\begin{uloha}
+K funkcím z úlohy \ref{grafy} určete předpisy inverzních funkcí. (Možná si při tom něčeho všimnete, čímž se to stane početně velmi jednoduchým...)
+\vysl{$f^{-1}(x) = \frac{1}{x+1}-6$,\quad $g^{-1}(x) = -\frac{2}{x-2}-3$,\quad $h^{-1}(x) = \frac1{2x}+1$,\quad $i^{-1}(x) = -\frac1{x+3}+\frac52$}
+\end{uloha}
+
+\begin{uloha}
+K funkcím z úlohy \ref{grafy} určete souřadnice průsečíků s osami soustavy souřadnic.
+\vysl{%
+$f$: $P_y[0;-\frac56]$, $P_x[-5;0]$;\quad
+$g$: $P_y[0;\frac43]$, $P_x[-2;0]$;\quad
+$h$: $P_y[0;-\frac12]$, $P_x$ neexistuje;\quad
+$i$: $P_y[0;-\frac{13}5]$, $P_x[\frac{13}6;0]$}
+\end{uloha}
+
+
+\begin{uloha}
+\everymath{\displaystyle}%
+Načrtněte grafy následujících funkcí; výsledky si můžete zkontrolovat v GeoGebře nebo Photomathu atd. (nebo se mě zeptejte).
+\begin{enumerate*}
+    \item $y = \frac{1}{x-1}$
+    \item $y = \frac{x}{x+2}$
+    \item $y = \frac{2x-1}{2x+1}$
+    \item $y = \frac{1}{2|x|+1}-1$
+    \item $y = \left|\frac{1}{2x+1}-1\right|$
+    \item $y = \frac{1}{x + |x| + 1} - 1$
+    \item $y = \frac{x}{|x| + 1}$.
+\end{enumerate*}
+\end{uloha}
+
+\begin{ulohav}
+Nalezněte předpis lineární lomené funkce, jejíž graf prochází body
+\begin{enumerate*}
+\item $[0;-1]$, $[1;1]$, $[2;2]$\lv{$y = -\frac{12}{x+2}+5$}
+\item $[0;0]$, $[1;1]$, $[2;2]$.\lv{neexistuje}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Rozhodněte následující:
+\begin{enumerate}
+    \item Jaké mají lineární lomené funkce extrémy?\lv{žádné}
+    \item Mohou být lineární lomené funkce liché? Sudé? Prosté? Shora/zdola omezené?\lv{liché ano (např. $y=\frac1x$), sudé nikdy, prosté vždy, shora ani zdola omezené nejsou nikdy}
+\end{enumerate}
+\end{ulohav}
+
+\interest
+\begin{uloha}
+Funkce $y = \frac1x$ je příkladem lineární lomené funkce, která je sama sobě inverzní funkcí. Nalezněte příklad(y) dalších takových lineárních lomených funkcí, případně je nalezněte \emph{všechny}.\vysl{např $y = \frac1{x-1}+1$; obecně jde o funkce tvaru $y = \frac{c}{x-d}+d$, kde $c \neq 0$}
+\end{uloha}
+
+
+
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
