@@ -1,0 +1,174 @@
+\documentclass[9pt,a6paper,landscape]{extarticle}
+\usepackage[margin=.75cm,top=.25cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+\def\tiskctyr{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\pdfpageheight=2\pdfpageheight
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zctyrtmp \setbox\shipouthackbox=}%
+\def\zctyrtmp{\aftergroup\zctyr}%
+\def\zctyr{%
+    \offinterlineskip
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \copy\shipouthackbox
+    }%
+    \vskip\dimexpr .5\pdfpageheight-\ht\shipouthackbox\relax
+    \hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        % \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+\begin{document}
+
+
+% \tiskctyr
+% \resultssame
+
+\section*{9. Exponenciální rovnice s \uv{hezkými} výsledky}
+
+
+\def\lm#1{\lv{$\{#1\}$}}
+
+\begin{ulohav}
+Nalezněte všechna řešení těchto velmi zajímavých rovnic:
+\everymath{\displaystyle}
+\vskip-1.5\bigskipamount
+\vbox{}
+\begin{multicols}{2}
+\raggedright
+\begin{enumerate}
+    \item $\sqrt5 \cdot 25^{2x-1} = 125^x$\lv{$\{\frac32\}$}
+    \item $\left(\frac{\sqrt{7}}{\sqrt[3]{7}}\right)^{x} = \frac{\sqrt7}{49^x \cdot 7^x}$\lv{$\{\frac{3}{19}\}$}
+    \item $4^x = 2^{x^2}$\lv{$\{0;2\}$}
+    \item $5^x \cdot 2^x = 100^{x-1}$\lv{$\{2\}$}
+    \item $3^x + 3^{x+1} = 108$\lm{3}
+    \item $2^{x+1} + 2^{x-1} + 2^{x+3} = \frac{21}8$\lm{-2}
+    \item $7 \cdot 4^{-x+2} = 3 \cdot 4^{-x+3} - 5$\lm{2}
+    \item $3^x \cdot \left(\tfrac12\right)^x + 3^{x+1} \cdot \left(\tfrac12\right)^{x+1} = \tfrac53$\lm{-1}
+    \item $4^{2x} - 6 \cdot 4^x + 8 = 0$\lm{\frac12; 2}
+    \item $\frac14 \cdot 2^x + \frac12 \cdot 4^x = 9$\lm{2}
+    \item $2 \cdot \left(\tfrac14\right)^x - 3 \cdot \left(\tfrac12\right)^x = \left(1 + \left(\tfrac12\right)^x\right)\cdot\left(\tfrac14\right)^{-1}$\lm{-2}
+    \item $9\cdot 3^{x} + 3^{-x} = 10$\lm{-2; 0}
+    \item $8^{2 x + 1} + 4 = 8^x + 8^{x + \frac53}$\lm{-1; \frac23}
+    \stitem $256 \cdot 2^{4^x} = 64^{2^x}$\lm{1; 2}
+    \stitem $3^x + 3^{x+1} = 7 \cdot 4^x - 4^{x+1}$\lm{1}
+    \stitem $2^{x-1} - 2^{x-2} = 5^{x-3} + 2^{x-3}$\lm{3}
+    \stitem $4^x + 6^x = 2 \cdot 9^x$\lm{0}
+    \stitem $16^x = 8 \cdot 4^x + 2 \cdot 8^x$\lm{2}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\interest
+\begin{ulohav}[zcela nesouvisející]
+Určete poslední cifru následujících čísel:
+\begin{enumerate*}
+\item $2^{1000}$\lv6
+\item $3^{1000}$\lv1
+\item $5^{1000}$\lv5
+\item $7^{1000}$\lv1
+\item $10^{1000}$\lv0
+\item $11^{1000}$\lv1
+\end{enumerate*}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+\setlength{\columnseprule}{.4pt}
+
+\vskip-\bigskipamount
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
