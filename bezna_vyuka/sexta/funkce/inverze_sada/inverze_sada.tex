@@ -1,0 +1,214 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage[inline]{enumitem}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+\pgfplotsset{every tick label/.append style={font=\tiny},
+width=.45\hsize,
+grid=major,
+xmin=-5, xmax=5, xtick distance=1,
+ymin=-5, ymax=5, ytick distance=1,
+xlabel={$x$},ylabel={$y$},axis lines=middle,unit vector ratio=1 1
+}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        %\vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{2. Inverzní funkce}
+
+\begin{uloha}\label{grafy}
+Dokreslete k zadaným grafům funkcí grafy k ním inverzních funkcí.
+
+\hbox to\hsize{\hfil
+\hbox{\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue, domain=-5:5, smooth] {1-.2*x^3};
+\end{axis}\end{tikzpicture}}%
+\hfil
+\hbox{\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue] coordinates {(-4,-5) (-3,-4) (-2,-1) (0,2) (3,3) (5,4)};
+\end{axis}\end{tikzpicture}}%
+\hfil
+\hbox{\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue] coordinates {(-5,3) (-3,4) (0,5)};
+\addplot [thick, blue] coordinates {(1,-1) (2,2) (5,3)};
+\addplot [thick, blue, mark=*] coordinates {(-5,3)};
+\addplot [thick, blue, mark=*] coordinates {(0,5)};
+\draw[blue,fill=white, thick] (5,3) circle [radius=.2];
+\draw[blue,fill=white, thick] (1,-1) circle [radius=.2];
+\end{axis}\end{tikzpicture}}%
+\hfil}
+\vysl{%
+\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue, domain=-5:5, smooth] {1-.2*x^3};
+\addplot [thick, red, domain=-5:5, smooth] ({1-.2*x^3},{x});
+\end{axis}\end{tikzpicture}
+\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue] coordinates {(-4,-5) (-3,-4) (-2,-1) (0,2) (3,3) (5,4)};
+\addplot [thick, red] coordinates {(-5,-4) (-4,-3) (-1,-2) (2,0) (3,3) (4,5)};
+\end{axis}\end{tikzpicture}
+\begin{tikzpicture}\begin{axis}
+\addplot [thick, blue] coordinates {(-5,3) (-3,4) (0,5)};
+\addplot [thick, blue] coordinates {(1,-1) (2,2) (5,3)};
+\addplot [thick, blue, mark=*] coordinates {(-5,3)};
+\addplot [thick, blue, mark=*] coordinates {(0,5)};
+\draw[blue,fill=white, thick] (5,3) circle [radius=.2];
+\draw[blue,fill=white, thick] (1,-1) circle [radius=.2];
+%
+\addplot [thick, red] coordinates {(3,-5) (4,-3) (5,0)};
+\addplot [thick, red] coordinates {(-1,1) (2,2) (3,5)};
+\addplot [thick, red, mark=*] coordinates {(3,-5)};
+\addplot [thick, red, mark=*] coordinates {(5,0)};
+\draw[red,fill=white, thick] (3,5) circle [radius=.2];
+\draw[red,fill=white, thick] (-1,1) circle [radius=.2];
+\end{axis}\end{tikzpicture}
+}
+\end{uloha}
+
+
+\begin{uloha}
+Nalezněte zcela obecně předpis inverzní funkce k lineární funkci $f(x) = kx+q$, kde $k$ a $q$ jsou reálná čísla (výsledkem bude předpis funkce, ve kterém budou vystupovat $k$ a $q$). Bude inverzní funkce existovat vždy?\vysl{Inverzní funkce existuje, právě když $k \neq 0$. Její předpis je $f^{-1}(x) = \frac1k x - \frac qk$}
+\end{uloha}
+
+\begin{uloha}
+Funkce $f$ je definována po částech:
+\[f(x) = \begin{cases}
+x+2 & \text{pro }x < -1\\
+\tfrac12 x + \tfrac32 & \text{pro }x\geq -1
+\end{cases}\]
+Načrtněte graf funkce, ujistěte se, že jde o prostou funkci, a nalezněte obdobný předpis (\uv{po částech}) pro $f^{-1}$.
+\vysl{\begin{tikzpicture}\begin{axis}[legend pos=south east]
+\addplot [thick, blue] coordinates {(-5,-3) (-1,1) (5,4)};
+\addplot [thick, red] coordinates {(-3,-5) (1,-1) (4,5)};
+\legend{$\scriptstyle f$,$\scriptstyle f^{-1}$}
+\end{axis}\end{tikzpicture}
+$\displaystyle f^{-1}(x) = \begin{cases} x-2 & \text{pro }x<1 \\ 2x - 3 & \text{pro } x \geq 1\end{cases}$}
+\end{uloha}
+
+
+\begin{ulohav}
+Rozhodněte, které výroky platí pro každou funkci $f$:
+\begin{enumerate}
+    \item Je-li $f$ prostá, pak je $f^{-1}$ také prostá.\lv{ano}
+    \item Je-li $f$ rostoucí, pak je $f^{-1}$ také rostoucí.\lv{ano}
+    \item Je-li $f$ klesající, pak je $f^{-1}$ také klesající.\lv{ano}
+    \item Je-li $f$ neklesající a prostá, pak už musí být rostoucí.\lv{ano}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Rozhodněte, v jakém vztahu jsou funkce $f^{-1}$ a $g^{-1}$, je-li $f$ libovolná prostá funkce a $g$ je zadaná předpisem níže; např. pokud je $g(x) = f(x)+1$, tak $g^{-1}(x) = f^{-1}(x-1)$ (proč?).
+\begin{enumerate}
+    \item $g(x) = f(x+1)$\lv{$g^{-1}(x) = f^{-1}(x)-1$}
+    \item $g(x) = -f(x)$\lv{$g^{-1}(x) = f^{-1}(-x)$}
+    \item $g(x) = 2f(x)$\lv{$g^{-1}(x) = f^{-1}\bigl(\frac12 x\bigr)$}
+    \item $g(x) = f(2x)$.\lv{$g^{-1}(x) = \frac12 f^{-1}(x)$}
+\end{enumerate}
+Můžete na to jít tak, že si představíte (či rovnou načrtnete) grafy $f$ a $g$ a co se s nimi stane po přechodu k inverzním funkcím.
+\end{ulohav}
+
+
+\interest
+\begin{uloha}
+Rozhodněte, co musí splňovat čtveřice reálných čísel $a$, $b$, $c$, $d$, aby funkce s předpisem
+\[ y = \frac{ax+b}{cx+d} \]
+byla prostá.\vysl{Musí platit $ad \neq bc$.}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Známe již tři \uv{překlápěcí operace} s grafem funkce: $f(x) \to -f(x)$, $f(x) \to f(-x)$ a $f(x) \to f^{-1}(x)$. Kolik nejvíc různých grafů funkcí můžeme aplikováním těchto operací dostat z jednoho grafu funkce?\vysl{8 (se započítáním i toho původního)}
+\end{uloha}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+\end{document}
