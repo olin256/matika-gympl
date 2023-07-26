@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=.75in,bottom=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\setlist[itemize]{noitemsep}
+
+\DeclareMathOperator{\DO}{D}
+\def\R{\mathbb R}
+
+\parindent 0pt
+\def\graf#1{\includegraphics[scale=.65]{grafy/#1.pdf}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Atlas extrémů}\\[1mm]
+\Large\emph{aneb}\\[1mm]
+{\Large Kterak minima a maxima rozeznávati.}
+\end{center}
+
+\section{Ostré globální maximum}
+\begin{itemize}
+    \item Též známé jen jako ostré maximum.
+    \item Funkční hodnoty ve \textbf{všech} ostatních bodech definičního oboru jsou \textbf{menší}.
+    \item Může existovat nanejvýš jedno pro jednu funkci.
+    \item \uv{Ostrost} nemá nic společného s tím, jestli je v tom bodě opravdu \uv{ostrá špička}.
+\end{itemize}
+\[ \graf{glob_ostre_1}\quad\graf{glob_ostre_2} \]
+
+
+\section{Ostré lokální maximum}
+\begin{itemize}
+    \item Funkční hodnoty ve \textbf{všech} ostatních bodech na \textbf{nějakém intervalu okolo toho bodu} jsou \textbf{menší} (tento interval obsahuje jak body \emph{vpravo}, tak body \emph{vlevo} od zkoumaného bodu!).
+    \item Může jich existovat mnoho, ale nemohou tvořit souvislý interval; \uv{obvykle} jde o izolované body.
+    \item Opět, \uv{ostrost} nemá nic společného s tím, jestli je v tom bodě opravdu \uv{ostrá špička}.
+\end{itemize}
+\[ \graf{lok_ostre_1}\quad\graf{lok_ostre_2} \]
+
+
+\section{Globální maximum}
+\begin{itemize}
+    \item Též známé jen jako maximum.
+    \item Funkční hodnoty ve \textbf{všech} ostatních bodech definičního oboru jsou \textbf{menší nebo stejně velké}.
+    \item Může jich pro jednu funkci existovat mnoho, klidně mohou tvořit i interval.
+\end{itemize}
+\[ \graf{glob_neostre_1}\quad\graf{glob_neostre_2} \]
+
+
+\section{Lokální maximum}
+\begin{itemize}
+    \item Funkční hodnoty ve \textbf{všech} ostatních bodech na \textbf{nějakém intervalu okolo toho bodu} jsou \textbf{menší nebo stejně velké}.
+    \item Může jich pro jednu funkci existovat mnoho, klidně mohou tvořit i intervaly; takové intervaly mohou být různě otevřené, uzavřené, z různých stran různě\dots
+\end{itemize}
+\[ \graf{lok_neostre_1}\quad\graf{lok_neostre_2} \]
+
+\section{Varování}
+Pozor! Bod může být současně ostrým lokálním maximem a globálním maximem, a přitom \emph{nebýt} ostrým globálním maximem. Příkladem jsou zde vyznačené body:
+\[ \graf{warn} \]
+Nejde o ostrá globální maxima, protože to může být jen jedno. Nikde jinde větší hodnota není, takže jde alespoň o globální maxima. Konečně, když se podíváme jen na dostatečně malé intervaly okolo těchto bodů, zjistíme, že jde o ostrá lokální maxima.
+
+
+\section{Minima}
+
+Všechno to bude naprosto analogicky, pro vizuální příklady stačí otočit stránky o $180^\circ$.
+
+
+\end{document}

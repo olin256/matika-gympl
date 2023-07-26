@@ -57,7 +57,6 @@
 
 \makeatletter
 \def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
-\def\vyslalph#1{\edef\tmpuloha{{\the\c@uloha}{\alph{enumi}}}\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printalphvysl\tmpuloha{#1}}}
 
 \def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
 \let\lv\locvysl
@@ -117,7 +116,6 @@ Spočtěte obsah trojúhelníka, který má vrcholy v bodech o souřadnicích $[
 \parindent=0pt
 \parskip=\smallskipamount
 \def\printvysl#1#2{\textbf{#1.}\ #2\par}
-\def\printalphvysl#1#2#3{\textbf{#1}(#2)\ #3\par}
 \vysld
 
 
