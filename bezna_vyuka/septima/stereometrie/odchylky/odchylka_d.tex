@@ -1,0 +1,79 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{3d}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\section*{Řešení úlohy 1 (d)}
+
+\def\bod#1#2#3{\node[circle,fill=black,inner sep=0pt,outer sep=0pt,minimum size=3pt,label=#2:{$#3$}] (#3) at (#1) {};}
+
+\def\zaklad{%
+\draw[dashed] (0,0,1) -- (0,0,0) -- (1,0,0);% -- (0,0,1) -- cycle;
+\draw (1,0,0)-- (1,0,1) -- (0,0,1);
+\draw (1,0,0) -- (.5,.707,.5) -- (1,0,1);
+\draw (0,0,1) -- (.5,.707,.5);
+\draw[dashed] (0,0,0) -- (.5,.707,.5);
+\bod{.25,.3535,.75}{above}{P}
+\bod{1,0,0}{right}{C}
+\bod{1,0,1}{right}{B}
+\bod{0,0,1}{left}{A}
+\bod{.5,.707,.5}{above}{V}
+}
+
+
+Zadání: Je dán pravidelný čtyřboký jehlan $ABCDV$, jehož stěny jsou rovnostranné trojúhelníky, kde $P$ střed hrany $AV$. Určete odchylky přímek $BV$ a $CP$.
+\[\begin{tikzpicture}[scale=3]
+\zaklad
+\bod{0,0,0}{below}{D}
+\draw[blue,thick] (C) -- (P);
+\draw[red,thick] (B) -- (V);
+\end{tikzpicture}\]
+Bodem $P$ vedeme rovnoběžku s přímkou $BV$ (\uv{posuneme} $BV$); jelikož bod $P$ i přímka $BV$ se nachází v rovině $ABV$, i tato rovnoběžka se bude nacházet v této rovině. Označíme $M$ průsečík této rovnoběžky s podstavnou hranou $AB$.
+\[\begin{tikzpicture}[scale=3]
+\zaklad
+%\bod{0,0,0}{below}{D}
+\bod{.5,0,1}{below}{M}
+\draw[blue,thick] (C) -- (P);
+\draw[red,thick] (M) -- (P);
+\draw[orange,thick] (M) -- (C);
+\end{tikzpicture}\]
+Nyní už \uv{jen} chceme určit úhel u vrcholu $P$ v trojúhelníku $MCP$. Žádné úhly nejsou evidentní, takže chceme postupovat tak, že spočteme délky všech stran tohoto trojúhelníka a (nejspíš) využijeme kosinovou větu.
+
+Nejjednodušeji se určí délka $PM$ -- to totiž je střední příčka v rovnostranném trojúhelníku $ABV$, takže její délka je $\frac12$ (počítáme, že všechny hrany jehlanu mají délku $1$). Z toho samého důvodu je $M$ střed hrany $AB$.
+
+Délku úsečky $MC$ zjistíme pomocí Pythagorovy věty: trojúhelník $MBC$, nacházející se v rovině podstavy, je pravoúhlý s pravým úhlem u vrcholu $B$, tedy platí 
+\[ |MC| = \sqrt{|MB|^2 + |BC|^2} = \sqrt{\bigl(\tfrac12\bigr)^2 + 1^2} = \frac{\sqrt5}{2}. \]
+
+Pro určení délky úsečky $PC$ využijeme trojúhelník $PVC$; v něm známe délky dvou stran ($|CV| = 1$, $|PV| = \frac12$), stačilo by nám tedy určit velikost úhlu $\sphericalangle PVC$ a mohli bychom využít kosinovou větu na určení $|PC|$.
+\[\begin{tikzpicture}[scale=3]
+\zaklad
+%\bod{.5,0,1}{below}{M}
+\draw[blue,thick] (C) -- (P);
+\draw[green,thick] (V) -- (P);
+\draw[magenta,thick] (V) -- (C);
+\end{tikzpicture}\]
+Zřejmě je $|\sphericalangle PVC| = |\sphericalangle AVC|$, přičemž pro trojúhelník $AVC$ platí $|AV| = 1$, $|CV| = 1$, $|AC| = \sqrt{2}$ (je to úhlopříčka v~podstavě), takže vidíme, že tento trojúhelník je dokonce pravoúhlý s pravým úhlem u vrcholu $V$ (je to ten trojúhelník à~la \uv{půlka čtverce}). Zjistili jsme tedy, že $|\sphericalangle PVC| = 90^\circ$, tedy i trojúhelník $PVC$ je pravoúhlý s pravým úhlem u vrcholu $V$ a úplně stejně jako výše můžeme určit délku $PC$:
+\[ |PC| = \sqrt{|PV|^2 + |CV|^2} = \sqrt{\bigl(\tfrac12\bigr)^2 + 1^2} = \frac{\sqrt5}{2}. \]
+
+Navrátivše se k trojúhelníku $MCP$, můžeme určit hledaný úhel:
+\[ |\sphericalangle MPC| = \arccos \left( \frac{|PM|^2 + |PC|^2 - |MC|^2}{2 \cdot |PM| \cdot |PC|} \right)
+ = \arccos \left( \frac{\frac14 + \frac54 - \frac54}{2 \cdot \frac{\sqrt{5}}2 \cdot \frac12} \right)
+= \arccos \left( \frac{1}{2\sqrt5} \right) \doteq 77^\circ 5'.
+ \]
+
+\bigskip
+
+Mimochodem, dá se asi i jen \uv{vykoukat}, že $PC$ bude stejně dlouhá jako $MC$: když úplně zapomeneme na bod $D$ a představíme si jen ty dva rovnostranné trojúhelníky $ABV$ a $BCV$ spojené v prostoru, tak jde o útvar (\uv{zrcadlově}) souměrný podle roviny $ACS_{BV}$. V této symetrii si body $P$ a $M$ odpovídají, takže jejich vzdálenost do $C$ (ležícího na rovině symetrie) musí být stejná.
+
+\end{document}
