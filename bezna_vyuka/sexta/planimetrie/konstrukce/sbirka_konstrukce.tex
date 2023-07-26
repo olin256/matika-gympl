@@ -1,0 +1,117 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[margin=.9cm]{geometry}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\multicolsep=\smallskipamount
+
+\setlist[enumerate]{label={(\alph*)},itemjoin={\quad},topsep=\smallskipamount,parsep=0pt,itemsep=\smallskipamount}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem{ssuloha}[uloha]{\llap{$\star\star$ }Úloha}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\pagestyle{empty}
+
+\newcommand{\staritem}{\item[\addtocounter{enumi}{1}$\star$ (\alph{enumi})]}
+
+\newcommand{\hint}[1]{{\footnotesize\textcolor{gray}{(Nápověda: #1)}}}
+
+\begin{document}
+
+% \tisk
+
+\begin{center}
+    \textbf{\LARGE (Nevyřešená) sbírka}\\[1mm]
+    na\\[1mm]
+    {\Large geometrické konstrukce}
+\end{center}
+
+% totální vykrádačka realisticky.cz
+
+
+\begin{uloha}
+Je dána přímka $p$ a bod $A$ na ní neležící. Zkonstruujte přímku $q$, která bude procházet bodem $A$ a s $p$ bude svírat úhel $50^\circ$.
+\end{uloha}
+
+\begin{uloha}
+Sestrojte trojúhelník $ABC$, jestliže\par
+\begin{multicols}{2}%
+\begin{enumerate}[topsep=0pt]
+    \item je dána úsečka $AB$, $|AB|=6$, a $v_c=4$, $t_c=6$; %r5.1
+    \item je dána úsečka $AB$, $|AB|=6$, a $b=5$, $\gamma=90^\circ$; %r5.2
+    \item $c = 6$, $b = 5$, $\gamma=90^\circ$; %r5.3
+    \item $a = 6$, $b = 5$, $\beta=50^\circ$ (zkuste dvě možné konstrukce); %r5.5
+    \item $a=3$, $\alpha=60^\circ$, $\gamma=90^\circ$; %pet 77/17 c
+    \item je dána úsečka $BB_1$ (která je těžnicí $t_b$), $|BB_1| = 6$, a $\alpha=45^\circ$, $b=5$; %pet 77/14 a
+    \item je dána úsečka $AA_1$ (která je těžnicí $t_a$), $|AA_1| = 5$, a $v_a=4{,}5$, $c=5{,}5$; %r6.1
+    \item je dána úsečka $AA_0$ (která je výškou $v_a$), $|AA_0| = 5$, a $t_a=6$, $c=5{,}5$; %r6.2
+    \item je dána úsečka $BC$, $|BC|=5$, a $t_c=5$, $v_c=4{,}5$ %r6.3
+    \staritem je dána úsečka $AA_1$ (která je těžnicí $t_a$), $|AA_1| = 6$, a $t_b=3{,}9$, $\beta=70^\circ$; %r6.4
+    \item $t_b=5$, $v_b=4$, $\gamma=110^\circ$; %r6.5
+    \item $t_c=3{,}5$, $b=4$, $\gamma=90^\circ$; \hint{Jaký je v~pravoúhlém trojúhelníku vztah mezi délkami $t_c$ a $c$? Proč?} %r7.1
+    \item je dána úsečka $AA_1$ (která je těžnicí $t_a$), $|AA_1| = 4$, a $b=5$, $c=4$; %r7.3
+    \item $t_c=3{,}5$, $b=5$, $\gamma=65^\circ$; %r7.4
+    \item $a=5$, $t_c=4{,}5$, $v_b=4$; %r7.5
+    \item je dána úsečka $BC$, $|BC|=6$, a $v_a=4$, $t_b=4{,}5$; %r7.6
+    \item $t_a=5$, $t_b=6$, $t_c=4$; %r8.1
+    \item $r=4$ (poloměr kruž. opsané), $c=5$, $t_c=3{,}5$; %r8.2
+    \staritem $v_c=5$, $b=6$, $\varrho=2$ (poloměr kruž. vepsané). %r8.
+\end{enumerate}
+\end{multicols}
+\end{uloha}
+
+\begin{uloha}
+Sestrojte čtyřúhelník $ABCD$, jestliže
+\begin{enumerate}
+    \item $|BC|=5$, $|AC|=6$, $|CD|=4$, $|\sphericalangle DAB|=80^\circ$, $|\sphericalangle BCD|=100^\circ$; %r9.1
+    \item je to rovnoběžník, je dána úsečka $AB$, $|AB| = 3$, $|BD| = 5{,}5$, $v_{AB} = 4$; %r9.2
+    \item je to kosočtverec, $v_{AB}=4$, $|AC|=5$. %r9.3
+\end{enumerate}
+\end{uloha}
+
+\begin{suloha}
+Sestrojte všechny kružnice, které
+\begin{enumerate}
+    \item se dotýkají dvou daných rovnoběžných přímek a dané kružnice ležící uvnitř pásu;
+    \item se dotýkají daného přímky $p$ a procházejí danými body $A$ ($A \in p$) a $B$ ($B \notin p$);
+    \item mají poloměr $1$, dotýkají se dané přímky $p$ a prochází daným bodem $A$ ($A \notin p$) (rozeberte, za jakých okolností má úloha kolik řešení);
+    \item mají poloměr $1$, dotýkají se dané kružnice $k$ a prochází daným bodem $A$ ($A \notin k$) (rozeberte, za jakých okolností má úloha kolik řešení).
+\end{enumerate}
+\end{suloha}
+
+\begin{ssuloha}[Mascherionovské konstrukce] % https://prase.cz/library/KonstrukceKruzitkemMV/KonstrukceKruzitkemMV.pdf
+Je dokázáno, že všechny konstrukce, které lze provést pravítkem (bez měřítka) a kružítkem, lze provést i \emph{jen kružítkem} (přičemž předpokládáme, že přímka či úsečka je \uv{zkonstruovaná}, pokud jsou zkonstruovány dva (krajní) body na ní). Jen pomocí kružítka proveďte: \begin{enumerate*}
+\item k $AB$ nalezněte úsečku dvojnásobné délky;
+\item k~bodu $C$ neležícím na $AB$ sestrojte bod osově symetrický podle $AB$;
+\item ke kružnici $k$ se středem $O$ neležícím na přímce $AB$ sestrojte průsečík $k$ s $AB$;
+\item k $AB$ nalezněte bod $C$ tak, aby platilo $AB \perp AC$;
+\item sestrojte střed úsečky $AB$.
+\end{enumerate*}\quad
+\emph{(Pokračování třeba někdy příště.)}
+\end{ssuloha}
+
+
+\end{document}
