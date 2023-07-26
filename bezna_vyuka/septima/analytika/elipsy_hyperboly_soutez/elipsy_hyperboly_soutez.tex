@@ -1,0 +1,176 @@
+\documentclass[12pt,a4paper]{extarticle}
+\usepackage[margin=.7cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        %\vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+
+\section*{Hyperbolicko-eliptická soutěž}
+
+\emph{V závorkách jsou uvedeny počty bodů.}
+
+
+\begin{uloha}[1,5]
+Nalezněte všechny průsečíky přímky $p$ a hyperboly $h$, jestliže jejich rovnice jsou \[p\colon 3x - 2y + 2 = 0, \quad h\colon {-}(x-2)^2 + (y-5)^2 = 1.\]\vysl{$[2;4]$ a $\bigl[\frac{22}{5};\frac{38}{5}\bigr]$}
+\end{uloha}
+
+\begin{uloha}[2]
+Nalezněte rovnice všech hyperbol, jejichž asymptoty mají rovnice $y = 2x + 4$ a $y = -2x - 2$ a délka hlavní poloosy je $2$.\vysl{$\frac{(x+\frac32)^2}{4} - \frac{(y-1)^2}{16} = 1$ a $-\frac{(x+\frac32)^2}{1} + \frac{(y-1)^2}{4} = 1$}
+\end{uloha}
+
+\begin{uloha}[2]
+Elipsa má ohniska v bodech $[-3;1]$ a $[5;1]$, přičemž délka vedlejší poloosy je $2$. Určete rovnici oné elipsy.\vysl{$\frac{(x-1)^2}{20} + \frac{(y-1)^2}{4} = 1$}
+\end{uloha}
+
+\begin{uloha}[2]
+Hyperbola má ohniska v bodech $[-3;1]$ a $[5;1]$, přičemž délka vedlejší poloosy je $2$. Určete rovnici oné hyperboly.\vysl{$\frac{(x+1)^2}{12} - \frac{(y-1)^2}{4} = 1$}
+\end{uloha}
+
+\begin{uloha}[3]
+Elipsa má ohniska v bodech $[-1;-2]$ a $[-1;4]$ a prochází bodem $[0;5]$. Určete rovnici oné elipsy.\vysl{$\frac{(x+1)^2}{9} + \frac{(y-1)^2}{18} = 1$}
+\end{uloha}
+
+\begin{uloha}[3]
+Hyperbola má ohniska v bodech $[-1;-2]$ a $[-1;4]$ a prochází bodem $[0;5]$. Určete rovnici oné hyperboly.\vysl{$-\frac{(x+1)^2}{1} + \frac{(y-1)^2}{8} = 1$}
+\end{uloha}
+
+\begin{uloha}[5]
+Nalezněte rovnice všech tečen k elipse dané rovnicí $4x^2 + y^2 = 4$ procházejících bodem $[-2;0]$.\vysl{$y = \pm \frac{2}{\sqrt3}(x+2)$}
+\end{uloha}
+
+\begin{uloha}[4]
+Nalezněte rovnice všech elips, které budou současně splňovat:
+\begin{itemize}
+    \item jejich osy budou rovnoběžné s osami souřadnic,
+    \item osy souřadnic budou jejich tečny,
+    \item střed bude ležet na přímce $y = x+1$,
+    \item délka hlavní poloosy bude $7$.
+\end{itemize}
+\vysl{$\frac{(x-6)^2}{6^2} + \frac{(y-7)^2}{7^2} = 1$ a $\frac{(x+7)^2}{7^2} + \frac{(y+6)^2}{6^2} = 1$}
+\end{uloha}
+
+\begin{uloha}[4,5]
+Na elipse o rovnici $\frac{x^2}{9} + \frac{y^2}{4} = 1$ nalezněte bod nejblíže přímce o rovnici $y = x-6$.\vysl{$\bigl[\frac{9}{\sqrt13};-\frac{4}{\sqrt13}\bigr]$}
+\end{uloha}
+
+\begin{uloha}[1,5]
+Určete všechny hodnoty parametru $c \in \R$, pro který je rovnice \[3x^2 + 2y^2 - 6x + 8y = c\] rovnicí nějaké elipsy v rovině.\vysl{$c > -11$}
+\end{uloha}
+
+
+\begin{uloha}[1,5]
+Určete všechny hodnoty parametru $c \in \R$, pro který je rovnice \[3x^2 - 2y^2 - 6x + 8y = c\] rovnicí nějaké hyperboly v rovině.\vysl{$c \neq 5$}
+\end{uloha}
+
+
+\begin{uloha}[2,5]
+Je dána hyperbola $\frac{x^2}{16} - \frac{(y+2)^2}9 = 1$. Vypočítejte délku takové její tětivy, která je kolmá na osu $x$ a prochází ohniskem hyperboly.\vysl{$\frac92$}
+\end{uloha}
+
+
+\begin{uloha}[2]
+Určete odchylku asymptot hyperboly dané rovnicí $2x^2 - x - 3y^2 - 7y + 13 = 0$.\vysl{$\arccos\frac15 \doteq 78^\circ 28'$}
+\end{uloha}
+
+
+\begin{uloha}[4]
+Množina všech bodů, jejichž vzdálenosti od bodu $[5;0]$ a od přímky $x = \frac{16}{5}$ jsou v~poměru $5:4$, je jistá hyperbola; určete souřadnice jejího středu a délky poloos.\vysl{střed $[0;0]$, hlavní poloosa 3, vedlejší poloosa 4}
+\end{uloha}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
