@@ -1,0 +1,106 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[margin=.9cm]{geometry}
+\usepackage[inline]{enumitem}
+\usepackage{tikz}
+\usepackage{multicol}
+
+\setlist[enumerate]{label={(\alph*)},itemjoin={\quad},topsep=\smallskipamount,parsep=0pt,itemsep=\smallskipamount}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem{ssuloha}[uloha]{\llap{$\star\star$ }Úloha}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\pagestyle{empty}
+
+\newcommand{\staritem}{\item[\addtocounter{enumi}{1}$\star$ (\alph{enumi})]}
+
+\newcommand{\hint}[1]{{\footnotesize\textcolor{gray}{(Nápověda: #1)}}}
+
+\begin{document}
+
+%\tisk
+
+\begin{center}
+    \textbf{\LARGE (Rychlá) sbírka}\\[1mm]
+    na\\[1mm]
+    {\Large využití stejnolehlosti}
+\end{center}
+
+
+\begin{uloha}
+Sestrojte trojúhelník $ABC$, který bude splňovat
+\begin{enumerate}
+    \item $a:b:c = 4:5:6$, $v_a = 5$;
+    \item $b:c = 2:3$, $\alpha=65^\circ$, $t_a=7$;
+    \item $a+b+c=12$, $\alpha=40^\circ$, $\beta=70^\circ$.
+\end{enumerate}
+\end{uloha}
+
+
+\begin{uloha}
+Je daný ostroúhlý trojúhelník $ABC$. Sestrojte čtverec $KLMN$, jehož strana $KL$ bude ležet na straně $AB$, zatímco $M \in BC$, $N \in CA$.
+\end{uloha}
+
+\begin{uloha}
+Je daná půlkružnice s průměrem $AB$. Sestrojte čtverec $KLMN$, jehož strana $KL$ bude ležet na průměru $AB$, zatímco body $M$ a $N$ budou ležet na oblouku.
+\end{uloha}
+
+\begin{uloha}
+Sestrojte přímku, která bude procházet bodem $A$ a průsečíkem přímek $p$ a $q$, který ovšem není přístupný. \hint{Stejnolehlostí si přímky, tedy i jejich průsečík \uv{přitáhněte}.}
+\[\begin{tikzpicture}
+\draw (0,0) node[left] {$q$} -- (12,0);
+\draw (0,2) node[left] {$p$} -- (12,1);
+\node[circle,fill=black,inner sep=1.25pt,label=below left:{$A$}] at (1,1.1) {};
+\end{tikzpicture}\]
+\end{uloha}
+
+
+\subsection*{\llap{$\star$ }Zajímavé konstrukční úlohy na využití zobrazení}
+
+\begin{uloha}
+Jsou dány dvě různé rovnoběžky $p$, $q$ a bod $A$, který leží mezi nimi. Sestrojte kružnici procházející bodem $A$ a dotýkající se přímek $p$, $q$. %posunuti
+\end{uloha}
+
+\begin{uloha}
+Je dána kružnice $k(S;r)$ a úsečka $XY$. Sestrojte tětivu $AB$ kružnice $k$ shodnou a rovnoběžnou s úsečkou $XY$. Kdy je úloha řešitelná? % posuneme kruznici o XY
+\end{uloha}
+
+\begin{uloha}
+Je dána kružnice $k(S; 4)$ a bod $A$ splňující $|SA| = 3$. Sestrojte všechny tětivy kružnice $k$, které prochází bodem $A$ a jsou jím děleny v poměru $1:2$. % stejnolehlost se stredem A a koef -2
+\end{uloha}
+
+\begin{uloha}
+Je dána kružnice $k(S; 5)$ a bod $A$ splňující $|SA| = 4$. Sestrojte všechny tětivy kružnice $k$, které prochází bodem $A$ a jejich délka je $7$. % zkonstruujeme jednu takovou a otocime, aby to vyslo
+\end{uloha}
+
+\begin{uloha}
+Je dána přímka $p$ a body $A$, $B$, které na ní neleží, ovšem nachází se v téže polorovině ohraničené přímkou $p$. Nalezněte na $p$ bod $X$ tak, aby $|AX| + |BX|$ bylo co nejmenší. % osova soumernost
+\end{uloha}
+
+\begin{uloha}
+Jsou dány dvě kružnice $k$, $\ell$, které mají vnější dotyk v bodě $A$. Sestrojte rovnostranný trojúhelník $ABC$ tak, aby platilo $A \in k$, $B \in \ell$.
+\end{uloha}
+
+
+\end{document}
