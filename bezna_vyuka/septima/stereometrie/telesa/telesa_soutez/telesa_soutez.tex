@@ -1,0 +1,169 @@
+\documentclass[12pt,a4paper]{extarticle}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\qquad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\DeclareMathOperator{\arctg}{arctg}
+
+\let\=\doteq
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\newenvironment{sulohav}[1][]{\begin{suloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{suloha}}
+
+\makeatother
+
+\def\body#1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil{\footnotesize(#1)}%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\begin{document}
+
+%\tisk
+
+\section*{3. Tělesová soutěž}
+
+\mathcode`\,="013B
+
+
+\begin{uloha}
+O kolik procent se zvětší objem krychle, jestliže se její hrana zvětší o $15\,\%$?\vyslplain{52,087}\body1
+\end{uloha}
+
+\begin{uloha}
+V krychli $ABCDEFGH$ o hraně délky $1$ uvažme bod $V$, který leží na úsečce $EH$ a platí pro něj $|EV| = 2|VH|$. Určete objem jehlanu $ABCDV$.\body1\vyslplain{$\frac13$}
+\end{uloha}
+
+\begin{ulohav}
+Určete rozměry kvádru, víte-li, že
+\begin{enumerate}
+    \item jeho povrch je $44$ a délky hran jsou v poměru $1 : 2 : 3$,\lv{$\sqrt2$, $2\sqrt2$, $3 \sqrt2$}\body1
+    \item jedna strana je dlouhá $2$, zbývající dvě jsou stejně dlouhé a tělesová úhlopříčka má délku $8$,\lv{$2$, $\sqrt{30}$, $\sqrt{30}$}\body1
+    \item jeho objem je $400$, jedna stěna má povrch $20$ a jiná má povrch $80$,\lv{4, 5, 20}\body1
+    \item jeho stěny mají povrchy $4$, $5$ a $10$.\lv{$\sqrt2$, $2\sqrt2$, $\frac{5}{\sqrt2}$}\body2
+\end{enumerate}
+\end{ulohav}
+
+
+
+
+\begin{ulohav}
+Z (pravidelného) čtyřstěnu o hraně délky $1$ odlomíme čtyři čtyřstěny o poloviční délce hrany, a to tak, že tři hrany každého toho malého čtyřstěnu byly původně střední příčky na stěnách původního čtyřstěnu (prostě to byly ty \uv{rohy}).
+\begin{enumerate}
+    \item Co za těleso \uv{zbyde}?\body1\lv{osmistěn}
+    \item Jaké bude mít zbylé těleso objem?\body3\lv{$\frac{1}{12\sqrt2}$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Uvažme pravidelný čtyřboký jehlan, odchylka jehož protějších bočních stěn je $60^\circ$. Je-li délka podstavné hrany $1$, určete
+\begin{enumerate}
+    \item objem jehlanu,\lv{$\frac{\sqrt3}{6}$}\body1
+    \item povrch jehlanu.\lv{$3$}\body1
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav} % petakova 54
+Pro pravidelný šestiboký jehlan, jehož podstavná hrana měří 3 a boční hrana $6$, určete
+\begin{enumerate}
+    \item objem jehlanu,\lv{$40,5$}\body1
+    \item povrch jehlanu.\lv{$\frac{27}2(\sqrt3+\sqrt{15}) \doteq 75,67$}\body2
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}% realisticky 5
+Kolmý jehlan s obdélníkovou podstavou má výšku 15\,cm. Jeho boční stěny svírají 
+s podstavou úhly $56^\circ 19'$ a $61^\circ 56'$. Určete jeho objem.\vyslplain{1599,2}\body2
+\end{uloha}
+
+\begin{ulohav}
+Pravidelný čtyřboký komolý jehlan má délku jedné podstavné hrany $1$, druhé podstavné hrany $2$ a výšku $3$. Určete jeho 
+\begin{enumerate}
+    \item objem,\lv{7}\body1
+    \item povrch.\lv{$5+3\sqrt{37}$}\body2
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Komolý jehlan o výšce $3$ má obsah jedné podstavy roven $1$. Jaký musí být obsah druhé podstavy, aby byl objem tělesa roven $12$?\vyslplain{$\frac{1}{2} \left(23-3 \sqrt{5}\right)$}\body3
+\end{uloha}
+
+
+\begin{ulohav}
+Věž celkově vysoká 50\,m má čtvercovou základnu o rozměrech $10\,\mathrm{m} \times 10\,\mathrm{m}$. Hlavní část věže je pravidelný čtyřboký hranol, na který navazuje střecha, což je pravidelný čtyřboký jehlan o shodné podstavě jako hranol pod ní. Určete, jak vysoká je hlavní hranolovitá část, jestliže
+\begin{enumerate}
+    \item celkový objem věže je $4500\,\mathrm{m}^3$,\lv{42,5\,m}\body4
+    \item povrch věže (do kterého nepočítáme podstavu) je $1900\,\mathrm{m}^2$.\lv{$130/3\,\mathrm{m} = 43\frac13\,\mathrm{m}$}\body4
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha} % realisticky.cz
+Přístřešek je potřeba pokrýt střechou jako na obrázku
+s obdélníkovým průřezem $8\,\mathrm m \times 5\,\mathrm m$. Všechny střešní plochy mají stejný sklon $30^\circ$. 
+Určete cenu střechy, pokud $1\,\mathrm m^2$ střechy stojí 270\,Kč.\vyslplain{12470,77}\body3
+\[ \includegraphics[width=5cm]{strecha.pdf} \]
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
