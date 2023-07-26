@@ -1,0 +1,138 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=.9cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+
+\section*{19. Všechno možné s kružnicemi}
+
+\begin{ulohav}
+Kružnice $k$ má střed v bodě $S[2; -1]$ a poloměr $4$.
+\begin{enumerate}
+    \item Určete rovnici kružnici $k$.\lv{$(x-2)^2 + (y+1)^2 = 16$}
+    \item Určete souřadnice průsečíků $k$ s osou $x$.\lv{$[2-\sqrt{15};0]$ a $[2+\sqrt{15};0]$}
+    \item Určete souřadnice průsečíků $k$ s osou $y$.\lv{$[0; -1-2\sqrt3]$ a $[0; -1+2\sqrt3]$}
+    \item Určete souřadnice průsečíků $k$ s přímkou $p$: $x = -1+t$, $y = 1-2t$, $t \in \R$.\lv{$[2;-5]$ pro $t=3$ a $\bigl[-\frac65; \frac75\bigr]$ pro $t=-\frac15$}
+    \item Určete souřadnice průsečíků $k$ s kružnicí $\ell$ o středu $[3;0]$ a poloměru $\sqrt{10}$.\lv{$[2;3]$ a $[6;-1]$}
+    \item Určete rovnici kružnice $m_1$, která bude mít střed v bodě $[7;4]$ a bude mít s $k$ vnější dotyk.\lv{$(x-7)^2+(y-4)^2 = 66-40\sqrt2$}
+    \item Určete rovnici kružnice $m_2$, která bude mít střed v bodě $[7;4]$ a bude mít s $k$ vnitřní dotyk.\lv{$(x-7)^2+(y-4)^2 = 66+40\sqrt2$}
+    \item Určete obecnou rovnici tečny ke $k$ procházející bodem $P\bigl[\frac{46}{13}; \frac{35}{13}\bigr]$ (který na $k$ leží). \hint{Ona tečna bude kolmá na $PS$, což nám dá normálový vektor.}\lv{$5x+12y-50=0$}
+    \item Určete obecné rovnice obou tečen ke $k$ procházejících bodem $[-18; 19]$. \hint{Typově jde vlastně jen o jinak formulovanou Úlohu 2 z posledního domácího úkolu.}\lv{$4x+3y+15=0$ a $3x+4y-22=0$} \label{tecny1}
+    \item Určete obecné rovnice obou tečen ke $k$ procházejících bodem $[6;7]$.\lv{$x - 6 = 0$ a $3x-4y+10=0$} \label{tecny2}
+    \item Určete body dotyku tečen z podúloh \ref{tecny1} a \ref{tecny2}.\lv{pro \ref{tecny1} $\bigl[-\frac{6}{5};-\frac{17}{5}\bigr]$ a $\bigl[\frac{22}{5};\frac{11}{5}\bigr]$; pro \ref{tecny2} $[6;-1]$ a $\bigl[-\frac{2}{5};\frac{11}{5}\bigr]$}
+    \item Určete obecné rovnice všech rovnoběžek s přímkou $2x + y = 0$, které budou tečnami kružnice $k$. \hint{Hledejte \uv{koeficient $c$} v rovnici přímky tak, aby po dosazení do rovnice kružnice vyšla kvadratická rovnice s nulovým diskriminantem. Alternativně využijte vzorec pro vzdálenost bodu od přímky, čímž dostanete rovnici s abs. hodnotou s neznámou $c$.}\lv{$2x+y-3-4\sqrt5=0$ a $2x+y-3+4\sqrt5=0$}
+    \item Nalezněte všechna reálná čísla $a$ s vlastností: Přímka $EF$ je tečnou kružnice $k$, přičemž souřadnice bodů jsou $E[-3;-1]$ a $F[a;0]$. \hint{Napište si parametrickou rovnici oné přímky, která bude záviset na $a$; po dosazení do rovnice kružnice získáte kvadratickou rovnici, jejíž diskriminant by měl být nulový.}\lv{$-\frac94$ a $-\frac{15}{4}$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}[kompletně převzatá z Petákové]
+Určete rovnici kružnice, která
+\begin{enumerate}
+    \item má střed v bodě $S[-5;4]$ a dotýká se přímky $p\colon 3x-4y+6=0$.\lv{$(x+5)^2+(y-4)^2 = 25$}
+    \item se dotýká osy $x$ v bodě $T[3;0]$ a prochází bodem $M[0;1]$.\lv{$(x-3)^2+(y-5)^2 = 25$}
+    \item má střed v bodě $S[-5;4]$ a na přímce $2x-y+4 = 0$ vytíná tětivu délky 8.\lv{$(x+5)^2 + (y-4)^2 = 36$}
+    \stitem prochází bodem $M[2;1]$ a dotýká se přímek $p_1\colon x-y-3=0$ a $p_2\colon 7x+y+3=0$.\lv{$(x-1)^2 + y^2 = 2$ a $\bigl(x-\frac52\bigr)^2 + \bigl(y-\frac92\bigr)^2 = \frac{25}{2}$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Množina všech bodů, jejichž vzdálenost od bodu $[3;1]$ je trojnásobná oproti vzdálenosti od bodu $[-1;5]$, je jistá kružnice. Určete souřadnice středu a poloměr této kružnice.\vysl{střed $\bigl[-\frac32;\frac{11}{2}\bigr]$, poloměr $\frac32 \sqrt2$}
+\end{uloha}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+
+\end{document}
