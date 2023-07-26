@@ -1,6 +1,5 @@
 \documentclass[10pt,a4paper]{extarticle}
 \usepackage[margin=.8cm,bottom=10mm]{geometry}
-%\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[IL2]{fontenc}
 \usepackage[czech]{babel}
@@ -89,8 +88,6 @@
 \def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
 
 \def\lm#1{\lv{$\left\{#1\right\}$}}
-% \let\ra\rangle
-% \let\la\langle
 \catcode`<=\active
 \catcode`>=\active
 \def<{\left\langle}
@@ -202,7 +199,7 @@ Na pružině je zavěšeno závaží, které kmitá nahoru a dolů tak, že vzd�
 \end{ulohav}
 
 
-\begin{uloha}
+\begin{uloha} % https://physics.stackexchange.com/q/177949
 Vzdálenost Země od Slunce v průběhu roku je dána přibližným vztahem $d = 1-0{,}01672 \cos\bigl(0{,}0172(t-4)\bigr)$, kde $t$ je čas od začátku roku v dnech a $d$ je ona vzdálenost v astronomických jednotkách. Určete, kdy během roku je Země vzdálená $1{,}01$\,AU od Slunce.\vysl{cca 132. den a 240. den}
 \end{uloha}
 
