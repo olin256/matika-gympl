@@ -1,8 +1,5 @@
 \documentclass[10pt,a5paper]{article}
-%\documentclass[9pt,a5paper]{extarticle}
-%\usepackage[margin=.75in]{geometry}
 \usepackage[margin=1.2cm]{geometry}
-%\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[IL2]{fontenc}
 \usepackage[czech]{babel}
@@ -49,13 +46,6 @@
 
 \pagestyle{empty}
 
-%\newtoks\vysltoks
-
-\DeclareMathOperator{\arctg}{arctg}
-
-%\def\vysl#1{}
-%\let\vysl\relax
-\let\=\doteq
 \let\ee\expandafter
 
 \def\vysld{}
@@ -63,7 +53,6 @@
 \let\printalphvysl\relax
 
 \makeatletter
-%\def\vysl#1{\xdef\vysld{\vysld\printvysl{\arabic{uloha}}{\unexpanded{#1}}}}
 \long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
 
 \def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
@@ -83,14 +72,11 @@
 
 Pro připomenutí vzorce z Wikipedie: 
 \begin{itemize}
-	\item objem kulové úseče $V = \frac13 \pi v^2 (3r - v) = \frac16 \pi v (3\varrho^2 + v^2)$,
-	\item povrch kulového vrchlíku $S = 2\pi r v = \pi(\varrho^2 + v^2)$.
+    \item objem kulové úseče $V = \frac13 \pi v^2 (3r - v) = \frac16 \pi v (3\varrho^2 + v^2)$,
+    \item povrch kulového vrchlíku $S = 2\pi r v = \pi(\varrho^2 + v^2)$.
 \end{itemize}
 
 
-%Ve všech úlohách značí $S_{XY}$ střed úsečky $XY$.
-
-%\the\mathcode`\,
 \mathcode`\,="013B
 
 
@@ -101,10 +87,9 @@ Jaký povrch a objem bude mít činka, která vznikla spojením dvou koulí o po
 \end{uloha}
 
 
-\begin{uloha}
+\begin{uloha} % realisticky.cz s jinými čísly
 Vodojem kulového tvaru je naplněn z jedné poloviny svého objemu a obsahuje $315\,\mathrm m^{3}$ vody. Určete jeho poloměr. Jaký je povrch vodojemu? Kolik bude stát jeho natření barvou, jestliže 4,5\,kg barvy o vydatnosti $26\,\mathrm{m}^2 \cdot \mathrm{kg}^{-1}$ stojí 780\,Kč?
 \vyslplain{poloměr $3 \sqrt[3]{\frac{35}{2\pi}} \doteq 5,32\,\mathrm m$, povrch $18\sqrt[3]{35^2 \cdot 2\pi} \doteq 355,4\,\mathrm m^2$, cena cca 2369\,Kč (pokud můžeme kupovat barvu jen po baleních po 4,5\,kg, tak potom jsou potřeba 4 balení celkem za 3120\,Kč)}
-%\vyslplain{povrch: $\sqrt[3]{36\pi \cdot 30^2}\,\mathrm m^2 \doteq 46,69\,\mathrm m^2$, cena 1349\,Kč}
 \end{uloha}
 
 
@@ -114,11 +99,11 @@ Jaký poloměr měl kulový pomeranč, pokud objem úseče o výšce 2\,cm je $5
 \end{uloha}
 
 
-\begin{ulohav}
+\begin{ulohav} % realisticky.cz
 Země je přibližně koule s poloměrem 6378\,km.
 \begin{enumerate}
-	\item Určete plochu zemského povrchu ležícího v severním mírném pásmu (mezi obratníkem $23^\circ 27'$ a polárním kruhem $66^\circ 33'$).\lv{cca $1,3277\cdot 10^8\,\mathrm{km}^2$}
-	\item Kolik procent zemského povrchu onen mírný pás tvoří?\lv{cca 25,973\,\%}
+    \item Určete plochu zemského povrchu ležícího v severním mírném pásmu (mezi obratníkem $23^\circ 27'$ a polárním kruhem $66^\circ 33'$).\lv{cca $1,3277\cdot 10^8\,\mathrm{km}^2$}
+    \item Kolik procent zemského povrchu onen mírný pás tvoří?\lv{cca 25,973\,\%, pokud počítáme jen severní mírný pás, jinak dvakrát tolik}
 \end{enumerate}
 \end{ulohav}
 
@@ -130,18 +115,11 @@ Rozmyslete si, jak by se počítal objem létajícího talíře:
 \end{uloha}
 
 
-
-%\end{document}
-
 \newpage
 \parindent=0pt
 \parskip=\smallskipamount
 \def\printvysl#1#2{\textbf{#1.}\ #2\par}
 \vysld
-%\ee\def\ee\mmm\ee{\arabic{uloha}}
-%\the\csname c@uloha\endcsname
-
 
 
 \end{document}
-
