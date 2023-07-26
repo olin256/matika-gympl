@@ -1,0 +1,191 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{21. Další úlohy o elipse}
+
+\begin{uloha}\label{elipsy}
+Jaké rovnice budou mít níže znázorněné elipsy?
+\[ \begin{tikzpicture}[scale=.5]
+    \draw[help lines, color=gray, dashed] (-10,-4) grid[step=1] (10,4);
+    \draw[->] (-10,0)--(10,0) node[right]{$x$};
+    \draw[->] (0,-4)--(0,4) node[below left]{$y$};
+    %\node[below left] at (0,0) {$O$};
+    \foreach \ii in {-10,...,10} {
+        \ifnum \ii=0 \else
+            \node[below] at (\ii,0) {$\scriptstyle\ii$};
+        \fi
+    }
+    \foreach \ii in {-4,...,4} {
+        \ifnum \ii=0 \else
+            \node[right] at (0,\ii) {$\scriptstyle\ii$};
+        \fi
+    }
+    \begin{scope}[thick]
+        %
+        \draw (-6,-.5) ellipse (2 and 3.5);
+        \node[above] at (-6,3) {(a)};
+        %
+        \draw (-2,1) ellipse (2 and 1);
+        \node[above] at (-2,2) {(b)};
+        %
+        \draw (6,1) ellipse (4 and 3);
+        \node at (2,3) {(c)};
+        %
+        \draw (3.5,-2.5) ellipse (6.5 and .5);
+        \node[below] at (3.5,-3) {(d)};
+        %
+    \end{scope}
+\end{tikzpicture} \]
+\vysl{\begin{enumerate*}\everymath{\displaystyle}
+    \item $\dfrac{(x+6)^2}{2^2} + \dfrac{\left(y+\frac12\right)^2}{\left(\frac72\right)^2} = 1$
+    \item $\dfrac{(x+2)^2}{2^2} + \dfrac{(y-1)^2}{1^2} = 1$
+    \item $\dfrac{(x-6)^2}{4^2} + \dfrac{(y-1)^2}{3^2} = 1$
+    \item $\dfrac{\left(x-\frac72\right)^2}{\left(\frac{13}2\right)^2} + \dfrac{\left(y+\frac52\right)^2}{\left(\frac12\right)^2} = 1$
+\end{enumerate*}}
+\end{uloha}
+
+\begin{uloha}
+Zkuste si nejprve tipnout, kde budou mít elipsy z Úlohy \ref{elipsy} ohniska (na základě \uv{provázkové} konstrukce nebo jakkoliv jinak). Potom pro ony elipsy spočtěte přesně excentricitu a porovnejte ji se svými tipy.
+\end{uloha}
+
+\begin{uloha}
+Tipněte si, co by to tak mohly být \emph{hlavní vrcholy} a \emph{vedlejší vrcholy} elipsy (nebo to najděte na netu), a vyznačte si je do obrázku v Úloze \ref{elipsy}.
+\end{uloha}
+
+\interest
+\begin{uloha}\label{obsah}
+Zkuste vymyslet vzorec pro obsah elipsy, jejíž poloosy mají délky $a$ a $b$. (Poznámka: pro obvod žádný \uv{hezký} vzorec není.) \hint{Elipsa je jenom \uv{roztažená} kružnice.}\vysl{$S = \pi a b$}
+\end{uloha}
+
+\begin{ulohav}
+Země je Slunci nejblíže cca $147{,}09\cdot10^6\,\mathrm{km}$ (tzv. \emph{perihelium}) a nejdále cca $152{,}10\cdot10^6\,\mathrm{km}$ (tzv. \emph{afelium}). Podle 1. Keplerova zákona se Země pohybuje po elipe, v jejímž jednom ohnisku je Slunce.
+\begin{enumerate}
+    \item Ze zadaných údajů dopočtěte délky poloos a excentricitu trajektorie Země.\lv{$a \doteq 149{,}60\cdot10^6\,\mathrm{km}$; $b \doteq 149{,}57\cdot10^6\,\mathrm{km}$; $e \doteq 2{,}51 \cdot10^6\,\mathrm{km}$}
+    \stitem Země oběhne Slunce přesně za jeden (astronomický) rok. Jak dlouho Zemi trvá dostat se z perihelia do vedlejšího vrcholu elipsy? Jak dlouho z afelia? Využijte vzorec z Úlohy~\ref{obsah} a
+toho, že podle 2. Keplerova zákona jsou plochy opsané průvodičem za jednotku času stejné.\lv{Z perihelia je to cca $0{,}2473$ roku $\doteq 90{,}3$ dní a z afelia cca $0{,}2527$ roku $\doteq 92{,}3$ dní.}
+    \stitem Jak dlouho by trval jeden oběh Země kolem Slunce, pokud by Země obíhala po kružnici o poloměru $147{,}09\cdot10^6\,\mathrm{km}$? Použijte 3. Keplerův zákon.\lv{cca $0{,}975$ roku $\doteq 356{,}1$ dní}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Popište množinu všech bodů v rovině, jejichž vzdálenost od osy $y$ je dvojnásobná oproti vzdálenosti od bodu $[3;0]$.\vysl{jde o elipsu se středem v bodě $[4;0]$, hlavní osa je totožná s osou $x$, $a = 2$, $b = \sqrt3$}
+\end{uloha}
+
+%\interest
+\begin{uloha}
+Do elipsy je vepsán čtverec; určete délky stran onoho čtverce v závislosti na délkách poloos elipsy.\vysl{$2\sqrt{\frac{a^2b^2}{a^2+b^2}}$}
+\end{uloha}
+
+\begin{uloha}
+Určete rovnice rovnoběžek s přímkou $y = 2x$, které jsou tečnami elipsy o rovnici $x^2 + 6y^2 = 6$.\vysl{$y = 2x+5$ a $y = 2x-5$}
+\end{uloha}
+
+\begin{ulohav}
+Kolmý řez bagetou je elipsa o délkách poloos $a = 4\,\mathrm{cm}$ a $b = 2{,}5\,\mathrm{cm}$.
+\begin{enumerate}
+    \item Co bude řezem, pokud bagetu rozkrojíme pod úhlem $45^\circ$ tak, že řez bude procházet hlavní osou?\lv{elipsa o rozměrech $a = 4$, $b = 2{,}5\cdot\sqrt2$}
+    \item Co bude řezem, pokud bagetu rozkrojíme pod úhlem $45^\circ$ tak, že řez bude procházet vedlejší osou?\lv{elipsa o rozměrech $a = 4\sqrt2$, $b = 2{,}5$}
+    \item Ve kterém případě se na výsledný kus pečiva vejde více pomazánky? Použijte výsledek Úlohy \ref{obsah}.\lv{vyjde to nastejno}
+\end{enumerate}
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+\end{document}
