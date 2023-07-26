@@ -1,0 +1,115 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[margin=1cm,top=1.2cm]{geometry}
+\usepackage[inline]{enumitem}
+\usepackage{tikz}
+\usepackage{multicol}
+
+\usetikzlibrary{positioning}
+
+\setlist[enumerate]{label={(\alph*)},itemjoin={\quad},topsep=\smallskipamount,parsep=0pt,itemsep=\smallskipamount}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem{ssuloha}[uloha]{\llap{$\star\star$ }Úloha}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\pagestyle{empty}
+
+\newcommand{\stitem}{\item[\addtocounter{enumi}{1}$\star$ (\alph{enumi})]}
+\newcommand{\ststitem}{\item[\addtocounter{enumi}{1}$\star\star$ (\alph{enumi})]}
+
+\newcommand{\hint}[1]{{\footnotesize\textcolor{gray}{(Nápověda: #1)}}}
+
+\def\bod#1#2#3{\node[circle,fill=black,inner sep=0pt,outer sep=0pt,minimum size=3pt,label=#2:{$#3$}] (#3) at (#1) {};}
+
+\begin{document}
+
+%\tisk
+
+\section*{Opáčko planimetrie}
+
+\hbox to\hsize{%
+\vbox{\hsize=.6\hsize
+\begin{uloha}
+Do trojúhelníka $ABC$ vepište obdélník, jehož delší strana bude ležet na straně $AB$ a jehož délky stran budou v poměru $1:2$.
+\end{uloha}
+}%
+\hfil
+\vbox to0pt{\vss
+\hbox{\begin{tikzpicture}[scale=1.25]
+\bod{0,0}{left}{A}
+\bod{3,0}{right}{B}
+\bod{2,1.7}{above}{C}
+\draw (A) -- (B) -- (C) -- (A);
+\end{tikzpicture}%
+}}
+}
+
+
+\begin{uloha}
+Sestrojte trojúhelník $ABC$ (v rámci časové úspory nemusíte rýsovat, jen si rozmyslete, jak na to, kolik bude existovat řešení a jak by se zapsala konstrukce), jestliže %\par
+\vskip-1.5\bigskipamount\vbox{}
+\begin{multicols}{2}%
+\begin{enumerate}
+    \item $b = 8$, $t_b = 4{,}5$, $\gamma = 30^\circ$; %pet 77/18 b
+    \item $c = 6$, $v_a = 3{,}5$, $v_b = 5{,}5$; %pet 77/18 p
+    \item $t_a = 7{,}5$, $t_c = 6$, $\alpha = 45^\circ$; %pet 77/18 s pouzije se teziste
+    \item $t_c = 4$, $\alpha = 45^\circ$, $\gamma = 60^\circ$; %pet 77/18 v bud stejnolehlost, nebo doplneni na rovnobeznik
+    \item $a=6$, $t_c=5$, $v_b=4$; % variace r7.5
+    \stitem $a = 4$, $v_a = 3$, $r = 3{,}5$ (poloměr kruž. opsané);
+    \stitem $v_a = 3$, $v_b = 4$, $v_c = 5$; \hint{Jaké budou poměry délek stran?}
+    \ststitem $a = 4$, $\beta = 50^\circ$, $b + c = 7$.
+\end{enumerate}
+\end{multicols}
+\end{uloha}
+
+\begin{uloha}
+Je dána úsečka délky $x$ (níže); sestrojte úsečku délky \begin{enumerate*}\item $\sqrt 6\, x$, \item $\sqrt 7\, x$.\end{enumerate*}
+\[\begin{tikzpicture} \draw (0,0) -- node[below] {$x$} (1.63,0);
+\draw (0,-.1) -- (0,.1);
+\draw (1.63,-.1) -- (1.63,.1);
+\end{tikzpicture}\]
+\end{uloha}
+
+\begin{uloha}
+Sestrojte obrazy kružnice $k$ (se středem $T$) a trojúhelníka $ABC$ ve stej\-no\-leh\-lo\-sti se středem $S$ a koeficientem \begin{enumerate*} \item $\frac32$, \item $-\frac23$.\end{enumerate*}
+\vskip1.2cm
+\hbox to\hsize{\hfil\hbox{%
+\begin{tikzpicture}[scale=1.1]
+\bod{0,.75}{below}{S}
+\bod{-3,-1}{above left}{A}
+\bod{-2,.5}{above}{B}
+\bod{-1,-1.5}{below}{C}
+\draw (A) -- (B) -- (C) -- (A);
+\bod{-3.5,1.3}{above}{T}
+\draw (T) circle (1);
+\node[above=1.1] at (T) {$k$};
+\end{tikzpicture}}%
+\hfil\hskip1cm
+}
+\end{uloha}
+
+
+
+\end{document}
+
