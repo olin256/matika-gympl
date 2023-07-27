@@ -1,0 +1,134 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\begin{document}
+
+%\tisk
+
+
+\section*{10. Další výpočty s vektory a body}
+
+
+\begin{ulohav}
+Skříň jsme přesunuli po úsečce z bodu $A[-2; 4]$ do bodu $B[3; 7]$, přičemž jsme na ni při tom působili silou $\mb F (2; 1)$.
+\begin{enumerate}
+    \item Jak daleko jsme ji přesunuli?\lv{$\sqrt{34}$ (metrů)}
+    \item Jak velkou silou jsme působili?\lv{$\sqrt5$ (Newtonů)}
+    \item Kolik práce jsme vykonali?\lv{13 (Joulů)}
+    \item Určete, o jak velký úhel jsme silou působili \uv{špatně}.\lv{$\arccos\bigl(\frac{13}{\sqrt{170}}\bigr) \doteq 4^\circ 24'$}
+    \item Určete souřadnice vektoru síly $\mb G$, který bude mít stejnou velikost jako $\mb F$, ale bude působit tím \uv{správným} směrem (tj. od $A$ do $B$).\lv{$\left(5 \sqrt{\frac{5}{34}};3 \sqrt{\frac{5}{34}}\right)$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Najděte nějaký nenulový vektor, který bude kolmý na vektor
+\begin{enumerate}
+    \item $(2; 1)$,\lv{např. $(-1; 2)$}
+    \item $(3; -1; 2)$\lv{např. $(1; 3; 0)$ nebo $(124; 138; -117)$ nebo mnohé další\dots}
+\end{enumerate}
+(tj. úhel jimi sevřený bude $90^\circ$). Jak efektivně poznáme, že dva vektory jsou na sebe kolmé, když známe jejich souřadnice?
+\end{ulohav}
+
+
+\begin{uloha}
+Nalezněte reálná čísla $a$, $b$ taková že bude platit $\mb u \cdot \mb v = 16$ a $\mb u \cdot \mb w = 3$, kde $\mb u = (1; a; b)$, $\mb v = (2; -1; 4)$, $\mb w = (-1; 4; 4)$.\vyslplain{$a=-2$, $b = 3$}
+\end{uloha}
+
+
+\begin{ulohav}
+Nalezněte reálná čísla $a$, $b$ taková, že body $K$, $L$, $M$ budou ležet na jedné přímce, jestliže jejich souřadnice jsou
+\begin{enumerate}
+    \item $K[1; 2; 3]$, $L[4; 5; 7]$, $M[10; a; b]$,\lv{$a = 11$, $b = 15$}
+    \item $K[1; 5; 6]$, $L[3; a; 2]$, $M[5; 1; b]$.\lv{$a = 3$, $b = -2$}
+\end{enumerate}
+\hint{Na tuto úlohu vůbec není potřeba skalární součin.}
+\end{ulohav}
+
+
+\begin{ulohav}
+Nalezněte všechna reálná čísla $p$ taková, že odchylka vektorů $\mb u$ a $\mb v$ bude $\alpha$, jestliže
+\begin{enumerate}
+    \item $\mb u = (1;1)$, $\mb v = (2; p)$, $\alpha = 60^\circ$,\lv{$p = -4 + 2 \sqrt 3$}
+    \item $\mb u = (3;1)$, $\mb v = (1; p)$, $\alpha = 30^\circ$,\lv{$p_1 = \frac{1}{13} \left(6-5 \sqrt{3}\right)$, $p_2 = \frac{1}{13} \left(5 \sqrt{3}+6\right)$}
+    \item $\mb u = (-p;p+1)$, $\mb v = (1; 2p)$, $\alpha = 90^\circ$.\lv{$p_1 = 0$, $p_2 = -\frac12$}
+\end{enumerate}
+\end{ulohav}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
