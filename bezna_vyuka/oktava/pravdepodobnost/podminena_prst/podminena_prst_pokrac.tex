@@ -1,0 +1,183 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=.65cm,bottom=2mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\def\rv#1{\mathrm{\ref{#1}}}
+
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+\section*{35. Podmíněná pravděpodobnost -- pokračování}
+
+
+\begin{poz}[Bayesova věta]
+Jsou-li $A$, $B$ jevy a $P(B) \neq 0$, tak
+$\displaystyle P(A \mid B) = \frac{P(B \mid A)\cdot P(A)}{P(B)}$.
+\end{poz}
+
+
+\begin{uloha}
+V léčebně je 5\,\% diabetiků a 2\,\% diabetiků kuřáků. Jaká je pravděpodobnost, že náhodně vybraný diabetik je kuřák?\vysl{$\frac25$}
+\end{uloha}
+
+
+\begin{ulohav}\label{linky}
+Dvě výrobní linky vyrábí robotické psy, přičemž výrobky z první fungují s pravděpodobností $p_1 = 0{,}98$, zatímco ty z druhé jenom $p_2 = 0{,}92$. Předpokládáme, že obě linky jsou stejně výkonné.
+\begin{enumerate}
+    \item Jaká je pravděpodobnost, že náhodně vybraný robotický pes bude funkční?\lv{$\frac12(p_1 + p_2) = 0{,}95$}\label{funkcnost}
+    \item Jaká je pravděpodobnost, že náhodně vybraný robotický pes bude nefunkční?\lv{$1 - \rv{funkcnost} = 0{,}05$}\label{nefunkcnost}
+    \item Narazíme na nefunkčního robopsa. S jakou pravděpodobností pochází z druhé linky?\lv{$\frac{(1-p_2) \cdot \frac12}{\rv{nefunkcnost}} = 0{,}8$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Stejná story jako v Úloze \ref{linky} s tím rozdílem, že nyní je první linka výkonnější, takže vyrobí dvakrát tolik robopsů co druhá.
+\begin{enumerate}
+    \item Jaká je pravděpodobnost, že náhodně vybraný robotický pes bude funkční?\lv{$\frac23 p_1 + \frac13 p_2 = 0{,}96$}
+    \item Jaká je pravděpodobnost, že náhodně vybraný robotický pes bude nefunkční?\lv{$1 - \rv{funkcnost} = 0{,}04$}
+    \item Narazíme na nefunkčního robopsa. S jakou pravděpodobností pochází z druhé linky?\lv{$\frac{(1-p_2) \cdot \frac13}{\rv{nefunkcnost}} = \frac23$}
+\end{enumerate}
+\end{ulohav}
+
+
+\interest
+\begin{uloha}
+Ještě k Úloze \ref{linky}: Určete, kolikrát by musela být první linka výkonnější než druhá, aby pravděpodobnost, že nefunkční robopes pochází z 2. linky, byla $\frac12$.
+\vysl{čtyřikrát; označíme-li $q$ pravděpodobnost druhé linky, pak řešíme $\frac12 = \frac{(1-p_2) q}{1-((1-q)p_1 + qp_2)}$ s řešením $q = \frac15$}
+\end{uloha}
+
+
+\begin{ulohav}
+Test na virové onemcnění funguje následovně: pokud jedinec je nakažený, pak toto test potvrdí s pravděpodobností 99\,\% (tzv. \emph{sensitivita}), pokud nakažený není, tak je výsledek správný s pravděpodobností 93\,\% (tzv. \emph{specificita}). S jakou pravděpodobností je jedinec s pozitivním testem skutečně nakažený, pokud předpokládáme, že výskyt viru v populaci je
+\begin{enumerate*}
+    \item 20\,\%,\lv{$\frac{99}{127} \doteq 78\,\%$}
+    \item 1\,\%,\lv{$\frac18 = 12{,}5\,\%$}
+    \item 0,01\,\%?\lv{$\frac{1}{708} \doteq 0{,}14\,\%$}
+\end{enumerate*}
+\end{ulohav}
+
+
+\begin{ulohav}
+Máme následující situaci; figurka táhne zleva doprava, přičemž postoupí o tolik polí, kolik hodíme na šestistěnné kostce. Navíc pokud skončí na políčku $4$, tak házíme a táhneme ještě jednou.
+\[ \includegraphics{figurka.pdf} \]
+\begin{enumerate}
+    \item Určete pravděpodobnost, že skončíme na políčku $3$.\lv{$\frac{1}{6}$}
+    \item Určete pravděpodobnost, že skončíme na políčku $7$.\lv{$\frac{1}{36}$}
+    \item Určete pravděpodobnost, že skončíme na políčku $6$.\lv{$\frac16 + \frac16\cdot \frac16 = \frac{7}{36}$}\label{skok6}
+    \item Určete pravděpodobnost, že skončíme na políčku $5$ nebo $6$.\lv{$2 \cdot \rv{skok6} = \frac{7}{18}$}
+    \item Skončili jsme na políčku $6$. S jakou pravděpodobností jsme toho docílili hodem šestky?\lv{$\frac{1 \cdot \frac16}{\frac{7}{36}} = \frac{6}{7}$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Pokud nějaký den prší, pak pravděpodobnost, že další den také prší, je $\frac35$; naopak pokud neprší, tak další den také neprší s pravděpodobností $\frac45$. Předpokládejme, že v pondělí prší.
+\begin{enumerate}
+    \item S jakou pravděpodobností bude pršet v úterý?\lv{$\frac35$}\label{prsi-ut}
+    \item S jakou pravděpodobností bude pršet ve středu?\lv{$\frac35 \cdot \frac35 + \frac25 \cdot \frac15 = \frac{11}{25}$}\label{prsi}
+    \item S jakou pravděpodobností nebude pršet ve středu?\lv{$1 - \rv{prsi} = \frac{14}{25}$}\label{neprsi}
+    \item S jakou pravděpodobností bude pršet ve čtvrtek?\lv{$\rv{prsi} \cdot \frac35 + \rv{neprsi}\cdot \frac15 = \frac{47}{125}$}\label{prsi-ct}
+    \item Jestliže prší ve středu, s jakou pravděpodobností pršelo v úterý?\lv{$\frac{\frac35 \cdot \rv{prsi-ut}}{\rv{prsi}} = \frac{9}{14}$}
+    \item Jestliže prší ve čtvrtek, s jakou pravděpodobností pršelo ve středu?\lv{$\frac{\frac35 \cdot \rv{prsi}}{\rv{prsi-ct}} = \frac{33}{47}$}
+    \stitem Jestliže prší ve čtvrtek, s jakou pravděpodobností pršelo v úterý?\lv{$\frac{\rv{prsi} \cdot \frac35}{\rv{prsi-ct}} = \frac{33}{47}$}
+\end{enumerate}
+\end{ulohav}
+
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\begin{multicols}{3}
+\vysld
+\end{multicols}
+\unskip
+\endresults
+
+
+\end{document}

@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{wasysym}
+\usepackage[margin=6mm]{geometry}
+\pagestyle{empty}
+
+\newcommand{\centeredgraphics}[2][]{\[\includegraphics[#1]{images/#2}\]}
+
+\newif\ifst
+
+\newcount\pr
+
+\newbox\teambox
+
+% zadání
+\long\def\priklad#1#2{\advance\pr1\relax\hbox to\hsize{%
+\vrule width0pt height3\baselineskip depth2\baselineskip\relax
+\vbox{\hbox to1.5cm{\bfseries\huge\ifnum\pr<10 0\fi\the\pr\hfil}\medskip\copy\teambox}\hfil
+\vbox{\hsize=.87\hsize \linewidth=\hsize \noindent#1}%
+}%
+\vfil\hrule\vskip5mm\vfil
+\ifnum\pr=6 \eject\fi
+}
+
+\def\printtym#1{\setbox\teambox=\hbox to2cm{\huge\textsl{#1}\hfil}\dp\teambox=0pt\relax\def\tym{#1}%
+\pr0\relax\priklady\vfill\newpage}
+
+
+% výsledky
+\def\priklad#1#2{\advance\pr1 \noindent\ifst \stfalse\llap{$\star$ }\fi\textbf{\the\pr.}\space\ignorespaces#1\qquad [#2]\par\bigskip}
+
+
+\let\stt=\sttrue
+
+\parindent0pt
+
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+
+
+\begin{document}
+
+\def\priklady{%
+\priklad{Hodíme šestkrát spravedlivou šestistěnnou kostkou; jaká je pravděpodobnost, že padne šest šestek?}{$1/6^6$}
+\priklad{Náhodně zvolíme dvojciferné číslo (každé se stejnou pravděpodobností). Jaká je pravděpodobnost, že bude dělitelné čtyřmi?}{$22/90 = 11/45$}
+\priklad{Student Pilný se celý rok pilně připravoval na maturitu, takže z 30 otázek z nějakého hrozně důležitého předmětu uměl 10 na jedničku, 13 na dvojku a 7 na trojku. Jaká je pravděpodobnost, že dostane jedničku, pokud je los zcela náhodný?}{$10/30 = 1/3$}
+\priklad{Z osudí obsahujícího 4 zlaté a 8 stříbrných koulí vytáhneme postupně 5 koulí (po vytažení kouli nevracíme). Jaká je pravděpodobnost, že jsou všechny zlaté?}{$0$}
+\priklad{Z osudí obsahujícího 4 zlaté a 8 stříbrných koulí vytáhneme postupně 5 koulí (po vytažení kouli nevracíme). Jaká je pravděpodobnost, že jsou všechny stříbrné?}{$8/12 \cdot 7/11 \cdot 6/10 \cdot 5/9 \cdot 4/8 = \binom{8}{5}/\binom{12}{5} = 7/99$}
+\priklad{Ve třídě OC je 17 dívek a 11 chlapců. Určete pravděpodobnost, že při náhodné volbě dvojčlenné služby budou zastoupena obě pohlaví.}{$17\cdot 11/\binom{28}2 = 187/378$}
+\priklad{Předpověď udává na sobotu pravděpodobnost deště $20\,\%$ a na neděli $60\,\%$. Jaká je pravděpodobnost, že alespoň jeden víkendový den bude hezky?}{$88\,\% = 22/25 = 1 - 0{,}2 \cdot 0{,}6$}
+\priklad{Kolikrát nejméně musíme hodit šestistěnnou kostkou, aby pravděpodobnost, že aspoň jednou hodíme šestku, byla alespoň $99\,\%$?}{26; řešíme $1 - \left(\frac56\right)^n \geq 0{,}99$ neboli $n \geq \log_{\frac56}\frac{1}{100} \doteq 25{,}2$}
+\priklad{Ve třídě OC je 17 dívek a 11 chlapců. Určete pravděpodobnost, že při náhodném vylosování čtyř lidí na zkoušení bude vylosován Max a tři další hoši.}{$\binom{10}3 / \binom{28}4 = 8/1365$}
+\stt\priklad{Hodíme dvěma šestistěnnými kostkami. Jestliže víme, že je součet čísel na kostkách sudý, s jakou pravděpodností padla dvě stejná čísla?}{$6/18 = 1/3$}
+\priklad{Krychli o hraně 4 obarvíme červenou barvou a rozřežeme na krychličky o hraně 1. Posléze kostičky zamícháme a náhodně z nich 8 vybereme. Jaká je pravděpodobnost, že z vybraných kostiček půjde sestavit celočervenou krychli o hraně 2?}{$1/\binom{64}8$}
+\priklad{Anežka si volí náhodně šest knih z pěti matických knížek, šesti románů a osmi hororů. Jaká je pravděpodobnost, že si zvolí dvě od každého druhu?}{$\binom52 \cdot \binom62 \cdot \binom82 / \binom{19}6 = 50/323$}
+\priklad{Jestliže pravděpodobnost toho, že bude v jeden den pršet, je $0{,}2$, jaká je pravděpodobnost, že během jednoho týdne nebude vůbec pršet? (Předpokládáme, že to, jestli v daný den prší, je nezávislé na počasí v předchozí dny.)}{$0{,}8^7$}
+\stt\priklad{Dědičná hloupst je porucha, která se dědí následovně: pokud jsou jí oba rodičové postižení, pak bude stejně postižené jejich dítko s pravděpodobností $\frac34$; pokud pouze jeden z rodičů, pak se na potomka přenese s pravděpodobností $\frac14$, a pokud ani jeden rodič, tak je pravděpodobnost $0$. Dva páry dědičných hlupáků mají každý jednoho potomka a tito dva potomci potom mají spolu dalšího potomka $P$. S jakou pravděpodobností bude mít $P$ dědičnou hloupost?}{$33/64 = \left(\frac34\right)^2 \cdot \frac34 + 2\cdot \frac34 \cdot \frac14 \cdot \frac14$}
+\priklad{Hodíme desetkrát spravedlivou mincí. S jakou pravděpodobností padne stejněkrát panna jako orel?}{$\binom{10}5/2^{10} = 63/256$}
+\priklad{Začneme v políčku \smiley\ a jdeme do políčka \sun, přičemž jsou povoleny pouze tahy o jedna nahoru a o jedna doprava. Jaká je pravděpodobnost, že při tom přejdeme přes políčko \twonotes, pokud jsou všechny cesty stejně pravděpodobné?
+\[ \begin{tikzpicture}[scale=.5] \draw (0,0) grid (7, 4); \node at(.5,.5) {\smiley}; \node at(2.5,2.5) {\twonotes}; \node at(6.5,3.5) {\sun}; \end{tikzpicture} \]}{$5/14 = \binom42 \cdot \binom51 / \binom93$}
+\priklad{Jestliže pravděpodobnost toho, že bude v jeden den pršet, je $0{,}2$, jaká je pravděpodobnost, že během jednoho týdne bude pršet přesně třikrát? (Předpokládáme, že to, jestli v daný den prší, je nezávislé na počasí v předchozí dny.)}{$0{,}8^4 \cdot 0{,}2^3 \cdot \binom73 = 1792/15625 = 0{,}114688$}
+\priklad{Anežka si volí náhodně šest knih z pěti matických knížek, šesti románů a osmi hororů. Jaká je pravděpodobnost, že si zvolí tři matické knihy a k tomu buď tři romány, nebo tři horory?}{$\binom53 \left(\binom 63 + \binom83\right)/\binom{19}6 = 10/357$}
+\priklad{Máme dvě osudí: v prvním je sedm modrých a osm žlutých koulí, ve druhém deset červených a třináct zelených. Z~každého osudí vytáhneme dvě koule (po vytažení je nevracíme). S jakou pravděpodobností takto získáme koule všech čtyř barev?}{$7\cdot8\cdot10\cdot13/(\binom{15}2 \cdot \binom{23}2) = 208/759$}
+\priklad{Ve třídě OC je 17 dívek a 11 chlapců. Určete pravděpodobnost, že při náhodném vylosování čtyř lidí na zkoušení budou vylosovány \emph{alespoň} dvě Kačky (ze čtyř).}{$\frac{\binom42 \cdot \binom{24}2 + \binom43 \cdot \binom{24}1 + \binom44 \cdot \binom{24}0}{\binom{28}4} = 1753/20475$}
+\priklad{Žárovka svítí se spolehlivostí 92\,\%. Jaká je pravědpodobnost, že bude svítit trojice žárovek, které jsou zapojeny sériově?}{$0{,}92^3$}
+\priklad{Krychli o hraně 4 obarvíme červenou barvou a rozřežeme na krychličky o hraně 1. Posléze kostičky zamícháme a náhodně z nich 8 vybereme. Jaká je pravděpodobnost, že z vybraných kostiček půjde sestavit zcela neobarvenou krychli o hraně 2?}{$1$}
+\stt\priklad{Marta hází mincí: nejprve uskuteční první hod spravedlivou mincí, a pokud padne panna, provede druhý hod tou samou mincí, a pokud orel, tak upravenou mincí, na které padne panna s pravděpodobností $4/5$. Určete pravděpodobnost, že v druhém hodu padne orel.}{$7/20 = \frac12 \cdot \frac12 + \frac12 \cdot \frac15$}
+\priklad{Hodíme třemi spravedlivými šestistěnnými kostkami. Jaká je pravděpodobnost, že součet padlých čísel bude 7?}{$15/6^3 = 5/72$}
+}
+
+\printtym{A}
+% \printtym{B}
+% \printtym{C}
+% \printtym{D}
+% \printtym{E}
+% \printtym{F}
+%\printtym{G}
+
+\end{document}

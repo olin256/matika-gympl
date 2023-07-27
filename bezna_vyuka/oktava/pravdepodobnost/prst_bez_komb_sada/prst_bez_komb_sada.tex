@@ -1,0 +1,195 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=.5cm,bottom=2mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\multicolsep=\smallskipamount
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+\mathcode`\,="013B
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+
+\section*{33. Pravděpodobnost bez kombinatoriky}
+
+
+
+\hbox to\hsize{\vtop{\hsize=.7\hsize \textwidth=\hsize
+\begin{uloha}\label{strelba}
+Bára a Terka obě vystřelí na terč. Bára ho zasáhne s~pravděpodobností $0,87$, Terka pak $0,91$. (Ne)zásah jedné je nezávislý na (ne)zásahu té druhé. Doplňte následující tabulku s~pravděpodobnostmi možných výsledků jejich výstřelů (např. B\cmark~T\xmark\ = Bára zasáhne a Terka ne).
+\vysl{\begin{tabular}{l|c|c}%
+ & B\cmark & B\xmark \\\hline
+T\cmark & $bt = 0,7917$ & $(1-b)t = 0,1183$ \\\hline
+T\xmark & $b(1-t) = 0,0783$ & $(1{-}b)(1{-}t) = 0,0117$ \\\hline
+\end{tabular}}
+\end{uloha}\unskip}\hfil
+\vtop{%
+\halign{\strut#\ \hfil&\vrule\hfil\ #\ \hfil&\vrule\hfil\ #\ \hfil\cr
+ & B\cmark & B\xmark \cr\noalign{\hrule}
+T\cmark & \vrule width0pt height14pt depth4pt\hbox{\qquad\qquad} & \hbox{\qquad\qquad} \cr\noalign{\hrule}
+T\xmark & \vrule width0pt height14pt depth4pt\hbox{\qquad\qquad} & \hbox{\qquad\qquad} \cr
+}}}
+
+\begin{multicols}{2}
+\begin{ulohav}
+Na zamyšlení k v Úloze \ref{strelba} -- ještě než to nabušíte do kalkulačky, zamyslete se, kolik to vyjde (a proč):
+\begin{enumerate}
+    \item Jaký bude součet prvního řádku?\lv{$0,91 = t$}
+    \item Jaký bude součet prvního sloupce?\lv{$0,87 = b$}
+    \item Jaký bude součet celé tabulky?\lv{$1$}
+\end{enumerate}
+\end{ulohav}
+\columnbreak
+
+\begin{ulohav}
+Stále se odkazujíce na Úlohu \ref{strelba}, určete pravděpodobnost následujících jevů:
+\begin{enumerate}
+    \item Aspoň jedna střelkyně trefí terč.\lv{$bt + b(1-t) + t(1-b) = 1-(1-b)(1-t) = 0,9883$}
+    \item Aspoň jedna střelkyně netrefí terč.\lv{$b(1-t) + t(1-b) + (1-b)(1-t) = 1 - bt = 0,2083$}
+    \item Právě jedna střelkyně trefí terč.\lv{$b(1-t) + (1-b)t = 0,1966$}
+    \item Žádná nebo obě střelkyně trefí terč.\lv{$bt + (1-b)(1-t) = 0,8034$}
+\end{enumerate}
+\end{ulohav}
+\end{multicols}
+\unskip
+
+\begin{ulohav}
+Bára i Terka (stejné pravděpodobnosti jako v Úloze \ref{strelba}) vystřelí každá na terč desetkrát (všechny výstřely jsou na sobě nezávislé). Jaká je pravděpodobnost, že se
+\begin{multicols}{2}
+\begin{enumerate}
+    \item Bára desetkrát trefí?\lv{$b^{10} \doteq 0,2484$}
+    \item Bára desetkrát netrefí?\lv{$(1-b)^{10} \doteq 1,3786\cdot10^{-9}$}
+    \item Bára aspoň jednou netrefí?\lv{$1 - b^{10} \doteq 0,7516$}
+    \item Bára aspoň jednou trefí?\lv{$1 - (1-b)^{10}$ (číslo velmi blízko 1)}
+    \item obě střelkyně desetkrát trefí?\lv{$b^{10}t^{10} \doteq 0,0967$}
+    \item Bára desetkrát trefí a Terka desetkrát netrefí?\lv{$b^{10}(1-t)^{10} \doteq 8,662\cdot10^{-12}$}
+    \item Bára \emph{nebo} Terka (mohou i obě) desetkrát trefí?\lv{$b^{10} + t^{10} - b^{10} t^{10} = 1 - (1-b^{10})(1-t^{10})\doteq 0,5411$}
+    \item Bára v prvních 5 výstřelech trefí a v dalších 5 ne?\lv{$b^5(1-b)^5 \doteq 1,8506 \cdot10^{-5}$}
+    \item Bára trefí právě při každém druhém výstřelu?\lv{$b^5(1-b)^5 \doteq 1,8506 \cdot10^{-5}$}
+    \item Bára přesně pětkrát trefí?\lv{$\binom{10}5 b^5(1-b)^5 \doteq 4,6635\cdot 10^{-3}$}
+    \item Bára trefí přesně pětkrát a Terka přesně sedmkrát?\lv{$\left[\binom{10}5 b^5(1-b)^5\right] \cdot \left[\binom{10}7 t^7(1-t)^3\right] \doteq 2,1082\cdot10^{-4}$}
+    \item Terka trefí alespoň osmkrát?\lv{$\binom{10}8 t^8(1-t)^2 + \binom{10}9 t^9(1-t)^1 +\penalty0 \binom{10}{10} t^{10}(1-t)^0 \doteq 0,946$}
+    \stitem Bára a Terka trefí stejněkrát?\lv{$\sum_{k=0}^{10}\binom{10}{k}^2 b^k t^k (1-b)^{10-k} (1-t)^{10-k} \doteq 0,2872$}
+% Sum[Binomial[10, k]^2 tt^k (1 - tt)^(10 - k) bb^k (1 - bb)^(10 - k), {k, 0, 10}] // N
+\end{enumerate}
+\end{multicols}
+\unskip
+\end{ulohav}
+
+\begin{ulohav}
+Máme upravené šestistěnné kostky, na kterých čísla 1 až 6 padají s pravděpodobnostmi podle této tabulky: 
+$\bigl[\begin{smallmatrix}1&2&3&4&5&6 \\ 0,3 & 0,25 & 0,2 & 0,1 & 0,1 & 0,05\end{smallmatrix}\bigr]$. Určete pravděpodobnost, že
+\begin{multicols}{3}
+\begin{enumerate}
+    \item při hodu jednou kostkou padne sudé číslo.\lv{$0,25 + 0,1 + 0,05 = 0,4$}
+    \item při hodu dvěma kostkami padnou dvě sudá čísla.\lv{$0,4^2 = 0,16$}
+    \item při hodu dvěma kostkami padne aspoň jedna jednička.\lv{$1 - (1-0,3)^2 = 0,51$}
+    \item při hodu dvěma kostkami padne na první jedna nebo dva, zatímco na druhé tři nebo čtyři.\lv{$(0,3+0,25)\cdot(0,2+0,1) = 0,165$}
+    \item při hodu dvěma kostkami padne na první jedna nebo dva, \emph{nebo} na druhé tři nebo čtyři.\lv{$(0,3+0,25) + (0,2+0,1) -{}\penalty0 (0,3+0,25)(0,2+0,1) = 0,685$}
+    \item při hodu třemi kostkami padne aspoň jedno liché číslo.\lv{$1 - 0,4^3 = 0,936$}
+    \item při hodu dvěma kostkami padne součet čtyři.\lv{$2 \cdot 0,3\cdot 0,2 + 0,25^2 = 0,1825$}
+    \item při hodu dvěma kostkami padne totéž číslo.\lv{$0,3^2 + 0,25^2 + 0,2^2 + 0,1^2 + 0,1^2 + 0,05^2 = 0,215$}
+    \stitem při hodu šesti kostkami padnou všechna možná čísla.\lv{$6! \cdot 0,3 \cdot 0,25 \cdot 0,2 \cdot 0,1 \cdot 0,1 \cdot 0,05 = 0,0054$}
+\end{enumerate}
+\end{multicols}
+\unskip
+\end{ulohav}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\begin{multicols}{2}
+Ve všech výsledcích počítáme s $b = 0{,}87$ a $t = 0{,}91$.\par
+\vysld
+\end{multicols}
+\unskip
+\endresults
+
+\end{document}

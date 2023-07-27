@@ -1,0 +1,145 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{33. Pravděpodobnost aneb Další jinak formulovaná kombinatorika}
+
+\emph{Ve všech úlohách předpokládáme, že všechny volby, uspořádání atd. jsou stejně pravděpodobné.}
+
+
+\begin{ulohav}\label{koule}
+V pytli, do kterého nevidíme, je pět červených a osm zelených koulí. Karel postupně z pytle vytáhl tři koule, přičemž každou po vytažení \emph{vrátil}. Jaká je pravděpodobnost, že
+\begin{enumerate}
+    \item první vytažená koule je červená?\lv{$\frac{5}{13}$}
+    \item druhá vytažená koule je červená?\lv{$\frac{5}{13}$}
+    \item jsou všechny vytažené koule červené?\lv{$\left(\frac{5}{13}\right)^3$}
+    \item je právě jedna z vytažených koulí červená?\lv{$3\cdot\frac{5}{13}\cdot\frac{8}{13}\cdot\frac{8}{13}$}
+    \item pouze ta první z vytažených koulí je červená?\lv{$\frac{5}{13}\cdot\frac{8}{13}\cdot\frac{8}{13}$}
+    \item pouze ta první z vytažených koulí je zelená?\lv{$\frac{8}{13}\cdot\frac{5}{13}\cdot\frac{5}{13}$}
+\end{enumerate}
+\end{ulohav}
+
+
+
+\begin{uloha}
+Co je pravděpodobnější: hodit při 4 hodech kostkou aspoň jednou 6, nebo při 24 hodech dvěma kostkami hodit aspoň jednou dvě 6?
+\vysl{První jev má pravděpodobnost $1-\frac{5^4}{6^4} \doteq 0{,}52$, druhý $1-\frac{35^{24}}{36^{24}} \doteq 0{,}49$, takže pravděpodobnější je první.}
+\end{uloha}
+
+
+\begin{uloha}
+Kolikrát nejméně musíme hodit kostkou, aby pravděpodobnost, že aspoň jednou hodíme šestku, byla alespoň $99\,\%$?
+\vysl{26-krát}
+\end{uloha}
+
+
+\begin{ulohav}
+Ve třídě OC je 17 dívek a 11 chlapců. Určete pravděpodobnost, že
+\begin{enumerate}
+    \item při náhodné volbě dvojčlenné služby budou vybrány dvě dívky.\lv{$\frac{\binom{17}2}{\binom{28}2}$}
+    \item při náhodné volbě dvojčlenné služby budou zastoupena obě pohlaví.\lv{$\frac{17\cdot 11}{\binom{28}2}$}
+    \item při náhodném vylosování čtyř lidí na zkoušení budou vylosováni samí hoši.\lv{$\frac{\binom{11}4}{\binom{28}4}$}
+    \item při náhodném vylosování čtyř lidí na zkoušení bude vylosován Max a tři další hoši.\lv{$\frac{\binom{10}3}{\binom{28}4}$}
+    \item při náhodném vylosování čtyř lidí na zkoušení budou vylosovány alespoň dvě Kačky.\lv{$\frac{\binom42 \cdot \binom{24}2 + \binom43 \cdot \binom{24}1 + \binom44 \cdot \binom{24}0}{\binom{28}4}$}
+\end{enumerate}
+\end{ulohav}
+
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+
+\end{document}
