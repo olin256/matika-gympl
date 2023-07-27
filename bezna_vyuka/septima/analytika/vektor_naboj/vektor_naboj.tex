@@ -1,0 +1,54 @@
+\documentclass[12pt,a4paper]{extarticle}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=6mm]{geometry}
+\pagestyle{empty}
+
+\newcount\pr
+
+% zadani
+\def\priklad#1#2{\advance\pr1\nointerlineskip\vbox to.066\vsize{\vss\hbox{{\Large\bfseries \tym\ifnum\pr<10 0\fi\the\pr}\quad#1}\vss}\vfil}
+
+\def\printtym#1{\pr0\def\tym{#1}\priklady\vfill\newpage}
+
+% vysledky
+\def\priklad#1#2{\advance\pr1 \hbox{\textbf{\the\pr.} #1}\hbox{#2}\bigskip}
+
+
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+\def\R{\mathbb R}
+\let\mb\mathbf
+
+\begin{document}
+
+\def\priklady{%
+\priklad{Určete skalární součin vektorů $(1;\sqrt5;-\sqrt5)$ a $(\sqrt5; 2; \sqrt5)$.}{$-5+3\sqrt5$}
+\priklad{Určete všechna $a \in \R$ tak, aby vektory $(2; a; 4)$ a $(a; 1; -5)$ byly kolmé.}{$a=\frac{20}3$}
+\priklad{Určete odchylku vektorů $(1; 3; 2)$ a $(-2; 1; 3)$.}{$\frac\pi3 = 60^\circ$}
+\priklad{Určete souřadnice součtu vektorů $B-A$, $C-B$ a $A-C$, pokud $A[2; -3]$, $B[-4; 7]$, $C[-2; 5]$}{$(0;0;0)$}
+\priklad{Určete vzdálenost bodů $A[1;2;3]$ a $B[-6;-5;-4]$}{$7\sqrt3$}
+\priklad{Určete všechna $p \in \R$ tak, aby vzdálenost bodů $A[1; p]$ a $B[2;-1]$ byla $2$.}{$p_1 = -1+\sqrt3$, $p_2 = -1-\sqrt3$}
+\priklad{Určete všechna $k \in \R$ tak, aby vzdálenost bodů $M[5; 7]$ a $M + k\mb u$ byla $3$, kde $\mb u = (1; 3)$.}{$k = \pm \frac{3}{\sqrt{10}}$}
+\priklad{Určete souřadnice vektoru $\mb u$, který bude mít stejný směr jako vektor $(3; -2)$ a bude platit $|\mb u| = 1$.}{$(\frac{3}{\sqrt{13}};-\frac2{\sqrt{13}})$}
+\priklad{Určete souřadnice vektoru $\mb u$, který bude mít opačný směr jako vektor $(3; -2)$ a bude platit $|\mb u| = 1$.}{$(-\frac{3}{\sqrt{13}};\frac2{\sqrt{13}})$}
+\priklad{Určete číslo $r \in \R$ tak, aby platilo $M + k\mb v = [7; r]$ pro nějaké $k \in \R$, pokud $M[1; 3]$ a $\mb v=(2; -1)$}{$r=0$}
+\priklad{Určete všechna čísla $s \in \R$ tak, aby $ABCD$ byl obdélník, pokud $A[-2; 3]$, $B[2; 4]$, $C[s; 1]$.}{$s=\frac{11}4$}
+\priklad{Určete souřadnice všech vektorů $\mb v$, které jsou kolmé na vektory $(1;-1;1)$ a $(1;0;-1)$ a $|\mb v| = \sqrt6$.}{$\pm(1; 2; 1)$}
+\priklad{Určete souřadnice středu úsečky $S_{AB}S_{CD}$, kde $A[5;2]$, $B[1; -1]$, $C[2; 4]$, $D[-1; 1]$.}{$[\frac74;\frac32]$}
+\priklad{Určete všechna $a, b\in \R$ tak, aby $a\mb u + b \mb v = \mb w$, kde $\mb u=(1; 3)$, $\mb v=(2; 5)$, $\mb w=(4; 4)$.}{$a = -12$, $b = 8$}
+\priklad{Určete souřadnice všech bodů $T$ takových, že $|AT| = 1$, $|BT| = 2$, kde $A[1;2]$, $B[2;1]$.}{$[\frac{1}{4} \left(3\pm\sqrt{7}\right); \frac{1}{4} \left(3\pm\sqrt{7}\right)+\frac{3}{2}]$}
+}
+
+\printtym{A}
+%\printtym{B}
+%\printtym{C}
+%\printtym{D}
+%\printtym{E}
+
+
+\end{document}
