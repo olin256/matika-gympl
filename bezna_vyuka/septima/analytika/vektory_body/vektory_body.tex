@@ -1,0 +1,148 @@
+\documentclass[11pt,a5paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\begin{document}
+
+%\tisk
+
+\section*{9. Výpočty s vektory a body}
+
+\begin{ulohav}\label{spam}
+Mějme body $A[4; -2]$, $B[-2; -1]$, $C[7; 3]$ a vektory $\mb u(2; -1)$ a $\mb v(1; 1)$. U následujících výrazů určete, zda je výsledkem bod, vektor, či nesmysl, a pokud nejde o nesmysl, určete jeho souřadnice.
+\multicolsep=\smallskipamount
+\begin{multicols}{2}
+\begin{enumerate}
+    \item $A - C$\lv{vektor $(-3; -5)$}
+    \item $\mb u + A$\lv{bod $[6; -3]$}
+    \item $B - \mb u + \mb v$\lv{bod $[-3; 1]$}
+    \item $3\mb v + 2\mb u$\lv{vektor $(7; 1)$}
+    \item $\sqrt 2 \mb u - \pi \mb v$\lv{vektor $(2 \sqrt{2}-\pi;-\sqrt{2}-\pi)$}
+    \item $2(B + \mb u) - A$\lv{bod $[-4; -2]$}
+    \item $\mb v - C$\lv{nesmysl}
+    \item $4C - 6A + 3B$\lv{bod $[-2; 21]$}
+    \item $\dfrac{A + B}{2}$\lv{bod $[1; -\frac32]$}
+    \item $\dfrac{A - B}{2}$\lv{vektor $(3; -\frac12)$}
+    \item $\frac23A + \frac13B$\lv{bod $[2; -\frac53]$}
+\end{enumerate}
+\end{multicols}
+\end{ulohav}
+
+\begin{uloha}
+Užívajíce body z Úlohy \ref{spam}, určete souřadnice bodu $X$, který bude od $C$ vzdálen ve stejném směru, jako $B$ od $A$, ale v třikrát větší vzdálenosti.
+\vyslplain{$X[-11; 6] = C + 3(B-A)$}
+\end{uloha}
+
+\begin{ulohav}
+Určete souřadnice bod $A$ tak, aby platilo $\mb u = B-A$, je-li
+\begin{enumerate}
+    \item $B[1;3;3]$, $\mb u=(3;1;2)$\lv{$A[-2;2;1]$}
+    \item $B[1;5;5]$, $\mb u=(0;1;-3)$\lv{$A[1;4;8]$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+U kvádru $ABCDA'B'C'D'$ v trojrozměrném prostoru známe souřadnice bodů $A[-2; 1; 2]$, $B[-1; 2; 2]$, $D[-1; 0; 4]$, $A'[-3; 2; 3]$. Určete souřadnice ostatních bodů.\vyslplain{$C[0; 1; 4]$, $B'[-2; 3; 3]$, $C'[-1; 2; 5]$, $D'[-2; 1; 5]$} \hint{Využijte vektory $B-A$, $D-A$, $A'-A$.}
+\end{uloha}
+
+\begin{ulohav}
+Pracujme s body $K[-2; 1]$ a $L[8; 7]$ a vektory $\mb u(3; 2)$ a $\mb v(1; -1)$.
+\begin{enumerate}
+    \item Najděte všechny dvojice reálných čísel $r$, $s$, aby platilo $K + r \mb u + s \mb v = L$.\lv{$r = \frac{16}{5}$, $s = \frac25$}
+    \item Najděte všechny dvojice reálných čísel $r$, $s$, aby platilo $L + r \mb u + s \mb v = K$.\lv{$r = -\frac{16}{5}$, $s = -\frac25$}
+\end{enumerate}
+\end{ulohav}
+
+\interest
+\begin{ulohav}
+Máme-li body $A$, $B$, jak lze \emph{geometricky} popsat bod
+\begin{enumerate}
+    \item $2B - A$,\lv{jde o bod na polopřímce $AB$, který leží od $B$ stejně daleko jako $A$ (ale není to $A$)}
+    \item $\frac23A + \frac13B$?\lv{jde o bod na úsečce $AB$, jehož vzdálenost od $B$ je dvojnásobná oproti vzdálenosti od $A$; jinak řečeno, dělí úsečku $AB$ v poměru $1:2$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Užívajíce body z Úlohy \ref{spam}, určete souřadnice bodu $Y$, který bude od $C$ vzdálen ve stejném směru, jako $B$ od $A$, ale bude platit $|CY| = 2$.
+\vyslplain{$Y\bigl[7-\frac{12}{\sqrt{37}}; 3+\frac{2}{\sqrt{37}}\bigr] = C + \frac{2}{\sqrt{37}}(B-A)$}
+\end{uloha}
+
+\begin{uloha}
+Užívajíce vektory z Úlohy \ref{spam}, nalezněte všechna reálná čísla $k$ taková, aby vektor $\mb u + k \mb v$ měl velikost $15$.\vyslplain{$k_1 = -11$, $k_2 = 10$}
+\end{uloha}
+
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.}\ #2\par}
+\vysld
+
+
+\end{document}
