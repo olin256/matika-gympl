@@ -1,0 +1,176 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[margin=1cm]{geometry}
+\usepackage[inline]{enumitem}
+
+\setlist[enumerate]{label={(\alph*)},itemjoin={\quad},topsep=\smallskipamount,parsep=0pt,itemsep=\smallskipamount}
+
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18,width=.8\hsize}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\newcommand{\staritem}{\item[\addtocounter{enumi}{1}$\star$ (\alph{enumi})]}
+
+\newcommand{\hint}[1]{{\footnotesize\textcolor{gray}{(Nápověda: #1)}}}
+
+\begin{document}
+
+\section*{23. Parabolická všehochuť}
+
+\begin{uloha}
+Určete rovnice (ve vrcholovém tvaru) parabol znázorněných níže.
+\end{uloha}
+\vysl{\begin{enumerate*}\item $-(y-4) = (x+3)^2$ \item $9(x-1) = (y+3)^2$ \item $-\frac13(x+7) = (y+4)^2$ \item $4(y-5) = (x-3)^2$ \end{enumerate*}}
+
+\hbox to\hsize{\hfil
+\begin{tikzpicture}
+  \begin{axis}[grid=both,ymin=-6,ymax=6,xmax=10,xmin=-10,xlabel={$x$},ylabel={$y$},axis lines=middle,unit vector ratio=1 1,ytick distance=1,xtick distance=1]
+  %
+  \addplot[smooth, domain=-3.2:3.2] (\x-3,-{(\x)^2+4});
+  \node[above] at (-3,4) {(a)};
+  %
+  \addplot[smooth, domain=-1:3] ({(\x)^2+1},{3*(\x-1)});
+  \node[left] at (1,-3) {(b)};
+  %
+  \addplot[smooth, domain=-1:1] ({-3*(\x)^2-7},\x-4);
+  \node[right] at (-7,-4) {(c)};
+  %
+  \addplot[smooth, domain=-2:2] (\x+3,{((\x)^2)/4+5});
+  \node[below] at (3,5) {(d)};
+  %%%% zadane paraboly
+%   \addplot[smooth, domain=-2:2] (\x-7,{(\x)^2+3});
+%   \draw (-10,2.75) -- (-4,2.75);
+%   \addplot[mark=*] coordinates {(-7,3.25)};
+%   %
+%   \addplot[smooth, domain=-3:3] ({2*((\x)^2)-1},\x-1);
+%   \draw (-1.125,-3) -- (-1.125,1);
+%   \addplot[mark=*] coordinates {(-.875,-1)};
+%   %
+%   \addplot[smooth, domain=-6:2] ({-((\x)^2)/2-2},\x+4);
+%   \draw (-1.5,2) -- (-1.5,6);
+%   \addplot[mark=*] coordinates {(-2.5,4)};
+%   %
+  \end{axis}
+\end{tikzpicture}%
+\hfil}
+
+\begin{uloha}
+Pro paraboly z předchozí úlohy určete hodnoty parametru, souřadnice ohniska a rovnici řídící přímky.
+\end{uloha}
+\vysl{\begin{enumerate*}
+\item $p=\frac12$, $F[-3;3{,}75]$, $y=4{,}25$ %$x-4 = -(y+3)^2$
+\item $p=\frac92$, $F[3{,}25;-3]$, $x = -1{,}25$%$9(y+3) = (x-1)^2$
+\item $p=\frac16$, $F\bigl[-\frac{85}{12}; -4\bigr]$, $x = -\frac{83}{12}$%$\frac13(x+7) = -(y+4)^2$
+\item $p=2$, $F[3;6]$, $y=4$ %$4(y-5) = (x-3)^2$
+\end{enumerate*}}
+
+\begin{uloha}
+Načrtněte paraboly (včetně řídící přímky a ohniska) o rovnicích \begin{enumerate*} \item $y - 3 = (x+7)^2$, \item $x-2 y^2-4 y-6 = 0$, \item $2 x+y^2-8 y+18 = 0$ \end{enumerate*} (asi bude nejprve nutné najít souřadnice vrcholu a ohniska a rovnici řídící přímky).
+\end{uloha}
+\setbox1=\hbox{%
+\begin{tikzpicture}
+    \begin{axis}[grid=both,ymin=-6,ymax=6,xmax=10,xmin=-10,xlabel={$x$},ylabel={$y$},axis lines=middle,unit vector ratio=1 1,ytick distance=1,xtick distance=1]
+  %%%% zadane paraboly
+  \addplot[smooth, domain=-2:2] (\x-7,{(\x)^2+3});
+  \draw (-10,2.75) -- (-4,2.75);
+  \addplot[mark=*] coordinates {(-7,3.25)};
+  %
+  \addplot[smooth, domain=-3:3] ({2*((\x)^2)-1},\x-1);
+  \draw (-1.125,-3) -- (-1.125,1);
+  \addplot[mark=*] coordinates {(-.875,-1)};
+  %
+  \addplot[smooth, domain=-6:2] ({-((\x)^2)/2-2},\x+4);
+  \draw (-1.5,2) -- (-1.5,6);
+  \addplot[mark=*] coordinates {(-2.5,4)};
+  %
+  \end{axis}
+\end{tikzpicture}}
+\vysl{\box1\relax}
+
+\begin{uloha}
+Vyberte správnou volbu z podtržených: Čím je parametr větší, tím je parabola \underline{více} / \underline{méně} \uv{špičatá}.
+\end{uloha}
+\vysl{méně}
+
+\begin{uloha}
+Nalezněte rovnici paraboly, která
+\begin{enumerate}
+    \item má ohnisko v $[-2;1]$ a řídící přímku $x = 0$,
+    \item má ohnisko v $[0;1]$ a vrchol v $[0;5]$,
+    \item má vrchol v $[-4;3]$, prochází bodem $[-2;2]$ a její řídící přímka je rovnoběžná s osou $y$,
+    \item má vrchol v $[1;1]$, přímka $y=2x+2$ je její tečnou a její řídící přímka je rovnoběžná s osou $x$,
+    \stitem má ohnisko v $[0;0]$, prochází bodem $[3;4]$ a její řídící přímka je rovnoběžná s osou $y$.
+\end{enumerate}
+\end{uloha}
+\vysl{\begin{enumerate*}
+\item $-4(x+1) = (y-1)^2$
+\item $-16(y-5) = x^2$
+\item $\frac12(x+4) = (y-3)^2$
+\item $-3(y-1) = (x-1)^2$
+\item $4(x+1) = y^2$ a $-16(x-4) = y^2$ (dvě řešení)
+\end{enumerate*}}
+
+\begin{suloha}
+Nalezněte poloměr co největší kružnice, která se dotýká paraboly $y = x^2$ pouze v jejím vrcholu a jejíž střed leží na kladné části osy $y$.
+\end{suloha}
+\vysl{$\frac12$}
+
+\begin{ulohav}
+Na parabole $y=x^2$ nalezněte bod nejblíže k
+\begin{enumerate}
+\item přímce $y = 2x-2$, \hint{Hledejte rovnoběžnou tečnu.}\lv{$[1;1]$}
+\stitem bodu $[9;6]$. \hint{Derivujte. Derivací je kubický polynom, jehož jedním kořenem je $-1$.}\lv{$\bigl[\frac12 + \frac{\sqrt{19}}{2}; 5+\frac{\sqrt{19}}{2}\bigr]$}
+\end{enumerate}
+\end{ulohav}
+
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
