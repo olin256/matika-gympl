@@ -1,0 +1,23 @@
+\documentclass[tikz,crop]{standalone}
+\usetikzlibrary{3d}
+\begin{document}
+\def\bod#1#2#3{\node[circle,fill=black,inner sep=0pt,outer sep=0pt,minimum size=3pt,label=#2:{$#3$}] (#3) at (#1) {};}
+\begin{tikzpicture}[scale=.5,font=\small]
+    \draw[->] (0,0,0) -- (6,0,0) node[right]{$y$};
+    \draw[->] (0,0,0) -- (0,6,0) node[above]{$z$};
+    \draw[->] (0,0,0) -- (0,0,6) node[below left]{$x$};
+    \bod{4,0,0}{below}{A}
+    \bod{4,0,4}{below}{B}
+    \bod{0,0,4}{below}{C}
+    \bod{0,0,0}{below}{D}
+    \bod{4,4,0}{above}{A'}
+    \bod{4,4,4}{above}{B'}
+    \bod{0,4,4}{above}{C'}
+    \bod{0,4,0}{above right}{D'}
+    \draw (A) -- (B) -- (C);
+    \draw (C) -- (C') -- (D');
+    \draw (D') -- (A') -- (B') -- (C');
+    \draw (B) -- (B');
+    \draw (A) -- (A');
+\end{tikzpicture}
+\end{document}
