@@ -1,6 +1,6 @@
 # Běžná výuka
 
-Ze všeobecného nepořádku zde vystupují dvě číslované řady materiálů; pro jednoduchost je nazývám *řada oktáva* a *řada sexta* podle toho, v jakém ročníku skončily. Kromě toho existuje ještě krátá *řada kombinatorika*, která začala, když jsem se v septimě rozhodl na prostřídání a odlehčení začít s kombinatorikou (doporučuji!), a na kterou posléze navazují kombinatorické materiály z řady oktáva.
+Ze všeobecného nepořádku zde vystupují dvě číslované řady materiálů; pro jednoduchost je nazývám *řada oktáva* a *řada sexta* podle toho, v jakém ročníku skončily. Kromě toho existuje ještě krátká *řada kombinatorika*, která začala, když jsem se v septimě rozhodl na prostřídání a odlehčení začít s kombinatorikou (doporučuji!), a na kterou posléze navazují kombinatorické materiály z řady oktáva.
 
 ## Řada oktáva
 
@@ -42,14 +42,14 @@ Ze všeobecného nepořádku zde vystupují dvě číslované řady materiálů;
 35. [Podmíněná pravděpodobnost – pokračování](oktava/pravdepodobnost/podminena_prst/podminena_prst_pokrac.pdf)
 
 
-# Řada kombinatorika
+## Řada kombinatorika
 
 1. [Větvení](septima/kombinatorika/c1_vetveni/c1_vetveni.pdf)
 2. [Když možností ubývá](septima/kombinatorika/c2_ubytek/c2_ubytek.pdf)
 3. [Uspořádání i neuspořádání](septima/kombinatorika/c3_usporadani/c3_usporadani.pdf) s [dodatkem](septima/kombinatorika/c3half/c3half.pdf)
 
 
-# Řada sexta
+## Řada sexta
 
 1. [Kvadratické funkce](sexta/funkce/kvadr_sada/kvadr_sada.pdf)
 2. [Inverzní funkce](sexta/funkce/inverze_sada/inverze_sada.pdf)
