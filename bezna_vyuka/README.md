@@ -47,3 +47,25 @@ Ze všeobecného nepořádku zde vystupují dvě číslované řady materiálů;
 1. [Větvení](septima/kombinatorika/c1_vetveni/c1_vetveni.pdf)
 2. [Když možností ubývá](septima/kombinatorika/c2_ubytek/c2_ubytek.pdf)
 3. [Uspořádání i neuspořádání](septima/kombinatorika/c3_usporadani/c3_usporadani.pdf) s [dodatkem](septima/kombinatorika/c3half/c3half.pdf)
+
+
+# Řada sexta
+
+1. [Kvadratické funkce](sexta/funkce/kvadr_sada/kvadr_sada.pdf)
+2. [Inverzní funkce](sexta/funkce/inverze_sada/inverze_sada.pdf)
+3. [Vlastnosti funkcí – souhrn](sexta/funkce/vlastnosti_sada/vlastnosti_sada.pdf)
+4. [Funkce s absolutní hodnotou](sexta/funkce/abs_sada/abs_sada.pdf) s [dodatkem](sexta/funkce/abs_sada/abs_sada_dodatek.pdf)
+5. [Lineární lomené funkce](sexta/funkce/lin_lom_sada/lin_lom_sada.pdf)
+6. [Mocninné funkce s celočíselnými exponenty](sexta/funkce/mocninne_sada/mocninne_sada.pdf)
+7. [Mocniny s racionálními exponenty](sexta/funkce/rac_mocniny_sada/rac_mocniny_sada.pdf)
+8. [Skládání funkcí](sexta/funkce/skladani/skladani_sada.pdf)
+9. [Exponenciální rovnice s „hezkými“ výsledky](sexta/funkce/exp_rovnice_sada/exp_rovnice_sada.pdf)
+10. [Výpočty s logaritmy](sexta/funkce/logaritmy/logaritmy.pdf) s [prologem](sexta/funkce/proste_logaritmy/proste_logaritmy.pdf)
+11. [Logaritmické rovnice](sexta/funkce/logaritmicke_rovnice/logaritmicke_rovnice.pdf)
+12. [Exponenciální a logaritmické funkce](sexta/funkce/exp_log_fce_sada/exp_log_fce_sada.pdf)
+13. [Aplikace exponenciálních funkcí a logaritmů](sexta/funkce/exp_aplikace/exp_aplikace.pdf)
+14. [Orientované úhly, oblouková míra](sexta/goniometrie/uhly/uhly_uvod.pdf)
+15. [Opáčko před čtvrtletkou](sexta/funkce/opacko_ctvrtletka/opacko_ctvrtletka.pdf)
+16. [Základní goniometrické rovnice a jejich aplikace](sexta/goniometrie/zakl_rovnice/zakl_rovnice.pdf)
+17. [Goniometrické vzorce](sexta/goniometrie/vzorce_sada/gonio_vzorce_sada.pdf)
+18. [Sinová a kosinová věta](sexta/kosinovka/kosinovka_sada.pdf)
