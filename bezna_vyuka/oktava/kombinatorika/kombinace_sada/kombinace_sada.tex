@@ -1,0 +1,172 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        %\vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\DeclareMathOperator{\arctg}{arctg}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+
+\section*{30. Aplikace kombinačních čísel}
+
+\begin{ulohav}
+Martin má sedm knih, o které se zajímá Ivana; oproti tomu Ivana má deset knih, o které se zajímá Martin. Určete, kolika způsoby si mohou Martin a Ivana vyměnit \begin{enumerate*}\item dvě,\lv{$\binom 72 \cdot \binom{10}2 = 945$}\item \lv{$\binom 73 \cdot \binom{10}3 = 4200$}tři\end{enumerate*} knihy.
+\end{ulohav}
+
+\begin{uloha}\label{obdelniky}
+Tentokrát už naposledy: kolik je na obrázku obdélníků? \hint{Každý obdélník je popsán dvojicí vodorovných a dvojicí svislých čar.}\vysl{$\binom82 \cdot \binom 52 = 280$}
+\[ \begin{tikzpicture}[scale=.3] \draw (0,0) grid (7, 4); \node at(.5,.5) {\smiley}; \node at(6.5,3.5) {\sun}; \end{tikzpicture} \]
+\end{uloha}
+
+\begin{uloha}
+Kolika způsoby se v tabulce v Úloze \ref{obdelniky} můžeme dostat z políčka \smiley\ do políčka \sun, jestliže jsou povoleny pouze tahy o jedna nahoru nebo o jedna doprava? \hint{Kolik uděláme celkem tahů? Kolik jich bude nahoru?}\vysl{$\binom{9}3=84$}
+\end{uloha}
+
+\begin{ulohav}\label{soucty-souciny}
+Určete, kolika způsoby lze vybrat (neuspořádanou) čtveřici (různých) čísel z $1,2,\dots, 20$ tak, aby
+\begin{enumerate*}
+    \item jejich součin byl sudý,\lv{$\binom{20}4 - \binom{10}4 = 4635$}
+    \item jejich součin byl lichý,\lv{$\binom{10}4 = 210$}
+    \item jejich součet byl sudý,\lv{$2\cdot\binom{10}4 + \binom{10}2 \cdot \binom{10}2 = 2445$}\label{soucet-sudy}
+    \item jejich součet byl lichý.\lv{$2 \cdot \binom{10}1 \cdot \binom{10}3 = 2400$}\label{soucet-lichy}
+\end{enumerate*}
+\end{ulohav}
+
+\interest
+\begin{uloha}
+Najděte chybu v následující \uv{úvaze}, proč by v Úloze \ref{soucty-souciny} měly \ref{soucet-sudy} a \ref{soucet-lichy} vyjít stejně: \uv{Mezi čísly $1,\dots, 20$ je stejně sudých jako lichých, takže se ve čtveřicích budou sudá a lichá čísla vyskytovat stejně často, proto budou i součty stejně často sudé jako liché.}
+\end{uloha}
+
+\begin{ulohav}
+Mějme šachovnici $8\times8$. Kolika způsoby na ní lze vybrat trojici políček, pokud
+\begin{enumerate}
+    \item (žádná další podmínka),\lv{$\binom{64}3 = 41\,664$}
+    \item nesmí být všechna téže barvy,\lv{$\binom{64}3 - 2\cdot \binom{32}3 = 2 \cdot \binom{32}2 \cdot \binom{32}1 = 31\,744$}
+    \item nesmí ležet všechna v jednom řádku,\lv{$\binom{64}3 - 8 \cdot \binom83 = 41\,216$}
+    \item nesmí ležet všechna v jednom řádku ani v jednom sloupci,\lv{$\binom{64}3 - 8 \cdot \binom83 - 8 \cdot \binom83 = 40\,768$}
+    \stitem žádná dvě nesmí být v témže řádku,\lv{$8^3 \cdot\binom83 = 28\,672$}
+    \stitem žádná dvě nesmí být v témže řádku ani sloupci.\lv{$\frac1{3!} \cdot 64\cdot49\cdot36 = 8\cdot7\cdot6 \cdot \binom83 = 18\,816$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+V rovině se nachází $n \in \mathbb N$ bodů. Kolik je těmito body určeno
+\begin{enumerate}
+    \item přímek, jestliže žádné tři body neleží na jedné přímce?\lv{$\binom n2$}
+    \item trojúhelníků, jestliže žádné tři neleží na jedné přímce?\lv{$\binom n3$}
+    \item přímek, jestliže jich $p$ leží na jedné přímce a kromě nich už žádné tři neleží?\lv{$\binom n2 - \binom p2 + 1$}
+    \item trojúhelníků, jestliže jich $p$ leží na jedné přímce a kromě nich už žádné tři neleží?\lv{$\binom n3 - \binom p3$}
+\end{enumerate}
+\end{ulohav}
+
+\interest
+\begin{uloha}
+Nalezněte všechna $n \in \mathbb N$ s touto vlastností: $(n+1)$-prvková množina má o 8515 víc tříprvkových podmnožin, než kolik jich má $n$-prvková.\vysl{$n = 131$}
+\end{uloha}
+
+\iinterest
+\begin{uloha}
+Celkem $n$ pirátů uložilo svůj společný poklad do truhly. Na truhlu umístili celkem $\ell$ zámků, ke kterým si potom rozdali klíče, a to tak, že kdykoliv se sejde více jak $k$ pirátů, tak se budou moct do truhly dostat, zatímco když se jich sejde nejvýše $k$, tak truhlu neotevřou (tj. od nějakého zámku jim bude chybět klíč). Jaký je nejmenší počet zámků $\ell$, pro který lze totoho dosáhnout, a jak si mají od nich rozdat klíče?\vysl{$\ell=\binom nk$; každý zámek odpovídá jedné $k$-prvkové podmnožině pirátů, přičemž klíče od něj dostanou právě ti, kteří v oné množině nejsou}
+\end{uloha}
+
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}

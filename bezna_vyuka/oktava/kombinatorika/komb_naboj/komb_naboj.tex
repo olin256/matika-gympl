@@ -1,0 +1,79 @@
+\documentclass[12pt,a4paper]{extarticle}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[margin=6mm]{geometry}
+\pagestyle{empty}
+
+\newcommand{\centeredgraphics}[2][]{\[\includegraphics[#1]{images/#2}\]}
+
+\newcount\pr
+
+\newbox\teambox
+
+% zadani
+\long\def\priklad#1#2{\advance\pr1\relax\hbox to\hsize{%
+\vrule width0pt height3\baselineskip depth2\baselineskip\relax
+\vbox{\hbox to1.5cm{\bfseries\huge\ifnum\pr<10 0\fi\the\pr\hfil}\medskip\copy\teambox}\hfil
+\vbox{\hsize=.87\hsize \linewidth=\hsize \noindent#1}%
+}\vfil\hrule\vskip5mm\vfil}
+
+\def\printtym#1{\setbox\teambox=\hbox to2cm{\huge\textsl{#1}\hfil}\dp\teambox=0pt\relax\def\tym{#1}%
+\pr0\relax\priklady\vfill\newpage}
+
+% vysledky
+\def\priklad#1#2{\advance\pr1 \textbf{\the\pr.}\space\ignorespaces#1\qquad (#2)\par\bigskip}
+
+\parindent0pt
+
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+
+
+\begin{document}
+
+\def\priklady{%
+\priklad{Pepa, který právě přišel ze školy, má hlad a rozhoduje se, co si dá k jídlu. Doma však našel jen 5 vajec, 8 párků, 3 plátky sýra 2 rohlíky, přičemž ze všech těchto potravin může sníst libovolné množství včetně všeho a ničeho. Kolika způsoby se může najíst za předpoklad, že něco musí sníst?}{$647 = 6\cdot9\cdot4\cdot3-1$}
+\priklad{Kolika způsoby je možné se dostat od hlavního vchodu do učebny M1, pokud nesmíme nikdy jít dolů a zadní schodiště můžeme použít až od 1. patra dál? (Způsoby považujeme za stejné, pokud se při nich použijí tatáž schodiště.)}{$4$}
+\priklad{V tanečních se sešlo (jak to tak bývá) 12 dívek a 7 chlapců. Kolika způsoby mohou utvořit co největší počet tanečních párů?}{$12\cdot11 \cdots 6 = 3\,991\,680$}
+\priklad{Bruno zapomněl svůj čtyřmístný pin, pamatuje si ovšem, že se v něm nacházela pouze lichá čísla a první a poslední číslice byly stejné. Kolik různých pinů těmto podmínkám vyhovuje?}{$5^3 = 125$}
+\priklad{Kolik existuje přirozených čísel menších než 500, v jejichž zápise se objevují pouze cifry 3, 5, 7, 9, každá nejvýše jednou?}{$4+4\cdot3+3\cdot2 = 22$}
+\priklad{Kolika způsoby lze na šachovnici $8 \times 8$ postavit 8 (stejných) věží tak, aby se žádné dvě neohrožovaly?}{$8! = 40\,320$}
+\priklad{Mám 12 stejných podkov a tři (různé) koně. Kolika způsoby je mohu okovat? Jelikož jsem farmář progresivního typu, netrvám na tom, aby kůň měl podkovy, ale může být okován pouze částečně či vůbec.}{$2^{12}$}
+\priklad{Slečna zahradnice se v poslední době velmi stresuje. Rozhodla se tedy, že kvítka přece pomáhají ze všeho nejlépe, a tak je rozmístí po své ložnici tak, aby na ně odevšad viděla. K dispozici má 12 v podstatě totožných květináčků s kvítím, které chce rozdělit mezi noční stolek, poličku, psací stůl, skříň a komodu. Na stolek se vejde max. 1, na poličku 4, na psací stůl 2, na skříň 3 a na komodu taky 3. Kolik konfigurací lze vymyslet, aby na každém z míst byla aspoň 1 kytička?}{$4$ pokud se má rozmístit všech $12$; $4 \cdot 2 \cdot 3 \cdot 3 - 1 = 71$ pokud stačí rozmístit méně}
+\priklad{Lucka neví, co si vzít na sebe. Ve skříni má 4 trika, 3 tílka, 2 kalhoty, 5 sukní, 4 šaty a 3 mikiny. Kolika způsoby se může obléct? Musí být oblečená, mikina není nutná, triko/tílko (jedno z toho) si může vzít s~kalhoty/sukní, šaty samostatně nebo s mikinou.}{$212 = 4\cdot7\cdot7 + 4\cdot4$}
+\priklad{Ve třídě OC maturuje 9 studentů z matematiky, přičemž první den jich maturuje 5 a druhý 4. V každý den si každý student zvolí jednu z 30 otázek, příčemž každá otázka může být v rámci jednoho dne vylosována nejvýše jednou. Kolika způsoby mohou být během celých maturit otázky vylosovány?}{$\frac{30!}{25!}\cdot\frac{30!}{26!} = (30\cdots26)\cdot(30\cdots27) = 11\,247\,485\,558\,400$}
+\priklad{Balíček karet obsahuje $52$ karet rozdělených po $13$ mezi čtyři barvy. Kolika způsoby lze všechny karty seřadit tak, aby karty stejné barvy byly za sebou?}{$(13!)^4 \cdot 4!$}
+\priklad{Kolik různých (kladných) dělitelů má číslo 7200?}{$6 \cdot 3 \cdot 3 = 54$}
+\priklad{Kolik pětiúhelníků se nachází na obrázku?%
+\centeredgraphics[width=3cm]{5uhelniky.png}}{$3^5=243$}
+\priklad{Kolika způsoby lze seřadit čísla $1,\dots,7$ tak, aby nebyla seřazena sestupně ani vzestupně?}{$7!-2 =  5038$}
+\priklad{Kolik existuje různých řetězců, které mohou vzniknout proházením písmen slova ABECEDA?}{$\frac14 \cdot 7! = 1260$}
+\priklad{Kolika způsoby můžeme \uv{zrušit} některá políčka (nebo žádné) v tabulce $2 \times 8$, jestliže má ve výsledku být stále \uv{průchozí} zleva doprava? Mezi políčky je možné jít i po diagonále, jak znázorňuje obrázek.
+\centeredgraphics{42p3.pdf}}{$3^8=6561$}
+\priklad{Soběslav chce své dívce (Květoslávce) koupit květiny. Na výběr mají v květinářství z osmi druhů květin a ze čtyř barev mašlí. Chce koupit kombinaci dvou různých květin + mašle. Kolik má Soběslav možností na výběr, aby nepřišel s prázdnou a Květoslávka nebyla v depresích?}{$\frac12 \cdot 8 \cdot 7 \cdot 4 = 112$}
+\priklad{Kolika způsoby se může 10 rytířů posadit kolem kulatého stolu, jestliže rozesazení lišící se pouze otočením považujeme za stejná?}{$9!$}
+\priklad{Martina má v úmyslu pět dní po sobě sportovat; každý den jde buď na stěnu, nebo běhat, nebo do posilovny. Kolik sportovních programů na ony dny si může vymyslet, pokud chce aspoň jednou zajít do posilovny?}{$3^5 - 2^5 = 211$}
+\priklad{Kolika způsoby lze uspořádat písmena A, B, C, D, E, F, G, aby ve výsledném pořadí bylo A před B a B před C?}{$\frac1{3!}\cdot 7! = 840$}
+\priklad{Adéla, Bára, Cecílie, Dana a Erika jdou do kina; kolika způsoby si mohou sednout do jedné řady vedle sebe, jestliže Dana nechce sedět po pravici Cecílie, protože se domnívá, že ta by na ni jistě vysypala popcorn?}{$5! - 4! = 96$}
+\priklad{Kolik existuje cest z bodu $A$ do bodu $B$ na obrázku níže, pokud lze každou šipku použít nejvýše jednou? (Jedna taková cesta je v~obrázku zakreslená.)%
+\centeredgraphics{how_many_paths.pdf}}{$162=2\cdot 3^4$}
+\priklad{Kolika způsoby lze na šachovnici $9 \times 9$ obarvenou klasickým způsobem rozmístit devět věží tak, aby se žádné dvě neohrožovaly a všechny stály na stejné barvě?}{$5!\cdot4! = 2880$}
+\priklad{V turnaji soutěží proti sobě čtyři týmy. Kolika existuje různých finálních pořadí, jestliže některé týmy mohou dopadnout stejně (třeba i všechny čtyři)?}{$4! + 3\cdot\frac12 \cdot 4! + \frac14\cdot 4! + 2\cdot4 + 1 = 75$} %1111 + 3*112 + 22 + 2*13 + 4
+\priklad{Kolika způsoby lze seřadit všech 26 písmen anglické abecedy tak, aby z písmen \emph{a, e, i, o, u} nebyla žádná dvě bezprostředně po sobě?}{$21! \cdot 22 \cdot21 \cdot20 \cdot19 \cdot 18 \doteq 1{,}61451\cdot 10^{26}$} % těch běžných 21 písmen seřadíme libovolně a speciálních 5 postupně umísťujeme do 22 slotů
+}
+
+
+\printtym{A}
+%\printtym{B}
+%\printtym{C}
+%\printtym{D}
+%\printtym{E}
+%\printtym{F}
+%\printtym{G}
+
+\end{document}

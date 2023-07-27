@@ -1,0 +1,201 @@
+\documentclass[9pt,a5paper]{extarticle}
+\usepackage[margin=.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{math}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\quad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill
+        \noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+\begin{document}
+
+%\tisk
+%\resultssame
+
+\section*{31. Pascalův trojúhelník a binomická věta}
+
+\begin{uloha}
+$11^0 = 1$, $11^1 = 11$, $11^2 = 121$, $11^3 = 1331$, vidíte to taky? Proč to funguje? Kdy se to poprvé pokazí? \hint{$11 = 10 + 1$, binomická věta}
+\end{uloha}
+
+\begin{ulohav}
+Roznásobte (= dosaďte do binomické věty) a pokud to nějak jde, tak výsledek zjednodušte:
+\begin{enumerate*}
+    \item $(2 + a)^3$\lv{$a^3+6 a^2+12 a+8$}
+    \item $\left(\frac 1x + 2x\right)^5$\lv{$32 x^5+\frac{1}{x^5}+80 x^3+\frac{10}{x^3}+80 x+\frac{40}{x}$}
+    \item $\left(x - \sqrt x\right)^4$\lv{$x^4 - 4x^3\sqrt x + 6x^3 - 4x^2 \sqrt x + x^2$}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{ulohav}
+\everymath{\displaystyle}
+Spočtěte \emph{bez kalkulačky (!)}, kolik je
+\begin{enumerate*}
+    \item $\bigl(1+\sqrt2\bigr)^5$\lv{$29 \sqrt{2}+41$}
+    \item $\bigl(1-\sqrt2\bigr)^5$\lv{$-29 \sqrt{2}+41$}
+    \item $\bigl(\sqrt{2} + \sqrt[4]{2}\bigr)^4$\lv{$6+8\cdot 2^{\frac14} + 12 \cdot 2^{\frac12} + 8 \cdot 2^{\frac34}$}
+\end{enumerate*}
+\end{ulohav}
+
+\begin{uloha}
+Jaký je desátý člen binomického rozvoje $(2a + b)^{15}$?\vysl{$\binom{15}{9} (2a)^9 b^6 = 320320 a^9 b^6$}
+\end{uloha}
+
+\begin{uloha}
+Určete $x\in \R$ tak, aby pátý člen binomického rozvoje $\left(\frac2x -\sqrt x\right)^9$ byl roven 2016.
+\vysl{$\sqrt[3]2$}
+\end{uloha}
+
+\begin{uloha}
+Který člen binomického rozvoje $(y^2 + y^{-1})^9$ obsahuje $y^3$?\vysl{šestý}
+\end{uloha}
+
+\begin{uloha}
+Vypočítejte takový člen binomického rozvoje $\left(3\sqrt a - a^{-2}\right)^{10}$, který neobsahuje $a$.\vysl{třetí, $295\,245$}
+\end{uloha}
+
+\begin{uloha}
+\everymath{\displaystyle}
+Dokažte, že následující čísla jsou celá pro všechna $n \in \mathbb N$:
+\begin{enumerate}
+    \item $\left(1+\sqrt3\right)^n + \left(1-\sqrt3\right)^n$
+    \item $\frac{1}{\sqrt5}\left( \left( \frac{1+\sqrt5}{2} \right)^n - \left( \frac{1-\sqrt5}{2} \right)^n  \right)$\quad (jde o vzorec pro $n$-té Fibonacciho číslo)
+\end{enumerate}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Dokažte, že pro všechna $n \in \mathbb N$ je $\dfrac{4^n - 1}{3}$ celé číslo. \hint{$4 = 3 + 1$.}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Součty následujících \uv{šikmých příček} dávají jistou známou posloupnost. Proč tomu tak je?
+\[\begin{tikzpicture}[yscale=-.35,xscale=.5]
+\tikzmath{
+    function binom(\nn, \kk) {
+        if \kk == 0 then {
+            return 1;
+        } else { 
+            if \kk == \nn then {
+                return 1;
+            } else {
+                return binom(\nn-1, \kk-1) + binom(\nn-1, \kk);
+            };
+        };
+    };
+    int \nnm;
+    for \nn in {0,...,6} {
+        for \kk in {0,...,\nn} {
+            \nnm = binom(\nn, \kk);
+            {\node at (-.5*\nn+\kk,\nn) {\nnm};};
+        };
+    };
+}
+\foreach \nn in {1,...,6} {
+    \draw[help lines] (-.5*\nn,\nn) -- (.25*\nn,.5*\nn);
+}
+\end{tikzpicture}\]
+\end{uloha}
+
+\interest
+\begin{uloha}
+Derivace součinu se spočte jako $(fg)' = f'g + fg'$. Jak se spočte druhá derivace součinu? A jak to bude pokračovat? Proč? Sedí to i pro \uv{nultou derivaci}?
+\end{uloha}
+
+\interest
+\begin{uloha}
+Dokažte následující tvrzení: je-li $p$ prvočíslo, pak jsou všechna čísla
+\[ \binom p1, \binom p2, \dots, \binom p{p-1} \]
+násobky $p$. \hint{Využijte $\binom nk = \frac{n!}{k!(n-k)!}$ a zvažte, kde se v tomto zlomku objeví $p$.}
+\end{uloha}
+
+
+\baselineskip=1.25\baselineskip
+\setlist[enumerate]{label=\textbf{(\alph*)},itemjoin={\quad}}
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
