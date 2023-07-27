@@ -1,0 +1,155 @@
+\documentclass[10pt,a4paper]{extarticle}
+\usepackage[margin=1.25cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{3d}
+\usepackage[colorlinks]{hyperref}
+
+\def\bod#1#2#3{\node[circle,fill=black,inner sep=0pt,outer sep=0pt,minimum size=3pt,label=#2:{$#3$}] (#3) at (#1) {};}
+\def\zaklad{%
+\draw[dashed] (0,0,1) -- (0,0,0) -- (1,0,0);% -- (0,0,1) -- cycle;
+\draw (1,0,0)-- (1,0,1) -- (0,0,1);
+\draw (1,0,0) -- (.5,1.5,.5) -- (1,0,1);
+\draw (0,0,1) -- (.5,1.5,.5);
+\draw[dashed] (0,0,0) -- (.5,1.5,.5);
+\bod{1,0,0}{right}{C}
+\bod{1,0,1}{right}{B}
+\bod{0,0,1}{left}{A}
+\bod{.5,1.5,.5}{above}{V}
+}
+
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\qquad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\def\st{^\circ}
+\mathcode`\,="013B
+
+\begin{document}
+
+\section*{4. Opáčko na čtvrtletku -- řešení Úlohy 3}
+
+\setcounter{uloha}{2}
+
+\begin{uloha}
+V pravidelném čtyřbokém jehlanu, jehož podstavná hrana má délku 4 a výška je 6, určete
+\begin{enumerate}
+    \item vzdálenost bodu $S_{CV}$ od přímky $AV$ %19c
+    \item vzdálenost bodu $A$ od roviny $BCV$
+    \item odchylku přímek $AC$ a $VS_{BC}$ %31g
+    \item odchylku rovin $ADV$ a $BCS_{AV}$ %36f
+\end{enumerate}
+\end{uloha}
+
+Obecně se nám bude hodit vědět, že výška boční stěny je dlouhá $\sqrt{2^2+6^2} = 2\sqrt{10}$ a boční hrana má délku $\sqrt{(2\sqrt2)^2 + 6^2} = 2\sqrt{11}$.
+
+
+\begin{proof}[Řešení (a)]
+Označíme $X$ kolmý průmět bodu $S_{CV}$ na přímku $AV$.
+\[\begin{tikzpicture}[scale=2]
+    \zaklad
+    \draw[red, thick] (A.center) -- (C.center) -- (V.center) -- cycle;
+    \bod{.75,.75,.25}{right}{S_{CV}}
+    \bod{.341,1.023,.659}{left}{X}
+    \draw[blue, thick] (S_{CV}) -- (X);
+\end{tikzpicture}  \]
+Zaměříme se na trojúhelník $ACV$:
+\[\begin{tikzpicture}[scale=.5]
+    \bod{-2.828,0}{left}{A}
+    \bod{2.828,0}{right}{C}
+    \bod{0,6}{above}{V}
+    \draw (A) -- (C) -- (V) -- (A);
+    \bod{1.414,3}{right}{S_{CV}}
+    \bod{-.9,4.091}{left}{X}
+    \draw[blue, thick] (S_{CV}) -- (X);
+    \bod{-1.8,2.182}{left}{Y}
+    \draw[green, thick] (C) -- (Y);
+\end{tikzpicture}\]
+Díky podobnosti trojúhelníků $VXS_{CV}$ a $VYC$ bude $|XS_{CV}| = \frac12|YC|$, takže chceme určit $|YC|$, přičemž délku výšky $YC$ určíme standardně pomocí obsahu: víme $|AC| = \sqrt2\, |AB| = 4\sqrt2$, výška na $AC$ má délku $6$, takže $S_{\triangle ACV} = \frac12 \cdot 4\sqrt2 \cdot 6 = 12\sqrt2$. Odtud
+\[ |YC| = \frac{2S_{\triangle ACV}}{|CV|} = \frac{24\sqrt2}{2\sqrt{11}} = \frac{12\sqrt{22}}{11}. \]
+Dle úvahy výše tedy je
+\[ |XS_{CV}| = \frac12|YC| = \frac{6\sqrt{22}}{11}. \]
+
+Alternativně jsme mohli postupovat tak, že se zaměříme na trojúhelník $S_{AV}S_{CV}V$, ve kterém je $XS_{CV}$ výškou. Tento trojúhelník je podobný trojúhelníku $ACV$, přičemž rozměry jsou poloviční, takže opět vidíme, že výsledek je polovina délky výšky v trojúhelníku $AVC$.
+\end{proof}
+
+\begin{proof}[Řešení (b)]
+Tady je hlavně potřeba dát pozor na to, že kolmý průmět $A$ do roviny $BCV$ nebude ležet na přímce $BV$, jak by se někomu mohlo zdát, ale \uv{kousek vedle vně jehlanu} (to můžete vidět např. na \href{https://www.geogebra.org/3d/k3sqq9hb}{řešení jedné jiné starší úlohy}). Můj postup je takový, že místo vzdálenosti bodu $A$ budu počítat vzdálenost $S_{AD}$ (obecně při počítání vzdáleností \emph{nemohu} hýbat s~objekty libovolně, jako když počítám odchylky, ale přímka $AS_{AD}$ je s rovinou $BCV$ rovnoběžná, neboli \uv{pohyb z $A$ do $S_{AD}$ je rovnoběžný s $BCV$}, takže ta vzdálenost bude stejná). V tu chvíli mi kolmý průmět $S_{AD}$ do roviny $BCV$ (označím ho $X$) leží na přímce $S_{BC}V$ a klíčovým se stává trojúhelník $S_{AD}S_{BC}V$:
+\[\begin{tikzpicture}[scale=2]
+    \zaklad
+    \bod{0,0,0}{above right}{D}
+    \bod{0,0,.5}{above left}{S_{AD}}
+    \bod{1,0,.5}{right}{S_{BC}}
+    
+    
+    \draw[red, thick] (S_{AD}) -- (S_{BC}) -- (V) -- (S_{AD});
+    \bod{.9,.3,.5}{above}{X}
+    \draw[blue, thick] (S_{AD}) -- (X);
+\end{tikzpicture}  \]
+Stačí tedy dopočítat výšku na $S_{BC}V$ v trojúhelníku $S_{AD}S_{BC}V$; již jen zrychleně:
+\[ |XS_{AD}| = \frac{4 \cdot 6}{2\sqrt{10}} = \frac{6 \sqrt{10}}{5}. \]
+\end{proof}
+
+
+
+\begin{proof}[Řešení (c)]
+Aby se nám přímky protínaly, posuneme si $AC$ na $S_{AB}S_{BC}$; klíčový je nyní (rovnoramenný) trojúhelník $S_{AB}S_{BC}V$, pomocí něhož chceme zjistit velikost úhlu $\sphericalangle V S_{BC}S_{AB}$:
+\[\begin{tikzpicture}[scale=2]
+    \zaklad
+    \bod{1,0,.5}{right}{S_{BC}}
+    \bod{.5,0,1}{below}{S_{AB}}
+    \draw[red, thick] (S_{AB}) -- (S_{BC}) -- (V) -- (S_{AB});
+\end{tikzpicture} \]
+Buď můžeme onen trojúhelník rozdělit na dva pravoúhlé, nebo jít na jistotu a rovnou použít kosinovou větu; $|VS_{AB}| = |VS_{BC}| = 2\sqrt{10}$, $|S_{AB}S_{BC}| = \frac12 |AC| = 2\sqrt2$, takže
+\[ |\sphericalangle V S_{BC}S_{AB}| = \arccos\left( \frac{(2\sqrt{10})^2 + (2\sqrt2)^2 - (2\sqrt{10})^2}{2 \cdot 2\sqrt{10} \cdot 2\sqrt2} \right) = \arccos\left(\frac{1}{\sqrt{20}} \right) \doteq 77\st5'. \]
+\end{proof}
+
+
+\begin{proof}[Řešení (d)]
+Průsečnicí oněch zadaných rovin je přímka $S_{AV}S_{DV}$. Označím jako $X$ střed úsečky $S_{AV}S_{DV}$ (neboli $X = S_{S_{AV}S_{DV}}$ a taky $X = S_{VS_{AD}}$), hledaná odchylka rovin bude odchylka přímek $XS_{BC}$ a $XS_{AD}$ (které jsou obě zřejmě kolmé na průsečnici $S_{AV}S_{DV}$).
+\[\begin{tikzpicture}[scale=2]
+    \zaklad
+    \bod{0,0,0}{above right}{D}
+    \bod{0,0,.5}{above left}{S_{AD}}
+    \bod{1,0,.5}{right}{S_{BC}}
+    \bod{.25,.75,.5}{above left}{X}
+    \draw[red, thick] (S_{AD}) -- (S_{BC}) -- (X) -- (S_{AD});
+    \draw[green] (X) -- (V);
+\end{tikzpicture} \]
+Chceme zjistit velikost úhlu $S_{AD}XS_{BC}$, přičemž víme $|S_{AD}S_{BC}| = 4$, $|S_{AD}X| = \frac12|S_{AD}V| = \sqrt{10}$. Dále platí (s využitím známých rozměrů v jehlanu)
+\[ \cos |\sphericalangle XS_{AD}S_{BC}| = \frac{2}{2\sqrt{10}} = \frac{1}{\sqrt{10}}, \]
+takže pomocí kosinové věty
+\[ |XS_{BC}|^2 = |S_{AD}S_{BC}|^2 + |S_{AD}X|^2 - 2 \cdot |S_{AD}S_{BC}| \cdot |S_{AD}X| \cdot \cos |\sphericalangle XS_{AD}S_{BC}| =
+16 + 10 - 2 \cdot 4 \cdot \sqrt{10} \cdot \frac{1}{\sqrt{10}} = 18
+ \]
+odkud
+\[ |XS_{BC}| = \sqrt{18} = 3 \sqrt2. \]
+(Na tuto hodnotu jsme mohli -- možná v tomto případě jednodušeji -- přijít i tak, že jsme si vzali kolmý průmět $X$ do podstavy a pak využili vzniklý pravoúhlý trojúhelník.) Nyní již kosinovou větou snadno dopočteme hledaný úhel:
+\[ |\sphericalangle S_{AD}XS_{BC}| = \arccos\left( \frac{(\sqrt{10})^2 + (3\sqrt2)^2 - 4^2}{2 \cdot \sqrt{10} \cdot 3\sqrt2} \right) = \arccos\left(\frac{1}{\sqrt{5}} \right) \doteq 63\st26'. \]
+\end{proof}
+
+
+\end{document}

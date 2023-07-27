@@ -1,0 +1,22 @@
+\documentclass[tikz,crop]{standalone}
+\begin{document}
+\pgfmathparse{sqrt(2)}
+\edef\sqt{\pgfmathresult}
+\pgfmathparse{atan(1/sqrt(2))}
+\edef\ang{\pgfmathresult}
+\def\pocet{24}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+    \begin{scope}[lightgray,very thin]
+        \foreach \k in {0,...,\pocet} {
+            \pgfmathparse{cos(180*\k/(\pocet+1))}
+            \begin{scope}[xscale=\pgfmathresult]
+                \draw[rotate=\ang] (-1,-\sqt) rectangle (1,\sqt);
+            \end{scope}
+        }
+    \end{scope}
+    \begin{scope}[rotate=-\ang]
+        \draw (-1,-\sqt) rectangle (1,\sqt);
+        \draw[dashed] (-1,\sqt) -- (1,-\sqt);
+    \end{scope}
+\end{tikzpicture}
+\end{document}
