@@ -1,0 +1,143 @@
+\documentclass[11pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+
+\begin{document}
+
+% \tisk
+% \resultssame
+
+\section*{18. Vzdálenosti v rovině}
+
+
+\begin{uloha}
+Rozmyslete si, že přímky
+$p\colon 2x - y + 4 = 0$ a $q \colon {-}4x + 2y + 7 = 0$
+jsou rovnoběžné, a určete jejich vzdálenost.\vysl{$\frac{3\sqrt5}{2}$}
+\end{uloha}
+
+\begin{uloha}
+Nalezněte všechny možné hodnoty $m \in \R$ takové, že bod $M[4; m]$ bude mít od přímky $p \colon 3x-4y+2=0$ vzdálenost $2$.\vysl{$1$ a $6$}
+\end{uloha}
+
+\begin{uloha}
+Nalezněte obecné rovnice všech přímek, které budou rovnoběžné s přímkou $p \colon 3x-4y+2=0$ a jejich vzdálenost od oné přímky bude $2$.\vysl{$3x-4y-8=0$ a $3x-4y+12=0$}
+\end{uloha}
+
+\begin{uloha}
+Nalezněte všechny body na přímce $q\colon x = 1 + 2t$, $y = 2 + t$, $t \in \R$, které budou mít od přímky $p \colon 3x-4y+2=0$ vzdálenost $3$.\vysl{$[-11;-4]$ a $[19;11]$}
+\end{uloha}
+
+
+\begin{uloha}\label{pata}
+Na přímce $p \colon 3x-4y+2=0$ nalezněte bod, který je nejblíže bodu $D[3; 9]$. \hint{Oním nejbližším bodem je pata kolmice na $p$ spuštěné z bodu $D$. Přijde mi lehce praktičtější si onu kolmici popsat parametricky.}\vysl{$[6;5]$}
+\end{uloha}
+
+
+\interest
+\begin{uloha}
+Postupem podobným jako v Úloze \ref{pata} nalezněte obecný vzorec pro souřadnice bodu na přímce $ax + by + c = 0$, který bude nejblíže bodu $P[p_1; p_2]$.\vysl{$[p_1;p_2] - \frac{ap_1 + bp_2 + c}{a^2 + b^2} (a;b)$ neboli $\bigl[p_1 - \frac{ap_1 + bp_2 + c}{a^2 + b^2}\, a;\ p_2 - \frac{ap_1 + bp_2 + c}{a^2 + b^2}\, b\bigr]$}
+\end{uloha}
+
+
+\begin{uloha}
+Množina všech bodů v rovině, které mají stejnou vzdálenost od přímek $p \colon 3x-4y+2=0$ a $q \colon 5x+12y-7=0$, je sjednocením dvou přímek; určete jejich obecné rovnice. (Rozmyslete si, že toto je další možná metoda, jak hledat rovnice os úhlů.)\vysl{$14x - 112y + 61 = 0$ a $64x + 8y - 9 = 0$}
+\end{uloha}
+
+
+\interest
+\begin{uloha}
+Nalezněte obecné rovnice všech přímek, které budou procházet bodem $A[4;7]$ a jejich vzdálenost od počátku $O[0;0]$ bude rovna $1$. \hint{Může být praktické si zvolit $c = 1$ v obecné rovnici, což je možné kdykoliv, když ty přímky neprochází počátkem.}\vysl{$4x-3y+5 = 0$ a $12x-5y-13 = 0$}
+\end{uloha}
+
+
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
