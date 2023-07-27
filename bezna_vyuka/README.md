@@ -40,3 +40,10 @@ Ze všeobecného nepořádku zde vystupují dvě číslované řady materiálů;
 33. [Pravděpodobnost bez kombinatoriky](oktava/pravdepodobnost/prst_bez_komb_sada/prst_bez_komb_sada.pdf)
 34. [Nezávislost a podmíněná pravděpodobnost](oktava/pravdepodobnost/podminena_prst/podminena_prst_sada.pdf)
 35. [Podmíněná pravděpodobnost – pokračování](oktava/pravdepodobnost/podminena_prst/podminena_prst_pokrac.pdf)
+
+
+# Řada kombinatorika
+
+1. [Větvení](septima/kombinatorika/c1_vetveni/c1_vetveni.pdf)
+2. [Když možností ubývá](septima/kombinatorika/c2_ubytek/c2_ubytek.pdf)
+3. [Uspořádání i neuspořádání](septima/kombinatorika/c3_usporadani/c3_usporadani.pdf) s [dodatkem](septima/kombinatorika/c3half/c3half.pdf)
