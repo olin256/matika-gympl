@@ -22,6 +22,8 @@ Materiály použité ve výuce mých dvou tříd. Nemálo z toho je vykrádačka
 
 Historický vývoj postupoval od celkem náhodných papírů, na kterých se klidně sešla i nesouvisející témata, k číslovaným víceméně monotematickým zadáním. V nižším ročníku kromě toho ještě proběhlo „období sbírek“ inspirované sbírkami z [realisticky.cz](http://www.realisticky.cz/).
 
+V [příslušné složce](bezna_vyuka/) je jako README seznam číslovaných materiálů s odkazy.
+
 ## Extra úlohy
 Celkem náhodné sady úloh, obvykle jen pro zájemce.
 Speciálně musím vyzdvihnout [úlohy na dědičnost](extra/bio_ulohy.pdf), které jsem někdy na konci septimy předhodil studentům bez jakýchkoliv formálních znalostí pravděpodobnosti, ale s hrubou znalostí zákonů dědičnosti z biologie; v mých vzpomínkách jde o jednu z nejlepších hodin.
