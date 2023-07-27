@@ -1,0 +1,138 @@
+\documentclass[10pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{multicol}
+
+\newcommand{\centeredgraphics}[2][]{\[\includegraphics[#1]{#2}\]}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate}}}{\ee\vyslplain\ee{\locvysld\end{enumerate}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+
+
+\begin{document}
+
+%\tisk
+
+\section*{C1. Větvení}
+
+
+\begin{uloha}
+Lucka neví, co si vzít na sebe. Ve skříni má 4 trika, 3 tílka, 2~kalhoty, 5~sukní, 4 šaty a 3 mikiny. Kolika způsoby se může obléct? Musí být oblečená, mikina není nutná, triko či tílko musí být s kalhoty či sukní, šaty samostatně nebo s mikinou.\vysl{$212 = 4\cdot (7 \cdot 7 + 4)$}
+\end{uloha}
+
+
+\begin{uloha}
+Marián jde na oběd do restaurace. Může si dát polední menu, kde je na výběr ze čtyř hlavních chodů a dvou polévek (polévka je k menu povinná), nebo si objednat něco z deseti jídel ve stálé nabídce (pak už si polévku nedá, to by bylo moc drahé). Zapít to může minerálkou, kolou, nebo (samozřejmě nealkoholickým) pivem (musí si dát právě jeden nápoj, aby neměl žízeň a hlavně aby nebyl považován za sociální případ). Kolika způsoby může tento velkolepý oběd uskutečnit?\vysl{$54 = 3\cdot(2\cdot 4 + 10)$}
+\end{uloha}
+
+
+
+\begin{ulohav}
+Ilona se (správně) rozhodla, že půjde studovat na Matfyz. Na bakaláři může jít studovat matematiku, fyziku nebo informatiku, přičemž matematika navazuje pěti magisterskými obory, fyzika devíti a informatika šesti. Kolika způsoby může Matfyz vystudovat, pokud
+\begin{enumerate}
+    \item bude studovat právě jeden bakalářský obor a na něj naváže jedním \uv{navazujícím} magisterským?\lv{$5+9+6 = 20$}
+    \item po bakaláři může vlastně jít na jakýkoliv magisterský obor (nějak to dožene)?\lv{$3 \cdot (5+9+6) = 60$}
+    \item si věří a dá si hned současně dva bakalářské obory a na magistru bude pokračovat libovolným?\lv{$3 \cdot (5+9+6) = 60$}
+    \item si věří a dá si současně dva bakalářské obory, ale na magistru raději bude navazovat jedním z těch dvou?\lv{$40$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Kolika způsoby lze čtverec $4\times4$ vydláždit, máme-li k dispozici libovolné množství (nerozlišitelných) dlaždic $2\times3$ a $1\times1$? Počítejte s tím, že 
+\begin{enumerate}
+    \item dlaždicemi $2\times3$ nelze rotovat,\lv{11}
+    \item dlaždicemi $2\times3$ lze rotovat.\lv{21}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Klement si chce obléknout dvě ponožky různé barvy, přičemž má na výběr z pěti teplých barev a šesti studených barev. Záleží mu i na tom, která barva bude na levé a která na pravé noze. Kolika způsoby může odít svá chodidla, jestliže
+\begin{enumerate}
+    \item na teplotě barev mu nikterak nezáleží,\lv{$110 = 11 \cdot 10$}
+    \item nechce míchat teplé a studené barvy,\lv{$50 = 5 \cdot 4 + 6 \cdot 5$}
+    \item naopak chce mít jednu teplé a jednu studené barvy.\lv{$60 = 2\cdot 6 \cdot 5$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Kolika způsoby je možné obarvit políčka tabulky $2 \times 7$ žlutě a zeleně tak, aby v~žádném místě nevzniklo ani zelené, ani žluté L-trimino?
+Poznámka: L-trimino je následující tvar (případně otočený o~nějaký násobek pravého úhlu):
+\centeredgraphics{trimino.pdf}
+\vysl{$2 + 2^7 = 130$}
+\end{uloha}
+
+
+\newpage
+\parindent=0pt
+\parskip=\smallskipamount
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+
+
+\end{document}

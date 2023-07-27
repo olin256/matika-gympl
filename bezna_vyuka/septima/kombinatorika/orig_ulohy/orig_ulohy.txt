@@ -1,0 +1,19 @@
+Úlohy vymyšlené samotnými studenty
+
+Soběslav chce své dívce (Květoslávce) koupit květiny. Na výběr mají v květinářství z osmi druhů květin a ze čtyř barev mašlí. Chce koupit kombinaci dvou různých květin + mašle. Kolik má Soběslav možností na výběr, aby nepřišel s prázdnou a Květoslávka nebyla v depresích? (112 = (8 binom 2)*4)
+
+Anežka je velmi pilná studentka a má velmi velký počet školních pomůcek. Každý den si do školy vybírá z 10 pastelek, 5 propisek, 8 kružítek a 9 nůžek. Někdy však zapomene připravit pomůcky, ale nikdy nezapomene propisku, protože ví, že její dobrá kamarádka Lucka by jí propisku nikdy nepůjčila. Kolika způsoby může být vybaven její penál? (4950 = 11*5*9*10)
+
+Pepa, který právě přišel ze školy, má hlad a rozhoduje se, co si dá k jídlu. Doma však našel jen 5 vajec, 8 párků, 3 plátky sýra 2 rohlíky, přičemž ze všech těchto potravin může sníst libovolné množství včetně všeho a ničeho. Kolika způsoby se může najíst za předpoklad, že něco musí sníst? (647 = 6*9*4*3-1)
+
+Slečna zahradnice se v poslední době velmi stresuje. Rozhodla se tedy, že kvítka přece pomáhají ze všeho nejlépe, a tak je rozmístí po své ložnici tak, aby na ně odevšad viděla. K dispozici má 8 květináčků s kvítím, které chce rozdělit mezi noční stolek, poličku, psací stůl, skříň a komodu. Na stolek se vejde max. 1, na poličku 4, na psací stůl 2 a na skříň i komodu neomezeně. Kolik kombinací lze vymyslet, aby na každém z míst byla aspoň 1 kytička? (16) JSOU STEJNÉ NEBO NE?
+
+Zvíře může mít od 0 do 8 nohou a od 0 do 30 zubů. Kolik je možných druhů zvířat? (279 = 9*31)
+
+Janina si dělá svačinu. Má na výběr rohlík, housku nebo chleba, na který si může dát 5 druhů pomazánek a to celé zabalit do ubrousku, kterých má na výběr 8. Kolik existuje kombinací? (Musí mít svačinu, na pečivu musí mít pomazánku a musí to být zabalené v jednom ubrousku). (120 = 3*5*8)
+
+Lucka neví, co si vzít na sebe. Ve skříni má 4 trika, 3 tílka, 2 kalhoty, 5 sukní, 4 šaty a 3 mikiny. Kolika způsoby se může obléct? Musí být oblečená, mikina není nutná, triko/tílko s kalhoty/sukní, šaty samostatně nebo s mikinou. (212 = 4*7*7 + 4*4)
+
+Mám 12 stejných podkov a tři (různé) koně. Kolika způsoby je mohu okovat? Jelikož jsme farmář progresivního typu, netrvám na tom, aby kůň měl podkovy, ale může být okován pouze částečně či vůbec (2^12)
+
+Anička chtěla zvířátko. Šla tedy do zverimexu v jejím rodném Břevnově. Obchodní dům byl opravdu veliký, vlezla tedy dovnitř, rozrazila dveře a vykřikla "Já chci zvířátko!" Prodavačka pohodově vyjekla, že má jít dozadu, že tam je zvířat spousty. Anička se nemohla rozhodnout, protože tam bylo 5 morčátek, 18 slepiček, 12 králíků, 11 želviček, 21 andulek, 14 kanárků a 41 rybiček. Anička si domů nechtěla přitáhnout žádného ptáčka a mohla si vzít domů od každého druhu maximálně 1 ukus. Kolik měla Anička možností na výběr, pokud opravdu nechtěla ptáčka?

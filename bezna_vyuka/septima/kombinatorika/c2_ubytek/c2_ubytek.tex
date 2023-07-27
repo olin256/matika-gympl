@@ -1,0 +1,156 @@
+\documentclass[8pt,a5paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{tikz}
+
+\newcommand{\centeredgraphics}[2][]{\[\includegraphics[#1]{#2}\]}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\qquad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\begin{document}
+
+%\resultssame
+%\tisk
+
+\section*{C2. Když možností ubývá}
+
+
+\begin{uloha}
+Anežka je velmi pilná studentka a má velmi velký počet školních pomůcek. Každý den si do školy vybírá z 10 pastelek, 5 propisek, 8 kružítek a 9 nůžek (jeden kus od každého). Někdy však zapomene připravit pomůcky, ale nikdy nezapomene propisku, protože ví, že její dobrá kamarádka Lucka by jí propisku nikdy nepůjčila. Kolika způsoby může být vybaven její penál?\vysl{$4950 = 11 \cdot 5 \cdot 9 \cdot 10$}
+\end{uloha}
+
+
+\begin{ulohav}\label{cm}
+Cyril sledoval Metoděje, když zadával heslo, takže ví, že jeho heslo se skládá z pěti znaků, které mohou být číslice nebo velká či malá písmena anglické abecedy (ta má 26 písmen). Cyril se na prolomení Metodějova hesla rozhodl použít program, který vyzkouší tisíc hesel za sekundu.
+\begin{enumerate}
+    \item Jak dlouho bude onomu programu trvat, než projde všechny možnosti na Metodějovo heslo?\lv{$62^5 / 1000\,\mathrm{s} \doteq{}$10 dní, 14 hodin a 29 minut}
+    \item Alespoň jak dlouhé by si měl Metoděj zvolit heslo, aby vyzkoušet všechny možnosti trvalo alespoň století?\lv{7 znaků}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Kolika způsoby se mohou odehrát první dva tahy v šachách?\vysl{$400 = 20 \cdot 20$}
+\end{uloha}
+
+\interest
+\begin{uloha}
+Na tomto místě si můžete krátce rozmyslet, jak strašné by bylo počítat, kolika způsoby se mohou odehrát první \emph{tři} tahy v šachách (já jsem nad tím chvíli přemýšlel a pak mě to přestalo bavit).
+\end{uloha}
+
+
+\begin{uloha}
+Čtyři studenti si losují každý jednu z celkem dvaceti maturitních otázek z matematiky, a to tak, že si postupně každý vytáhnou žeton s číslem z klobouku, ale nevrací ho tam, aby měl každý jinou otázku (v klobouku je na začátku každý žeton právě jednou). Kolika způsoby to mohlo dopadnout?\vysl{$116\,280 = 20 \cdot 19 \cdot 18 \cdot 17$}
+\end{uloha}
+
+
+\begin{uloha}
+Kolik existuje pětiznakových hesel (skládajících se opět z 0--9, a--z, A--Z), ve kterých se žádný znak neopakuje?\vysl{$776\,520\,240 = 62\cdot61\cdot60\cdot59\cdot58$}
+\end{uloha}
+
+
+\begin{uloha}
+Kolik je naopak pětiznakových hesel, ve kterých se nějaký znak opakuje?\vysl{$139\,612\,592 = 62^5 - 62\cdot61\cdot60\cdot59\cdot58$}
+\end{uloha}
+
+
+\begin{ulohav}
+Čtrnáct rytířů plus Guinevera chtějí zasednout kolem kulatého stolu (kolem kterého je přesně patnáct míst). Kolika způsoby to mohou udělat, jestliže
+\begin{enumerate}
+    \item si mohou posedat úplně jak chtějí,\lv{$1\,307\,674\,368\,000 = 15 \cdot 14 \cdot 13 \cdots 2 \cdot 1$}
+    \item Artuš musí sedět v čele (co to je čelo kulatého stolu?),\lv{$87\,178\,291\,200 = 14 \cdot 13 \cdots 2 \cdot 1$}
+    \item navíc musí Guinevera sedět vedle Artuše (je jedno na které straně),\lv{$12\,454\,041\,600 = 2 \cdot 13 \cdot 12 \cdot 11 \cdots 2 \cdot 1$}
+    \item navíc nesmí vedle Guinevery sedět Lancelot.\lv{$11\,496\,038\,400 = 2 \cdot 12 \cdot 12 \cdot 11 \cdots 2 \cdot 1$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}[Náboj 2022, Úloha 2]
+Bára má v šatníku sedm triček a sedm sukní, a to po jednom kusu v každé z následujících barev: červená, modrá, zelená, žlutá, černá, oranžová a fialová. Zásadně nosí triko jiné barvy, než jakou má právě sukni. Navíc má ještě jedno pravidlo -- kdykoli na sobě má něco červeného, musí druhý kus oblečení být žlutý. Kolika způsoby se Bára může obléci, aby splnila uvedené podmínky?\vysl{$32 = 6 \cdot 5 + 2$}
+\end{uloha}
+
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}

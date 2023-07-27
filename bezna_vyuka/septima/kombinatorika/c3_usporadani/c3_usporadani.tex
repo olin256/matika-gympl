@@ -1,0 +1,179 @@
+\documentclass[9pt,a4paper]{extarticle}
+\usepackage[margin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[czech]{babel}
+\usepackage{microtype}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{tikz}
+
+\newcommand{\centeredgraphics}[2][]{\[\includegraphics[#1]{#2}\]}
+
+\usepackage[inline]{enumitem}
+
+\newcommand{\R}{\mathbb{R}}
+
+\newcommand{\hint}[1]{{\color{gray}\footnotesize\noindent(Nápověda: #1)}}
+
+\setlist[enumerate]{label={(\alph*)},topsep=\smallskipamount,itemsep=\smallskipamount,parsep=0pt,itemjoin={\qquad}}
+\setlist[itemize]{topsep=\smallskipamount,noitemsep}
+
+\def\tisk{%
+\newbox\shipouthackbox
+\pdfpagewidth=2\pdfpagewidth
+\let\oldshipout=\shipout
+\def\shipout{\afterassignment\zdvojtmp \setbox\shipouthackbox=}%
+\def\zdvojtmp{\aftergroup\zdvoj}%
+\def\zdvoj{%
+    \oldshipout\vbox{\hbox{%
+        \copy\shipouthackbox
+        \hskip\dimexpr .5\pdfpagewidth-\wd\shipouthackbox\relax
+        \box\shipouthackbox
+    }}%
+}}%
+
+
+
+\newtheorem*{poz}{Pozorování}
+
+\theoremstyle{definition}
+\newtheorem{uloha}{\atr Úloha}
+\newtheorem{suloha}[uloha]{\llap{$\star$ }Úloha}
+\newtheorem*{bonus}{Bonus}
+\newtheorem*{defn}{Definice}
+
+\pagestyle{empty}
+
+\let\ee\expandafter
+
+\def\vysld{}
+\let\printvysl\relax
+\let\printalphvysl\relax
+
+\makeatletter
+\long\def\vyslplain#1{\ee\ee\ee\gdef\ee\ee\ee\vysld\ee\ee\ee{\ee\vysld\ee\printvysl\ee{\the\c@uloha}{#1}}}
+\let\vysl\vyslplain
+
+\def\locvysl#1{\ee\gdef\ee\locvysld\ee{\locvysld\item #1}}
+\let\lv\locvysl
+
+\newenvironment{ulohav}[1][]{\begin{uloha}[#1]\gdef\locvysld{\begin{enumerate*}}}{\ee\vyslplain\ee{\locvysld\end{enumerate*}}\end{uloha}}
+\def\stitem{\@noitemargtrue\@item[$\star$ \@itemlabel]}
+
+\makeatother
+
+\def\atr{}
+\def\basic{\def\atr{\llap{\mdseries$\sun$ }\gdef\atr{}}}
+\def\interest{\def\atr{\llap{$\star$ }\gdef\atr{}}}
+\def\iinterest{\def\atr{\llap{$\star\star$ }\gdef\atr{}}}
+\let\mb\mathbf
+
+\let\results\newpage
+\let\endresults\relax
+
+\def\resultssame{%
+    \long\def\results##1\endresults{%
+        \vfill\noindent\rotatebox{180}{\vbox{##1}}%
+    }%
+}
+
+\begin{document}
+
+% \resultssame
+
+
+\section*{C3. Uspořádání i neuspořádání}
+
+
+\begin{uloha}
+Kolik různých (kladných) dělitelů má číslo $2^5 \cdot 3^6 \cdot 5^3$?\vysl{$6 \cdot 7 \cdot 4 = 168$}
+\end{uloha}
+
+
+\begin{ulohav}
+Identifikátor každého videa na YouTube je řetězec jedenácti znaků z množiny a--z, A--Z, 0--9 a - nebo \_ (celkem 64 možností).
+\begin{enumerate}
+    \item Kolik různých takovýchto identifikátorů existuje?\lv{$64^{11}$}
+    \item Jestliže se každou minutu nahraje na YT 500 hodin videa a průměrná délka jednoho videa je 12 minut, zhruba za jak dlouho by byly vyčerpány všechny identifikátory?\lv{cca $5{,}6 \cdot 10^{10}$ let; pro srovnání stáří vesmíru je cca $1{,}4 \cdot 10^{10}$ let}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}
+Zkrácené url na mapy.cz obsahují vždy deset malých písmen, kde na lichých pozicích jsou anglické souhlásky bez q, w, x (celkem 17 znaků) a na sudých pozicích mohou být pouze písmena a, e, o, u (např. \texttt{https://mapy.cz/s/ragebudunu} je platná adresa).
+\begin{enumerate}
+    \item Kolik různých zkrácených url existuje?\lv{$17^5 \cdot 4^5$}
+    \item Pokud by se povrch Země rozdělil na oblasti o stejném obsahu, kde každé oblasti by příslušela jedna url, jak velké by ty oblasti byly?\lv{velmi zhruba $351\,000\,\mathrm{m}^2$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{ulohav}\label{vlajky}
+Nový stát Tramtárie potřebuje navrhnout vlajku. Volba padla na léty prověřený design tří horizontálních jednobarevných pruhů, přičemž každý pruh musí mít jinou barvu. Na výběr je z~osmi barev.
+\begin{enumerate}
+    \item Kolik je celkem různých vlajek na výběr?\lv{$8 \cdot 7 \cdot 6 = 336$}\label{vlajky-plain}
+    \item Co když jedna z použitých barev musí být bílá (což je jedna z těch osmi barev)?\lv{$3 \cdot 7 \cdot 6 = 126$}
+    \item Co když musíme použít bílou a červenou barvu?\lv{$3 \cdot 2 \cdot 6 = 36$}
+    \item Co když musíme použít bílou a červenou barvu a bílý pruh musí být nad tím červeným (nemusí nutně sousedit)?\lv{$3 \cdot 2 \cdot 6 / 2 = 18$} \hint{Pro každou takovoutu vyhovující vlajku existuje právě jedna vlajka, která má ty dvě barvy v opačném pořadí; dohromady tyto možnosti dávají všechny vlajky obsahující bílou a červenou.}
+    \item Co když naopak \emph{nesmíme} použít současně bílou a červenou barvu?\lv{$336 - 36 = 300$}
+    \stitem Tramtárie má společnou hranici se Sierrou Leone, které má vlajku zelená-bílá-modrá. Kolik je na výběr vlajek, pokud odpovídající si pruhy na vlajce Tramtárie a Sierry Leone musí mít různou barvu?\lv{$227 = 5\cdot(5\cdot5 + 1\cdot6) + 2\cdot(6\cdot5 + 1\cdot6)$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{uloha}
+Kolik nejméně by muselo být na výběr barev, aby výsledek Úlohy \ref{vlajky} \ref{vlajky-plain} byl alespoň $10\,000$?\vysl{$23$} \hint{Výsledná kubická nerovnice je jen velmi obtížně přesně řešitelná. Použijte metodu \emph{pokus-omyl}.}
+\end{uloha}
+
+\begin{uloha}
+Jak by se změnil výsledek Úlohy \ref{vlajky} \ref{vlajky-plain}, pokud bychom namísto unikátních barev požadovali pouze, aby sousední pruhy měly různou barvu?\vysl{$8 \cdot 7 \cdot 7 = 392$}
+\end{uloha}
+
+\begin{ulohav}
+Eldorádo, které sousedí s Tramtárií, si rovněž vybírá novou vlajku a jak už to v těch končinách chodí, budou to samozřejmě tři horizontální pruhy. Paleta osmi barev zůstává stejná, stejně jako podmínka, že se žádná barva nesmí opakovat.
+\begin{enumerate}
+    \item Kolika různými způsoby mohou dopadnout tyto \uv{dvojvolby} vlajek?\lv{$336^2 = 112\,869$}
+    \item Jak se výsledek změní, pokud požadujeme, aby Eldorádo a Tramtárie neměly úplně stejnou vlajku?\lv{$336^2 - 336 = 336\cdot 335 = 112\,560$}
+    \item Co když vlajka Tramtárie musí obsahovat bílou a červenou, ale Eldorádu je to jedno, jen nesmí mít úplně stejnou?\lv{$36 \cdot 335 = 12\,060$}
+\end{enumerate}
+\end{ulohav}
+
+\begin{ulohav}
+Alice tráví dovolenou v ČR, i rozhodla se, že postupně navštíví 12 památek UNESCO (každou právě jednou).
+\begin{enumerate}
+    \item Kolika způsoby může tento plán uskutečnit?\lv{$12! = 479\,001\,600$}
+    \item Co když chce začít v Praze a skončit v Brně?\lv{$10! = 3\,628\,800$}
+    \item Co když chce nejprve navštívit všechny v Čechách (4) a posléze všechny na Moravě (8)?\lv{$4! \cdot 8! = 967\,680$}
+    \item Co když chce naopak nejprve navštívit všechny na Moravě a potom ty v Čechách?\lv{$4! \cdot 8! = 967\,680$}
+    \item Co když chce jenom skončit na Moravě?\lv{$8 \cdot 11! = 319\,334\,400$}
+    \item Co když chce začít i skončit v Čechách?\lv{$4 \cdot 3 \cdot 10! = 43\,545\,600$}
+    \item Co když jediná podmínka, kteoru má, je, že Třebíč musí navštívit dříve než Olomouc?\lv{$12! / 2 = 239\,500\,800$}
+    \item Co když Olomouc chce navštívit okamžitě po Třebíči? \hint{Tímto požadavkem se vlastně dvě položky v plánu \uv{sloučily do jedné}.}\lv{$11! = 39\,916\,800$}
+    \stitem Co když chce Prahu, Český Krumlov a Kutnou Horu navštívit v tomto pořadí (jinak je to jedno)?\lv{$12! / 3! = 79\,833\,600$}
+    \item Co když chce začít tou nejstarší památkou a postupně je projít podle stáří až k té nejnovější?\lv{$1$}
+\end{enumerate}
+\end{ulohav}
+
+
+\begin{uloha}
+Kolik čtverců je na obrázku? A kolik je tam obdélníků?\vysl{čtverců $85 = 7\cdot 5+6\cdot 4+5\cdot 3+4\cdot 2+3\cdot 1$;\quad obdélníků $420 = \frac{8\cdot7}{2} \cdot \frac{6\cdot 5}{2}$}
+\[\begin{tikzpicture}[scale=.3]
+    \draw (0,0) grid (7,5);
+\end{tikzpicture} \]
+\end{uloha}
+
+
+\results
+\parindent=0pt
+\parskip=\smallskipamount
+\rightskip=0pt plus1fil\relax
+\def\printvysl#1#2{\textbf{#1.} #2\par}
+\vysld
+\endresults
+
+
+\end{document}
