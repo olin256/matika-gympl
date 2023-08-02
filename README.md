@@ -1,7 +1,7 @@
 # matika-gympl
 Rozličné materiály vyprodukované během výuky na Gymnáziu Voděradská v letech 2020–2023.
 Neobsahuje testy a maturitní otázky, kdybych je ještě někdy potřeboval.
-Dále nejsou obsaženy některé nejstarší materiály z běžné výuky (vyžadují důkladnějí projití) a domácí úkoly, ohledně jejichž zveřejnění váhám.
+Dále nejsou obsaženy některé nejstarší materiály z běžné výuky (vyžadují důkladnější projití) a domácí úkoly, ohledně jejichž zveřejnění váhám.
 
 Všechny TeXové zdrojáky jsou určeny primárně pro překlad pdfLaTeXem; jinak asi nebude fungovat makro `\tisk`, které umístí dvě A5 na jednu A4.
 
